@@ -3,7 +3,7 @@ For information,
 The OSM and JSON file has been removed from the repository.
 The following git command has been used :
 
-
+````shell
 # Stage our giant file for removal, but leave it on disk
 git rm --cached data/brussels_belgium.osm
 git rm --cached data/brussels_belgium.osm.json
@@ -15,3 +15,4 @@ git commit --amend -CHEAD
 
 # Push our rewritten, smaller commit
 git push
+````
