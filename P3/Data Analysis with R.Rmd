@@ -1,0 +1,1215 @@
+---
+title: "Data Analysis with R"
+author: "Michaël Lambé (mic0331 AT gmail DOT com)"
+date: "Last edited, Wednesday, April 29, 2015"
+output:
+  html_document:
+    toc: true
+    highlight: espresso
+    theme: united
+  pdf_document: default
+geometry: margin=1in
+fontsize: 10pt
+---
+
+<style type="text/css">
+
+#TOC {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 250px;
+  height: 100%;
+  overflow:auto;
+}
+#TOC ul li a {
+  color: #777;
+}
+body {
+  max-width: 1600px;
+  margin: auto;
+  margin-left:260px;
+  line-height: 20px;
+}
+</style>
+
+[Github Source Code](https://github.com/mic0331/udacity_nanodegree/tree/master/P3)
+
+```{r echo=FALSE, message=FALSE, warning=FALSE, fig.width = 11, packages}
+# results='hide', message=FALSE, warning=FALSE
+#install.packages("RSQLite")  # if needed
+#install.packages("freqweights") # if needed
+#install.packages('reshape2') # if needed
+#install.packages("ggmap") # if needed
+
+library(knitr)
+library(RSQLite)
+library(dplyr)
+library(reshape2)
+require(ggplot2)
+library(gridExtra)
+library(grid)
+library(scales)
+library(freqweights)
+library(maps)
+library(GGally)
+
+```
+
+```{r echo=FALSE, message=FALSE, warning=FALSE, setup}
+#opts_knit$set(root.dir = '/Volumes/Data/Dataset/RITA')
+#setwd('/Volumes/Data/Dataset/RITA')
+
+opts_knit$set(root.dir = '/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P3/data')
+setwd('/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P3/data')
+```
+
+# Introduction
+
+## Abstract
+
+Taking an airplane is one of the most important and efficient ways to travel. However, many travelers have experienced delayed flight. Which airline carriers delayed most often? Which airports have highest probability to make you wait for a long time? Also, which day of week and which month of year are better for your journey without severe delay?
+
+The aim of this presentation is to produce a graphical summary of the airline performance data. 
+
+For this project, we will be exploring the airline on-time performance from a publicly available dataset from the stat-computing website (see reference at the end of this document).
+
+## The dataset
+
+The data consists of flight arrival and departure details for all commercial flights within the USA, from October 1987 to April 2008. 
+
+The dataset is packed in a yearly chunks from 1987 to 2008.  This is a large dataset: there are nearly 120 million records in total, and takes up 1.6 gigabytes of space compressed and 12 gigabytes when uncompressed. 
+
+To make sure we will be not overwhelmed by the size of the data, we will create a subset file that will be used for our Exploratory Data Analysis task.
+We will first explain how we retreive the data, build a database and retreive a random subset for this project.
+
+As explain, the data come as a list of CSV files (compressed as bz2).
+To decompress the data we used this command :
+
+```sh
+bzip2 -d *.bz2
+```
+
+Here is the details of the files once decompressed :
+
+```sh
+air-mic:dataset mic0331$ ls -l
+total 23494656
+-rw-r-----@ 1 mic0331  staff  127162942 Apr  2 18:19 1987.csv
+-rw-r-----@ 1 mic0331  staff  501039472 Apr  2 18:21 1988.csv
+-rw-r-----@ 1 mic0331  staff  486518821 Apr  2 18:30 1989.csv
+-rw-r-----@ 1 mic0331  staff  509194687 Apr  2 18:22 1990.csv
+-rw-r-----@ 1 mic0331  staff  491210093 Apr  2 18:39 1991.csv
+-rw-r-----@ 1 mic0331  staff  492313731 Apr  2 18:22 1992.csv
+-rw-r-----@ 1 mic0331  staff  490753652 Apr  2 18:41 1993.csv
+-rw-r-----@ 1 mic0331  staff  501558665 Apr  2 18:22 1994.csv
+-rw-r-----@ 1 mic0331  staff  530751568 Apr  2 18:41 1995.csv
+-rw-r-----@ 1 mic0331  staff  533922363 Apr  2 18:42 1996.csv
+-rw-r-----@ 1 mic0331  staff  540347861 Apr  2 18:42 1997.csv
+-rw-r-----@ 1 mic0331  staff  538432875 Apr  2 18:42 1998.csv
+-rw-r-----@ 1 mic0331  staff  552926022 Apr  2 18:44 1999.csv
+-rw-r-----@ 1 mic0331  staff  570151613 Apr  2 18:44 2000.csv
+-rw-r-----@ 1 mic0331  staff  600411462 Apr  2 18:46 2001.csv
+-rw-r-----@ 1 mic0331  staff  530507013 Apr  2 18:46 2002.csv
+-rw-r-----@ 1 mic0331  staff  626745242 Apr  2 18:46 2003.csv
+-rw-r-----@ 1 mic0331  staff  669879113 Apr  2 18:46 2004.csv
+-rw-r-----@ 1 mic0331  staff  671027265 Apr  2 18:47 2005.csv
+-rw-r-----@ 1 mic0331  staff  672068096 Apr  2 18:51 2006.csv
+-rw-r-----@ 1 mic0331  staff  702878193 Apr  2 18:51 2007.csv
+-rw-r-----@ 1 mic0331  staff  689413344 Apr  2 18:50 2008.csv
+```
+
+# Initial Exploration and Data Cleanup
+
+In order to considerably speed up access to the data we will load it into a database. We will use sqlite, an open-source portable database.
+
+```sh
+sqlite3 ontime.sqlite3
+```
+
+Next, we create a table with fields that match the csv files.
+
+```sql
+sqlite> create table ontime (
+  Year int,
+  Month int,
+  DayofMonth int,
+  DayOfWeek int,
+  DepTime  int,
+  CRSDepTime int,
+  ArrTime int,
+  CRSArrTime int,
+  UniqueCarrier varchar(5),
+  FlightNum int,
+  TailNum varchar(8),
+  ActualElapsedTime int,
+  CRSElapsedTime int,
+  AirTime int,
+  ArrDelay int,
+  DepDelay int,
+  Origin varchar(3),
+  Dest varchar(3),
+  Distance int,
+  TaxiIn int,
+  TaxiOut int,
+  Cancelled int,
+  CancellationCode varchar(1),
+  Diverted varchar(1),
+  CarrierDelay int,
+  WeatherDelay int,
+  NASDelay int,
+  SecurityDelay int,
+  LateAircraftDelay int
+);
+```
+
+Then load the data with the `.import` directive.
+
+```sql
+sqlite> .separator ,
+sqlite> .import ../dataset/1987.csv ontime
+sqlite> .import ../dataset/1988.csv ontime
+sqlite> .import ../dataset/1989.csv ontime
+sqlite> .import ../dataset/1990.csv ontime
+sqlite> .import ../dataset/1991.csv ontime
+sqlite> .import ../dataset/1992.csv ontime
+sqlite> .import ../dataset/1993.csv ontime
+sqlite> .import ../dataset/1994.csv ontime
+sqlite> .import ../dataset/1995.csv ontime
+sqlite> .import ../dataset/1996.csv ontime
+sqlite> .import ../dataset/1997.csv ontime
+sqlite> .import ../dataset/1998.csv ontime
+sqlite> .import ../dataset/1999.csv ontime
+sqlite> .import ../dataset/2000.csv ontime
+sqlite> .import ../dataset/2001.csv ontime
+sqlite> .import ../dataset/2002.csv ontime
+sqlite> .import ../dataset/2003.csv ontime
+sqlite> .import ../dataset/2004.csv ontime
+sqlite> .import ../dataset/2005.csv ontime
+sqlite> .import ../dataset/2006.csv ontime
+sqlite> .import ../dataset/2007.csv ontime
+sqlite> .import ../dataset/2008.csv ontime
+```
+
+Unfortunately this also imports the column headers, so we remove them with this sql command.
+
+```sql
+delete from ontime where typeof(year) == "text";
+```
+
+To speed up access to the data, we'll also want to add indices. The code below adds a few, but we'll want to think about the needs and add more if needed. (It's most efficient to create the indices after all the data has been loaded)
+
+```sql
+sqlite> create index year on ontime(year);
+sqlite> create index date on ontime(year, month, dayofmonth);
+sqlite> create index origin on ontime(origin);
+sqlite> create index dest on ontime(dest);
+```
+
+```{r eval=FALSE}
+# not provided in github but the file can be re-built from the previous scripts
+ritadb <- dbConnect(RSQLite::SQLite(), './ontime.sqlite3')  
+
+from_db <- function(sql) {
+  dbGetQuery(ritadb, sql)
+}
+
+from_db("select count(*) from ontime")
+
+# this query return
+# count(*)
+# 1 123534969
+```
+
+So we have 123.534.969 records in the database and it has a size of 17.24 GB.
+
+```sh
+air-mic:data mic0331$ ls -l
+total 33671104
+-rw-r--r--  1 mic0331  staff  17239605248 Apr  3 09:51 ontime.sqlite3
+```
+
+The previously run query used to retreive the number of records of the database is already taking a lot of time to be run in R therefore we will generate a subset of random rows taken from the created SQL.  This file will contain 800.000 records from the main database.
+
+```sql
+sqlite> .headers on
+sqlite> .mode csv
+sqlite> .output rita.csv
+sqlite> select * from ontime order by random() limit 800000;
+sqlite> .output stdout
+```
+
+The generated file has now a reasonable size of 78.4 Mb
+
+```sh
+air-mic:data mic0331$ ls -l rita.csv
+-rw-r--r--  1 mic0331  staff  78448194 Apr  3 11:10 rita.csv
+```
+
+Let's now load the dataset onto a dataframe.
+
+```{r}
+rita = read.csv('./rita.csv')
+dim(rita)
+# also lead other utilitiy files
+airports = read.csv('./airports.csv')
+carriers = read.csv('./carriers.csv')
+```
+
+We will now add several potentially usefull columns and make some cleanup on the data.
+
+```{r}
+# We adjust the date features formats
+rita$Month <- sprintf("%02d", rita$Month)
+rita$DepTime <- sprintf("%04d", rita$DepTime)
+rita$ArrTime <- sprintf("%04d", rita$ArrTime)
+rita$DayOfWeek <- sprintf("%02d", rita$DayOfWeek)
+rita$DayofMonth <- sprintf("%02d", rita$DayofMonth)
+
+# Differences between the Departure delay and Arrival Delay
+rita <- mutate(rita, delta = DepDelay - ArrDelay)
+
+# speed in miles / hour
+rita <- mutate(rita, speed = Distance / (AirTime / 60))
+
+# full date of the departure
+rita <- mutate(rita, date = as.Date(paste(rita$Year, rita$Month, rita$DayofMonth, sep=""), "%Y%m%d"))
+```
+
+There are 800,000 flights from 1997 till 2008 with 32 features.
+
+```{r}
+str(rita)
+```
+
+The data comes originally from [RITA](http://www.transtats.bts.gov/OT_Delay/OT_DelayCause1.asp) where it is [described in detail](http://www.transtats.bts.gov/Fields.asp?Table_ID=236).
+
+Here is a summary of these features:
+
+```{r}
+columns = read.csv('./columns.csv', sep=";")
+columns
+```
+
+Note: 
+
+  - Reason for cancellation can take 4 possible value (A = carrier, B = weather, C = NAS, D = security).
+  
+  - We have 29 carriers in the dataset.
+  
+  - We have 335 destination airports and 333 origin airports.
+  
+  - As explained previously, some features has been built to facilitate the exploration (e.g. speed, time).
+
+Other observations :
+
+  - Most flights has no delay.
+  
+  - The volume of flight is growing year after year.
+  
+  - We see an increase of delays year after year.
+  
+  - The dataset does not contain cancelled or diverted flights.
+  
+  - The airports with the highest number of plane are those having the highest number of flights.
+
+# Plotting delayed, cancelled, on-time, boarding ... Flying in the USA
+
+## Range analysis
+
+Let's first check the summary of some of the variables.
+
+1/ "Distance"" in miles
+```{r}
+summary(rita$Distance)
+```
+2/ "ArrDelay"" Delay, in minutes
+```{r}
+summary(rita$ArrDelay)
+```
+3/ "Airtime" in minutes
+```{r}
+summary(rita$ArrDelay)
+```
+4/ "CRSDepTime" Scheduled departure time
+```{r}
+summary(rita$ArrDelay)
+```
+5/ "CRSArrTime" Actual arrival time
+```{r}
+summary(rita$ArrDelay)
+```
+
+According to our observations, it is effective to devide the numeric variable into the ordered, reasonable range for our analysis. So we split the Distance, ArrDelay, Airtime, CRSDepTime, CRSArrTime respectively and make sure that all the observation is included in given range.
+
+We copy the original data because we won't use the next transformation later into our analysis.
+
+```{r}
+data = rita
+
+data$Distance = ordered(cut(data$Distance, c(0, 300, 600, 1000, Inf)), labels = c("Short", "Medium", "Long", "Too long"))
+
+ggplot(data, aes(x=Distance)) +
+  geom_histogram(fill="lightblue") +
+  theme_bw()
+```
+
+Most flights are coverining medium distance.  The number of long and short distance are comparable.
+
+```{r}
+data$ArrDelay = ordered(cut(data$ArrDelay, c(0, 25, 50, 80, Inf)), labels = c("On-Time", "Delayed", "Intermediate-Delayed", "Much-Delayed"))
+
+ggplot(data, aes(x=ArrDelay)) +
+  geom_histogram(fill="lightblue") +
+  theme_bw()
+```
+
+Out of the NA value, most of the flights land on-time.
+
+```{r}
+data$AirTime = ordered(cut(data$AirTime, c(-1, 50, 100, 200, 300, Inf)), labels = c("Too-Short", "Short", "Intermediate", "Long", "Too-Long"))
+
+ggplot(data, aes(x=AirTime)) +
+  geom_histogram(fill="lightblue") +
+  theme_bw()
+``` 
+
+Most flight are short in time (less than an hour) or intermediate (from one to 2 hours); long flight (more than 3 hours) are less frequent.
+
+```{r}
+data$CRSDepTime = ordered(cut(data$CRSDepTime, c(-1, 600, 1200, 1800, Inf)), labels = c("Overnight", "Morning", "Afternoon", "Evening"))
+
+ggplot(data, aes(x=CRSDepTime)) +
+  geom_histogram(fill="lightblue") +
+  theme_bw()
+```
+
+Most of the flights are scheduled during the morning or afternoon and less frequently the evening.
+
+```{r}
+data$CRSArrTime = ordered(cut(data$CRSArrTime, c(-1, 600, 1200, 1800, 2359)), labels = c("Overnight", "Morning", "Afternoon", "Evening"))
+
+ggplot(data, aes(x=CRSArrTime)) +
+  geom_histogram(fill="lightblue") +
+  theme_bw()
+```
+
+Most flights land the afternoon and the evening.  This make sence based on the previous histogram.
+
+## Airline companies
+
+```{r, fig.height=10, fig.width=10}
+str(carriers)
+data[,"UniqueCarrier"]<-carriers[data[ ,"UniqueCarrier"], "Description"]
+
+qplot(x = UniqueCarrier, data = data, fill = UniqueCarrier) +
+  theme_bw() +
+  coord_flip() +
+  xlab(NULL) +
+  guides(fill=guide_legend(ncol=2)) +
+  theme(legend.position="bottom", legend.direction = "horizontal")
+```
+
+Valley Air Express, Tradewind aviation, ACM Air Charter Gmbh and Canada 3000 airlines Ltd. runs most of the airplane in the U.S. in this dataset.
+
+## Flight volume
+
+Let's show the number of flight (flight volume) we have per year.
+
+```{r}
+ggplot(rita, aes(x = Year)) + 
+  geom_histogram(fill="lightblue", binwidth=1, col="black") +
+  labs(title = "Distribution of flight per year") + 
+  xlab('Year') +
+  theme_bw()
+```
+
+We see from this plot a continuity in the growth of number of flight.  There are less flight in the 80th than in the 2008.  This is algin with a logical thinking and also the size of the files used to load the database.  The file for 1987 is smaller than other, this is also proven in the histogram.
+With that we can assume the random selection of the sample has been made correctly and we are not privileging a year over another.
+
+The next line graph show the same thing in a different way.
+
+```{r}
+rita.rita_per_year <- rita %>%
+  group_by(Year) %>%
+  summarise(n = n()) %>%
+  arrange(Year)
+
+head(rita.rita_per_year)
+
+ggplot(rita.rita_per_year) +
+  geom_point(aes(x=Year, y=n)) +
+  geom_line(aes(x=Year, y=n), col = "lightblue") +
+  scale_x_continuous(limits = c(1987, 2008), breaks = seq(1987, 2008, 5)) +
+  ylab("Count") +
+  theme_bw() +
+  theme(
+    panel.grid.major.y = element_line(colour = "black", linetype = 3, size = .5),
+    panel.background = element_blank(),
+    axis.title.x = element_text(size=16),
+    axis.text.x = element_text(size=14, angle=45, hjust=1, vjust=1),
+    axis.title.y = element_text(size=16, angle = 90),
+    axis.text.y = element_text(size=14),
+    strip.background = element_rect(color="white", fill="white"),
+    strip.text = element_text(size=16)
+  )
+```
+
+We see a drop in the number of fligh between 2001 and 2003, probably due to the event of September 11, 2001, however, flight volume is on the increase - dramatically so since 2000.
+
+## Delays Arrival / Departure
+
+Let's now focus the analysis on the delays.
+The next four plots are showing on the left the number (up) and the density (down) of departure delay and on the right the same for arrival delay.
+
+```{r, message=FALSE, warning=FALSE}
+str(rita$DepDelay)
+str(rita$ArrDelay)
+
+p1 <- ggplot(rita, aes(x=DepDelay / 60)) +
+  geom_histogram(fill="lightblue", binwidth=.1) + 
+  scale_x_continuous(limits = c(-2, 2), breaks = seq(-2, 2, 1)) +
+  geom_vline(aes(xintercept=mean(DepDelay / 60, na.rm=T)),   # Ignore NA values for mean
+               color="red", linetype="dashed", size=.5) +
+  geom_vline(aes(xintercept=median(DepDelay / 60, na.rm=T)),   # Ignore NA values for median
+               color="green", linetype="dashed", size=.5) +
+  xlab('Departure Delays (hours)') +
+  theme_bw()
+
+p2 <- ggplot(rita, aes(x=ArrDelay / 60)) +
+  geom_histogram(fill="lightblue", binwidth=.1) + 
+  scale_x_continuous(limits = c(-2, 2), breaks = seq(-2, 2, 1)) +
+  geom_vline(aes(xintercept=mean(ArrDelay / 60, na.rm=T)),   # Ignore NA values for mean
+               color="red", linetype="dashed", size=.5) +
+  geom_vline(aes(xintercept=median(ArrDelay / 60, na.rm=T)),   # Ignore NA values for median
+               color="green", linetype="dashed", size=.5) +
+  xlab('Arrival Delays (hours)') +
+  theme_bw()
+
+p3 <- ggplot(rita, aes(x=DepDelay / 60)) +
+  geom_histogram(fill="lightblue", binwidth=.1, aes(y = ..density..), color = "black") + 
+  geom_density(color="black") +
+  scale_x_continuous(limits = c(-2, 2), breaks = seq(-2, 2, 1)) +
+  geom_vline(aes(xintercept=mean(DepDelay / 60, na.rm=T)),   # Ignore NA values for mean
+               color="red", linetype="dashed", size=.5) +
+  geom_vline(aes(xintercept=median(DepDelay / 60, na.rm=T)),   # Ignore NA values for median
+               color="green", linetype="dashed", size=.5) +
+  xlab('Departure Delays (hours)') +
+  theme_bw()
+
+p4 <- ggplot(rita, aes(x=ArrDelay / 60)) +
+  geom_histogram(fill="lightblue", binwidth=.1, aes(y = ..density..), color = "black") + 
+  geom_density(color="black") +
+  scale_x_continuous(limits = c(-2, 2), breaks = seq(-2, 2, 1)) +
+  geom_vline(aes(xintercept=mean(ArrDelay / 60, na.rm=T)),   # Ignore NA values for mean
+               color="red", linetype="dashed", size=.5) +
+  geom_vline(aes(xintercept=median(ArrDelay / 60, na.rm=T)),   # Ignore NA values for median
+               color="green", linetype="dashed", size=.5) +
+  xlab('Arrival Delays (hours)') +
+  theme_bw()
+
+grid.arrange(p1, p2, p3, p4, ncol = 2)
+```
+
+We see that most flight have no delays.  The distribution for the departure seems a bit negatively skewed compare to arrival where the distribution is normal.
+
+```{r, message=FALSE, warning=FALSE}
+rita.no_missing <- filter(rita, !is.na(DepDelay) & !is.na(ArrDelay))
+rita.by_year <- group_by(rita.no_missing, Year)
+
+# the *1.0 is used to avoid loss of precision when attemting to convert a numeric to an integer
+
+rita.DepDelays <- summarise(rita.by_year,
+                    mean = mean(DepDelay, na.rm = TRUE),
+                    median = median(DepDelay * 1.0, na.rm = TRUE),
+                    q75 = quantile(DepDelay, .75, na.rm = TRUE),
+                    q25 = quantile(DepDelay, .25, na.rm = TRUE),
+                    over_15 = mean(DepDelay > 15, na.rm = TRUE),
+                    over_30 = mean(DepDelay > 30, na.rm = TRUE),
+                    over_60 = mean(DepDelay > 60, na.RM = TRUE))
+
+rita.ArrDelays <- summarise(rita.by_year,
+                    mean = mean(ArrDelay, na.rm = TRUE),
+                    median = median(ArrDelay * 1.0, na.rm = TRUE), 
+                    q75 = quantile(ArrDelay, .75, na.rm = TRUE),
+                    q25 = quantile(ArrDelay, .25, na.rm = TRUE),
+                    over_15 = mean(ArrDelay > 15, na.rm = TRUE),
+                    over_30 = mean(ArrDelay > 30, na.rm = TRUE),
+                    over_60 = mean(ArrDelay > 60, na.RM = TRUE))
+
+p1 <- ggplot(rita.DepDelays, aes(x = factor(Year), y = mean)) +
+  geom_bar(stat = "identity", fill="lightblue") +
+  geom_line(aes(y=q75, group=1, color="red")) +
+  geom_point(aes(y=q75)) +
+  geom_line(aes(y=q25, group=1, color="blue")) +
+  geom_point(aes(y=q25)) +
+  geom_line(aes(y=median, group=1, color="yellow")) +
+  geom_point(aes(y=median)) +
+  scale_color_manual("Quartile",labels = c("Q25 % (lower quartile)", "Q75 % (upper quantile)", "median"), values = c("blue", "red", "yellow")) +
+  xlab('Year') +
+  ggtitle('Departure') +
+  theme_bw() +
+  theme(axis.text.x = element_text(angle = 45, hjust = .5, vjust=0.5)) +
+  theme(legend.position="bottom", legend.direction = "horizontal")
+
+p2 <- ggplot(rita.ArrDelays, aes(x = factor(Year), y = mean)) +
+  geom_bar(stat = "identity", fill="lightblue") +
+  geom_line(aes(y=q75, group=1, color="red")) +
+  geom_point(aes(y=q75)) +
+  geom_line(aes(y=q25, group=1, color="blue")) +
+  geom_point(aes(y=q25)) +
+  geom_line(aes(y=median, group=1, color="yellow")) +
+  geom_point(aes(y=median)) +
+  scale_color_manual("Quartile",labels = c("Q25 % (lower quartile)", "Q75 % (upper quantile)", "median"), values = c("blue", "red", "yellow")) +
+  xlab('Year') +
+  ggtitle('Arrival') +
+  theme_bw() +
+  theme(axis.text.x = element_text(angle = 45, hjust = .5, vjust=0.5)) +
+  theme(legend.position="bottom", legend.direction = "horizontal")
+
+grid.arrange(p1, p2, ncol = 1)
+```
+
+The first quartile is at the 25th percentile, we see a clear drop in this quartile and an increase of the upper quantile (75%).  This means that we have less and less of the data smaller than the first quartile so a substential increase of the delay year after year.  This is true for both departure and arrival but certainly more pronounced for departure.
+
+## Diverted / Cancelled flights
+
+```{r}
+rita$Diverted <- factor(rita$Diverted, 
+                 levels = c(0,1), 
+                 labels = c("No", "Yes"))
+
+barplot(prop.table(table(rita$Diverted)))
+```
+
+In this dataset, we have almost all flight not diverted
+
+```{r}
+rita$Cancelled <- factor(rita$Cancelled, 
+                 levels = c(0,1), 
+                 labels = c("No", "Yes"))
+
+barplot(prop.table(table(rita$Cancelled)))
+```
+
+Also, not many flight cancelled.  
+
+We have access to the cancellation code, let's see the proportion of cancellation code.
+
+```{r}
+rita.rita_cancellation_code <- filter(rita, !is.na(CancellationCode) & Cancelled == "Yes")
+
+rita.rita_cancellation_code$CancellationCode <- factor(rita.rita_cancellation_code$CancellationCode, 
+                 levels = c("A","B","C","D"), 
+                 labels = c("Carrier", "Weather", "NAS", "Security"))
+
+barplot(prop.table(table(rita.rita_cancellation_code$CancellationCode)))
+```
+
+## Airports
+
+Let's look at the number of flights per destination.
+
+```{r, message=FALSE, warning=FALSE}
+ggplot(rita, aes(x = Dest)) +
+    geom_bar() +
+    labs(x = "Destination",
+         y = "Number of Flights") +
+    theme_bw()
+```
+
+There are way too many destinations.  In this case, the best thing to do is aggregate the results outside of ggplot and subset to the top 50 destinations.
+
+```{r}
+rita.flights <- rita %>%
+    group_by(Dest) %>%
+    summarise(flight_count = n(), plane_count = n_distinct(TailNum)) %>%
+    arrange(desc(flight_count))
+
+rita.flight_top_50 <- head(rita.flights, n=50)
+```
+
+Try plotting just the top ten results.
+
+```{r}
+ggplot(rita.flight_top_50[1:10, ], aes(x = Dest, weight = flight_count)) +
+    geom_bar() +
+    labs(x = "Destination",
+         y = "Number of Flights") +
+    theme_bw()
+```
+
+Since we've already got the top destinations in a table format with the number of plane, it's a good opportunity to display a visualization of these two variables.
+
+```{r}
+ggplot(rita.flight_top_50[1:20, ], aes(x = Dest, y = flight_count)) + 
+  geom_point(fill="lightblue", aes(size=plane_count)) +
+  labs(title = "Number of flights for the top 20 destination airports") + 
+  xlab('Number of flights') +
+  theme_bw() +
+  theme(legend.position="bottom")
+```
+
+No susprise, the airports with the highest number of plane are those having the highest number of flights.
+
+## Distance
+
+```{r, message=FALSE, warning=FALSE}
+ggplot(rita, aes(x = Distance)) +
+  geom_histogram() +
+  theme_bw()
+```
+
+The histogram of distance is left skewed so I'm going to transform the data using a log transform.
+
+```{r, message=FALSE, warning=FALSE}
+p1 <- qplot(data = rita, x = Distance, binwidth = 100, fill = I("#099DD9")) +
+  ggtitle('Distance')
+
+p2 <- qplot(data = rita, x = Distance, binwidth = .01, fill = I("#F79420")) +
+  ggtitle('Distance (log10)') +
+  scale_x_log10()
+
+grid.arrange(p1, p2, ncol = 2)
+```
+
+I log-transformed the left skewed distance distribution.  However this transformation does not provide any added value or sence to the data.
+
+## Correlation analysis
+
+Due to my computer limits, for the next operation I only selected 100 flights.
+
+```{r eval=FALSE}
+# sample 100 flights from the data set
+set.seed(20150422)
+rita.rita_samp <- rita[sample(1:length(rita$speed), 100), ]
+
+ggpairs(rita.rita_samp[, c('DayOfWeek', 'Year', 'AirTime', 'ArrDelay', 'DepDelay', 'delta', 'speed', 'Distance', 'CarrierDelay', 'NASDelay', 'LateAircraftDelay')], lower=list(continuous="smooth", params=c(colour="blue")),
+  diag=list(continuous="bar", params=c(colour="blue")), 
+  upper=list(params=list(corSize=6)), axisLabels='show') +
+  theme(legend.position = "none", 
+        panel.grid.major = element_blank(), 
+        axis.ticks = element_blank(), 
+        panel.border = element_rect(linetype = "dashed", colour = "black", fill = NA))
+
+str(rita.rita_samp)
+```
+
+ <img src="pictures/ggpairs.jpeg" height="1400px" width="1300px" />
+
+From this plot we say that that we don't have a lot of obvious correlation between features however, let's look at some of them
+
+## speed and distance
+
+For large scale commercial airplane, speed in flight is 500 MPH.  Let's use 600 MPH as a limit.
+
+```{r}
+rita.rita_speed_distance = subset(rita, rita$speed >= 0 & rita$speed <= 600)
+
+p <- ggplot( data = rita.rita_speed_distance, aes(x=speed, y=Distance)) +
+  geom_point() +
+  xlim(0, 600) +
+  theme_bw()
+print(p)
+```
+
+As speed increase, the distance increase.  This makes a lot of sence.  The relationship between speed and distance appears to be exponential rather than linear.
+
+```{r}
+m1 <- lm(Distance ~ speed, data = rita.rita_speed_distance, na.action=na.omit)
+p + geom_abline(m1$intercept, m1$slope, colour = "red")
+summary(m1)
+print(m1)
+```
+
+Based on the R^2 value, speed explains about 45 percent of the variance in distance.
+The fitted regression line is : Distance = -1221.7 + 4.922 speed.  According to this model, average distance increases by 4.922 miles for each additional mile per hour of speed.
+
+The residuals are the vertical distances from the observed distance to the line.
+
+```{r}
+plot(m1, which=1, add.smooth=FALSE)
+```
+
+The residual plot has some unisually large residuals labeled; observations 222924 for example.  We also observe that residuals are closer to zero at low distances; the variance of the residuals is not constant across all speed, but increasing with speed.
+
+To predict flight distance for a given speed, the `predict` method can be used.
+For example, the predicted distance for a speed of 300 mph is obtained by
+
+```{r}
+results = data.frame(speed=300)
+results$m1 <- predict(m1, results)
+```
+
+The predicted distance of flight is 255 miles.
+
+For inference, we requires some asumptions about the distribution of the error term.  We assume that the random errors are independant and indentically distributed as Normal random variables.  
+Residual plots help us to assess the fit of the model and the assumptions for the error.
+
+Here we are requested two plots: a plot of residuals vs fit and a QQ plot to check for normality of residuals.
+
+```{r}
+plot(m1, which=1:2)
+```
+
+In the residual plot a curve has been added.  This curve is a fitted lowess (local polynomial regression) curve, called a smoother.  The residuals are assummed independant and identivally distributed, but there is a pattern evident.
+The residuals have a "U" shape or bowl shape.  This pattern could indicate that there is a variable missing from the model.  In the QQ plot, normally distributed residuals should lie approximately along the reference line shown in the plot.  We clearly see that this is not really the case.  Therefore, our model regression model is not really a good fit for predicting distance of flight for a given speed.
+
+Let's try an exponential regression.
+
+```{r}
+results <- data.frame(speed = seq(300, 600, by = 50))
+m2 <- lm(Distance ~ speed + I(speed^2), data = rita.rita_speed_distance, na.action=na.omit)
+m3 <- lm(Distance ~ speed + I(speed^2) + I(speed^3), data = rita.rita_speed_distance, na.action=na.omit)
+m4 <- lm(Distance ~ I(speed^2), data = rita.rita_speed_distance, na.action=na.omit)
+
+results$m2 <- predict(m2, results)
+results$m3 <- predict(m3, results)
+results$m4 <- predict(m4, results)
+
+results <-  melt(results, id.vars = "speed", variable.name = "model",
+                value.name = "fitted")
+
+ggplot(results, aes(x = speed, y = fitted)) +
+  xlim(0, 600) +  
+  geom_point(data = rita.rita_speed_distance, aes(x = speed, y = Distance)) +
+  geom_line(aes(colour = model), size = 1) +
+  theme_bw()
+```
+
+With the model m3 we have a R^2 of 52.7%  which is much better.  Also the residual plot has a line shape but still the QQplot normally distributed residuals does not lie along the reference line shown in the plot.
+
+```{r}
+summary(m3)
+plot(m3, which=1:2)
+```
+
+Finally, let's look at the speed vs distance with less overplotting.
+
+```{r}
+ggplot( data = rita.rita_speed_distance, aes(x=speed, y=Distance)) +
+  geom_point(alpha = 1/10, position = position_jitter(h = 0)) +
+  xlim(0, 600) +
+  theme_bw()
+```
+
+From this last plot we start to see something interesting, we see several points which are disconnected from the main dots.
+This probably show different kind of plane.  We start to see 3 exponentionals curves.  
+
+## Best day to travel
+
+```{r}
+rita$DayOfWeek <- factor(rita$DayOfWeek, 
+                 levels = c('01','02','03','04','05','06','07'), 
+                 labels = c("Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saterday", "Sunday"))
+
+ggplot(rita, aes(x=DayOfWeek)) +
+  geom_histogram() +
+  theme_bw()
+```
+
+We see Saterday and Sunday are two days with less delay, let's look more closely
+
+```{r}
+rita.year_day_of_week <- rita %>%
+  group_by(Year, DayOfWeek) %>%
+  summarise(ArrDelay_mean = mean(ArrDelay * 1.0, na.rm=T),
+            ArrDelay_median = median(ArrDelay * 1.0, na.rm=T),
+            n = n()) %>%
+  arrange(Year, DayOfWeek)
+
+ggplot(rita.year_day_of_week, aes(x=Year, y=ArrDelay_mean)) +
+  geom_line(aes(colour=DayOfWeek)) +
+  ylab('Arrival Delay (min)') +
+  theme_bw()
+```
+
+Best days to travel and avoid delays are Saturdays, Sunday but also Tuesdays or Wednesdays. Fridays are bad for delays.
+Also note the pick than the drop arround 2001, this is probably representative to the 9/11 event.
+
+Let's look more closely to the 8 last years of the data set.
+
+````{r}
+ggplot(subset(rita.year_day_of_week, rita.year_day_of_week$Year >2000), aes(x=DayOfWeek, y=ArrDelay_mean)) +
+  geom_point(aes(colour=DayOfWeek)) +
+  facet_grid(.~Year, scales="free") +
+  ylab('Arrival Delay (min)') +    
+  theme_bw() +
+  theme(axis.text.x=element_blank()) 
+```
+
+We recognise the same pattern as in the previous plot but also a substential increase of the delay.  On the left the data points are clustered on the bottom part of the plot where on the right (more recently), the data points are stacked on the upper side of the drawing.
+
+## Taxi-in / Origin
+
+Next, let's visualize the relationship between taxi-in and the origin.
+Taxi indicates the movement of an aircraft on the ground.  Here we will analyse the taxiing immediately after the landing (taxi-in).
+
+```{r, message=FALSE, warning=FALSE}
+rita.taxi_in_origin <- filter(rita, !is.na(TaxiIn))
+rita.taxi_in_origin <- tablefreq(rita[,c("TaxiIn","Origin")])
+rita.taxi_in_origin <- head(arrange(rita.taxi_in_origin, -freq), n=100)
+
+## Bar plot
+ggplot(aes(x=TaxiIn, weight= freq, colour = Origin), data = rita.taxi_in_origin, position ="dodge") + 
+  geom_bar() +
+  theme_bw()
+```
+
+For most of the flights, the taxiing time spent after landing is between 3 and 5 minutes.
+Let's compute the relative frequencies for each group.
+
+```{r, warning=FALSE}
+rita.taxi_in_origin <- rita.taxi_in_origin %>% 
+  group_by(Origin) %>%
+  mutate( ngroup= sum(freq), wgroup= freq/ngroup)
+  
+ggplot(aes(x=TaxiIn, weight=wgroup, colour = Origin),data = rita.taxi_in_origin) + 
+  geom_density() +
+  theme_bw()
+```
+
+From this last plot, we see that the time spend on taxiing is similar from airport to airport.
+
+## Destinations having the highest average delays
+
+```{r}
+rita.dest_highest_delays <- rita %>%
+  group_by(Dest) %>%
+  summarise(
+    arr_delay = mean(ArrDelay, na.rm = TRUE),
+    n = n()) %>%
+  arrange(desc(arr_delay))
+
+ggplot(rita.dest_highest_delays) +
+  geom_text(aes( x=arr_delay, y=n, label=Dest)) +
+  theme_bw()
+```
+
+This plot is a bit messy but show some interesting facts.  Some destination airports (ORD, ATL, DFW) have very low average delay despit the number of fligh they accumulate but on the other hand, some airports (RDR) have very high average delay with very few flights.
+
+## On average, how do delays (of non-cancelled flights) vary over the course of a day? 
+
+```{r, message=FALSE, warning=FALSE}
+rita.per_hour <- rita %>%
+ filter(Cancelled == 'No' & !is.na(rita$AirTime)) %>%
+ mutate(time = AirTime / 60) %>%
+ group_by(time) %>%
+ summarise(
+    arr_delay = mean(ArrDelay, na.rm = TRUE),
+    n = n()
+ ) 
+qplot(time, arr_delay, data = rita.per_hour, size = n) +
+  scale_size_area() +
+  theme_bw()
+
+ggplot(filter(rita.per_hour, n > 30), aes(time, arr_delay)) +
+  geom_point() +
+  stat_smooth() +
+  theme_bw()
+```
+
+As the flight time increase the arrival time is increasing.  We see a positive increase of this trend from one hour of flight to 2 hours, then it remain constant from 2 to 4 than the data becomes more dispersed.
+
+The next last plot also show the density of flights.  As the time increase, we have less flights.
+
+```{r}
+qplot(time, arr_delay, data = filter(rita.per_hour, n > 30), size = n) +
+  scale_size_area() +
+  theme_bw()
+```
+
+## Basic predictive model.
+
+Goal : fit a linear model to each day, predicting delay from time of day
+
+```{r}
+# check whether rows contain NAs for the DepTime
+row.has.na <- apply(rita, 1, function(DepTime){any(is.na(DepTime))})
+sum(row.has.na)
+```
+
+```{r, message=FALSE, warning=FALSE}
+rita.rita_wNA <- rita[!row.has.na,]
+
+rita.usual <- rita.rita_wNA %>%
+  mutate(time = as.numeric(substring(rita.rita_wNA$DepTime, 1, 2)) + as.numeric(substring(rita.rita_wNA$DepTime, 3, 4)) / 60) %>%
+  filter(as.numeric(substring(rita.rita_wNA$DepTime, 1, 2)) >= 5, as.numeric(substring(rita.rita_wNA$DepTime, 1, 2)) <= 18) 
+
+rita.usual <- mutate(rita.usual, date = as.Date(paste(rita.usual$Year, rita.usual$Month, rita.usual$DayofMonth, sep=""), "%Y%m%d"))
+
+p <- ggplot(rita.usual, aes(x=time, y=DepDelay)) +
+  geom_point(alpha = 1/10, position = position_jitter(h = 0)) +
+  scale_y_continuous(limits = c(0, 200),
+                     breaks = c(0, 50, 100, 150, 200)) + 
+  theme_bw()
+```
+
+```{r}
+print(p)
+
+lmfit = lm(rita.usual$DepDelay ~ rita.usual$time)
+
+lmfit
+
+summary(lmfit)
+
+p + geom_abline(lmfit$intercept, lmfit$slope, colour = "red")
+```
+
+We clearly see from the R^2 and the fitting that our model is really poor and we cannot use as a preditice tool for the delays... There are probably many other variables that must be included to imrpove this model.  Also the scatter plot show a lot of noise.
+
+## Delay per month
+
+Let's visualize the delay over the months and see which months are better
+
+In a table format, here is the delay per carrier for each months
+
+```{r}
+rita.monthly_delay.wide <- rita %>% 
+  mutate(month=Month, carrier=UniqueCarrier) %>% 
+  group_by(month, carrier) %>% 
+  summarize(delay=sum(ArrDelay, na.rm=T)) %>% 
+  dcast(month ~ carrier, value.var = "delay")
+
+head(rita.monthly_delay.wide, 5)
+```
+
+If we now try to visualize these data, we do it like so
+
+```{r}
+rita.monthly_delay <- rita %>% 
+  mutate(month=Month, carrier=UniqueCarrier) %>% 
+  group_by(month, carrier) %>% 
+  summarize(delay=mean(ArrDelay, na.rm=T)) 
+
+rita.monthly_delay$month <- factor(rita.monthly_delay$month,
+                 levels = c('01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12'), 
+                 labels = c("January","February","March","April","May","June","July","Augus","September","October","November","December"))
+  
+ggplot(NULL, aes(x=month, y=delay, fill=carrier, alpha=.2)) + 
+  geom_bar(data=rita.monthly_delay %>% filter(delay > 0), 
+           stat='identity',
+           position = "identity",
+           colour="black") + 
+  geom_bar(data=rita.monthly_delay %>% filter(delay < 0), 
+           stat='identity',
+           position = "identity",
+           colour="black") +
+  labs(x = "Month",
+       y = "Delay (hours)") +
+  theme_bw() +
+  theme(axis.text.x = element_text(angle = 45, hjust = .5, vjust=0.5))
+```
+
+This plot is not the best to display a trend because the coloring stacking is hidding things however we see that some airport are better in delay at the begining of the year and other at the end of the year.  So we start to see a seasonal effect in the delays.
+The next plot is just an improvement of this visualization to see more relevant points.
+
+```{r}
+ggplot(NULL, aes(x=month, y=delay, color=carrier)) + 
+  geom_point(data=rita.monthly_delay %>% filter(delay > 0), 
+           stat='identity',
+           position = "identity") + 
+  geom_point(data=rita.monthly_delay %>% filter(delay < 0), 
+           stat='identity',
+           position = "identity") +
+  labs(x = "Month",
+       y = "Delay (hours)") +
+  theme_bw() +
+  theme(axis.text.x = element_text(angle = 45, hjust = .5, vjust=0.5))
+```
+
+# Final Plots and Summary
+
+### Plot One
+```{r, warning=FALSE, message=FALSE, Plot_One}
+location <- airports %>%
+  select(Dest = iata, name = airport, lat, long)
+
+rita.rita_full_dest <- rita %>%
+  group_by(Dest) %>%
+  filter(!is.na(ArrDelay)) %>%
+  summarise(
+    arr_delay = mean(ArrDelay),
+    n = n()
+  ) %>%
+  arrange(desc(arr_delay)) %>%
+  left_join(location)
+
+rita.rita_full_dest[["delay_type"]] = ordered(cut(rita.rita_full_dest$arr_delay, c(0, 5, 25, 50, Inf)), labels = c("On-Time", "Delayed", "Intermediate-Delayed", "Much delayed"))
+
+# load the state data
+data(state)
+states <- data.frame(state.abb, state.name, state.area, state.center,
+                     state.division, state.region, state.x77)
+
+# Remove the data points out of the USA
+maxLong <- max(states$x)
+minLong <- min(states$x)
+maxLat <- max(states$y)
+minLat <- min(states$y)
+
+rita.rita_full_dest <- subset(rita.rita_full_dest, long <= maxLong & long >= minLong & lat <= maxLat & lat >= minLat)
+
+map <- map_data("state")
+ggplot(data = map, aes(x = long, y = lat, group = group)) +
+  # draw outlines of the state
+  geom_polygon() + 
+  geom_path(colour = 'gray', linestyle = 2) + 
+  coord_map() +
+  geom_text(data = states, aes(x     = x, 
+                               y     = y, 
+                               label = state.abb,
+                               group = NULL), 
+            size = 4, 
+            colour="white") +
+  geom_point(data = rita.rita_full_dest, 
+             aes(x = long, y = lat, size = arr_delay, colour = delay_type, group = NULL)) +
+  geom_text(aes(x = long, y = lat, label=Dest, group = NULL), 
+            data = subset(rita.rita_full_dest, rita.rita_full_dest$arr_delay >= 25), 
+            hjust=-.2, fontface='bold', col = 'red') +
+  scale_colour_discrete(name="Delay Type") +
+  scale_size_continuous(range = c(2,10), name = "Delays") +
+  ggtitle("Airports with the highest delay (in minutes)") +
+  theme_bw() +
+  theme(legend.position="bottom")
+```
+
+This plot show the airports delays on a map.  For that we need to connect to the airports dataset.
+The location with a bigger point show where the delays are the highest.  
+From the map we clearly see that we have more destination with delays (green dots) versus on-time (red dots).
+
+### Plot Two
+
+In continuity with the previous plot, we will show the airports with the highest delay from those having at minimum 15 minutes delays.
+
+```{r, message=FALSE, warning=FALSE, Plot_Two}
+rita.rita_full_dest[["delay_25"]] = ifelse(rita.rita_full_dest$arr_delay >= 25, "delay_25", "notDelay_25")
+
+ggplot(data = subset(rita.rita_full_dest, arr_delay > 15)) +
+  geom_bar(aes(x=name, y=arr_delay, fill=delay_25), stat='identity') +
+  scale_y_continuous(limits = c(0, 100)) +
+  geom_text(data=subset(rita.rita_full_dest, arr_delay >= 25), aes(x=name, y=arr_delay, label=Dest), hjust=-.1, fontface=3) +
+  coord_flip() +
+  xlab(NULL) +
+  ylab("Delays in minutes") +
+  theme_bw() +
+  scale_fill_manual(values = c("delay_25" = "darkblue", "notDelay_25" = "lightgrey")) +
+  theme(legend.position="none")
+```
+
+### Plot Three
+
+For the third plot we will try to visualize the impact of the September 11, 2001 attacks on the volume of passengers for the busiest airport of USA in that year.  For that we will create a new dataset containing information about 5 airports between July and December 2001.
+For the selection of the airports we will take only the busiest airports by passenger in 2001 ([wikipedia link](http://en.wikipedia.org/wiki/List_of_the_world%27s_busiest_airports_by_passenger_traffic#2001_statistics)).  These airports are :
+
+- Hartsfield-Jackson Atlanta International Airport - Atlanta, Georgia - ATL
+- O'Hare International Airport - Chicago, Illinois - ORD
+- Los Angeles International Airport - Los Angeles, California - LAX
+- Dallas-Fort Worth International Airport - Dallas/Fort Worth, Texas - DFW
+- Denver International Airport - Denver, Colorado - DEN
+
+Instead of working with an SQLite db, this time we will download the file through R and manipulate the data from R studio directly.
+
+```{r eval=FALSE}
+file.name <- paste(2001, "csv.bz2", sep = ".")
+if (!file.exists(file.name)) {
+  url.text <- paste("http://stat-computing.org/dataexpo/2009/", 2001, ".csv.bz2",
+  sep = "")
+  cat("Downloading missing data file ", file.name, "nn", sep = "")
+  download.file(url.text, file.name)
+}
+```
+
+Next, we extract the file.
+
+```sh
+bzip2 -d 2001.csv.bz2
+```
+
+We load the file in R studio and make some basic manipulations.
+
+```{r eval=FALSE}
+rita_2001 <- read.csv("2001.csv")
+# we take the destination airports of interest
+rita_2001 <- subset(rita_2001, Dest %in% c('ATL', 'ORD', 'LAX', 'DFW', 'DEN'))
+# we take the data from July to December
+rita_2001 <- subset(rita_2001, Month %in% c(7, 8, 9, 10, 11, 12))
+write.csv(rita_2001, "rita_2001_busy.csv", row.names=FALSE, na="")
+```
+
+Finaly we visualise the data.
+
+```{r, message=FALSE, warning=FALSE, fig.height=8, fig.width=10, Plot_Three}
+rita_2001 <- read.csv("rita_2001_busy.csv")
+
+rita_2001$Month <- sprintf("%02d", rita_2001$Month)
+rita_2001$DayofMonth <- sprintf("%02d", rita_2001$DayofMonth)
+
+# full date of the departure
+rita_2001 <- mutate(rita_2001, date = as.Date(paste(rita_2001$Year, rita_2001$Month, rita_2001$DayofMonth, sep=""), "%Y%m%d"))
+
+rita_2001.rita_2001_per_day <- rita_2001 %>%
+  group_by(date, Dest) %>%  
+  filter(!is.na(ArrDelay)) %>%
+  summarise(
+    arr_delay = mean(ArrDelay),
+    n = n()
+  ) %>%
+  arrange(date, Dest) %>%
+  left_join(location)
+
+ggplot(rita_2001.rita_2001_per_day) +
+  geom_line(aes(x=date, y=n, col=name), size = 1) +
+  geom_vline(aes(xintercept=as.numeric(as.Date("2001-09-11"))), linetype=1, size = 1, colour = "grey") +
+  geom_text(aes(x=as.Date("2001-09-15"), label="Sep `01 - W.T.C. Attack", y=950, hjust = 0), colour="grey", angle=0, text=element_text(size=11)) +
+  xlab("Month") +
+  ylab("Volume") +
+  ggtitle("Volume at major Airports, impact of the WTC attack") +
+  theme_bw() +
+  theme(
+    panel.grid.major.y = element_line(colour = "black", linetype = 3, size = .5),
+    panel.background = element_blank(),
+    axis.title.x = element_text(size=16),
+    axis.text.x = element_text(size=14, angle=45, hjust=1, vjust=1),
+    axis.title.y = element_text(size=16, angle = 90),
+    axis.text.y = element_text(size=14),
+    strip.background = element_rect(color="white", fill="white"),
+    strip.text = element_text(size=16),
+    legend.position="bottom",
+    legend.direction = "vertical"
+  )
+
+```
+
+This plot show the impact of the WTC attacks on the volume of passenger for the busiest airports of US.  We clearly see the drop on the 9/11.  The recovery of the volume has been almost immediate once the flight traffic has been re-opened after the event but not at the same level as before the attacks.
+
+An other element to notice is the uneven effect visible for each airport.  This is the effect of the weekend/seasonality which drop the number of flights.
+
+# Reflection
+
+I was interested in analyzing this particular set of data. First because it is an accessible piece of information which does not require any background domain knowledge in order to run an analysis.  Second, the very large volume of data was a very good chalange to me.  I spent a lot of time just loading, parsing and creating a usable dataset in R studio.
+
+I struggled a bit at first with exactly what I expected to learn from this dataset.  However, I did a lot of quick coding to reveal some interesting information about the data.
+
+The analysis performed reveal some obvious and non obvious trend in the data but many times I was a bit confused about how to interpret the findings.  There are several variables not included as an explanatory or response variable in the dataset but can affect the interpretation of relationships between variables (lurking variable).  For example, the aircraft maintenance, the staffing, ...  All these features may impact the delay of a flight.
+
+The various regression model I tried to implement was not really conclusive, especially when I try to fit a linear model to each day, predicting delay from time of day.  The nature of the data did not reveal obvious correlation.
+
+I was pleased with how easy it is to produce a simple map of the world in R. And plotting points and lines was easy and straight forward.
+
+It really helped to just systematically go through each variable with some quick and dirty plots and see what the data showed me. There is still much to be learned from this dataset, and more questions to find and answer.  For example :
+
+- Do older planes suffer more delays?
+- How does the number of people flying between different locations change over time?
+- How well does weather predict plane delays?
+- Can you detect cascading failures as delays in one airport create delays in others? Are there critical links in the system?
+
+This has really helped me flesh out my varied interests in data analytics. I look forward to analyzing more intriguing datasets in the future, and hope you found some of the insights into this dataset as interesting as I did.
+
+# References
+
+* A useful book full of tehniques to manipulate data with R : [Wrangling F1 Data With R](https://leanpub.com/wranglingf1datawithr)
+* The reference dataset : [RITA data](http://stat-computing.org/dataexpo/2009/the-data.html)
+* Article about how to draw good looking maps in R : [Maps in R](https://uchicagoconsulting.wordpress.com/tag/r-ggplot2-maps-visualization/)
+* Stackoverflow issue : [Administrative regions map of a country with ggmap and ggplot2](http://stackoverflow.com/questions/17723822/administrative-regions-map-of-a-country-with-ggmap-and-ggplot2)

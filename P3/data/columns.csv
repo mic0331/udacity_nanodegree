@@ -1,0 +1,30 @@
+Description; Name
+1987-2008; Year
+1-12; Month
+1-31; DayofMonth
+1 (Monday) - 7 (Sunday); DayOfWeek
+actual departure time (local, hhmm); DepTime
+scheduled departure time (local, hhmm); CRSDepTime
+actual arrival time (local, hhmm); ArrTime
+scheduled arrival time (local, hhmm); CRSArrTime
+unique carrier code; UniqueCarrier
+flight number; FlightNum
+plane tail number; TailNum
+in minutes; ActualElapsedTime
+in minutes; CRSElapsedTime
+in minutes; AirTime
+arrival delay, in minutes; ArrDelay
+departure delay, in minutes; DepDelay
+origin (IATA airport code); Origin
+destination (IATA airport code); Dest
+in miles; Distance
+taxi in time, in minutes; TaxiIn
+taxi out time in minutes; TaxiOut
+was the flight cancelled?; Cancelled
+reason for cancellation; CancellationCode
+1 = yes, 0 = no; Diverted
+in minutes; CarrierDelay
+in minutes; WeatherDelay
+in minutes; NASDelay
+in minutes; SecurityDelay
+in minutes; LateAircraftDelay
