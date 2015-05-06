@@ -1,0 +1,225 @@
+---
+title: "Data Preparation"
+author: "Michaël Lambé (mic0331 AT gmail DOT com)"
+date: "Last edited, Thursday, April 30, 2015"
+output:
+  html_document:
+    toc: true
+    highlight: default
+    theme: united
+  pdf_document: default
+geometry: margin=1in
+fontsize: 10pt
+---
+
+<style type="text/css">
+
+#TOC {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 250px;
+  height: 100%;
+  overflow:auto;
+}
+#TOC ul li a {
+  color: #777;
+}
+body {
+  max-width: 1600px;
+  margin: auto;
+  margin-left:260px;
+  line-height: 20px;
+}
+</style>
+
+```{r echo=FALSE, message=FALSE, warning=FALSE, fig.width = 11, packages}
+
+knitr::opts_chunk$set(echo=FALSE, warning=FALSE, message=FALSE)
+
+#install.packages("RSQLite")  # if needed
+
+library(RSQLite)
+
+```
+
+# Introduction
+
+We will first explain how we retreive the data, build a database and retreive a 
+random subset for this project.
+
+The data come as a list of CSV files (compressed as bz2).
+To decompress the data we used this command :
+
+```sh
+bzip2 -d *.bz2
+```
+
+Here is the details of the files once decompressed :
+
+```sh
+air-mic:dataset mic0331$ ls -l
+total 23494656
+-rw-r-----@ 1 mic0331  staff  127162942 Apr  2 18:19 1987.csv
+-rw-r-----@ 1 mic0331  staff  501039472 Apr  2 18:21 1988.csv
+-rw-r-----@ 1 mic0331  staff  486518821 Apr  2 18:30 1989.csv
+-rw-r-----@ 1 mic0331  staff  509194687 Apr  2 18:22 1990.csv
+-rw-r-----@ 1 mic0331  staff  491210093 Apr  2 18:39 1991.csv
+-rw-r-----@ 1 mic0331  staff  492313731 Apr  2 18:22 1992.csv
+-rw-r-----@ 1 mic0331  staff  490753652 Apr  2 18:41 1993.csv
+-rw-r-----@ 1 mic0331  staff  501558665 Apr  2 18:22 1994.csv
+-rw-r-----@ 1 mic0331  staff  530751568 Apr  2 18:41 1995.csv
+-rw-r-----@ 1 mic0331  staff  533922363 Apr  2 18:42 1996.csv
+-rw-r-----@ 1 mic0331  staff  540347861 Apr  2 18:42 1997.csv
+-rw-r-----@ 1 mic0331  staff  538432875 Apr  2 18:42 1998.csv
+-rw-r-----@ 1 mic0331  staff  552926022 Apr  2 18:44 1999.csv
+-rw-r-----@ 1 mic0331  staff  570151613 Apr  2 18:44 2000.csv
+-rw-r-----@ 1 mic0331  staff  600411462 Apr  2 18:46 2001.csv
+-rw-r-----@ 1 mic0331  staff  530507013 Apr  2 18:46 2002.csv
+-rw-r-----@ 1 mic0331  staff  626745242 Apr  2 18:46 2003.csv
+-rw-r-----@ 1 mic0331  staff  669879113 Apr  2 18:46 2004.csv
+-rw-r-----@ 1 mic0331  staff  671027265 Apr  2 18:47 2005.csv
+-rw-r-----@ 1 mic0331  staff  672068096 Apr  2 18:51 2006.csv
+-rw-r-----@ 1 mic0331  staff  702878193 Apr  2 18:51 2007.csv
+-rw-r-----@ 1 mic0331  staff  689413344 Apr  2 18:50 2008.csv
+```
+
+# Data loading & Cleanup
+
+## SQLite loading
+
+In order to considerably speed up access to the data we will load it into a 
+database. We will use sqlite, an open-source portable database.
+
+```sh
+sqlite3 ontime.sqlite3
+```
+
+Next, we create a table with fields that match the csv files.
+
+```sql
+sqlite> create table ontime (
+  Year int,
+  Month int,
+  DayofMonth int,
+  DayOfWeek int,
+  DepTime  int,
+  CRSDepTime int,
+  ArrTime int,
+  CRSArrTime int,
+  UniqueCarrier varchar(5),
+  FlightNum int,
+  TailNum varchar(8),
+  ActualElapsedTime int,
+  CRSElapsedTime int,
+  AirTime int,
+  ArrDelay int,
+  DepDelay int,
+  Origin varchar(3),
+  Dest varchar(3),
+  Distance int,
+  TaxiIn int,
+  TaxiOut int,
+  Cancelled int,
+  CancellationCode varchar(1),
+  Diverted varchar(1),
+  CarrierDelay int,
+  WeatherDelay int,
+  NASDelay int,
+  SecurityDelay int,
+  LateAircraftDelay int
+);
+```
+
+Then load the data with the `.import` directive.
+
+```sql
+sqlite> .separator ,
+sqlite> .import ../dataset/1987.csv ontime
+sqlite> .import ../dataset/1988.csv ontime
+sqlite> .import ../dataset/1989.csv ontime
+sqlite> .import ../dataset/1990.csv ontime
+sqlite> .import ../dataset/1991.csv ontime
+sqlite> .import ../dataset/1992.csv ontime
+sqlite> .import ../dataset/1993.csv ontime
+sqlite> .import ../dataset/1994.csv ontime
+sqlite> .import ../dataset/1995.csv ontime
+sqlite> .import ../dataset/1996.csv ontime
+sqlite> .import ../dataset/1997.csv ontime
+sqlite> .import ../dataset/1998.csv ontime
+sqlite> .import ../dataset/1999.csv ontime
+sqlite> .import ../dataset/2000.csv ontime
+sqlite> .import ../dataset/2001.csv ontime
+sqlite> .import ../dataset/2002.csv ontime
+sqlite> .import ../dataset/2003.csv ontime
+sqlite> .import ../dataset/2004.csv ontime
+sqlite> .import ../dataset/2005.csv ontime
+sqlite> .import ../dataset/2006.csv ontime
+sqlite> .import ../dataset/2007.csv ontime
+sqlite> .import ../dataset/2008.csv ontime
+```
+
+Unfortunately this also imports the column headers, so we remove them with this 
+sql command.
+
+```sql
+delete from ontime where typeof(year) == "text";
+```
+
+## Indexing
+
+To speed up access to the data, we'll also want to add indices. The code below 
+adds a few, but we'll want to think about the needs and add more if needed. 
+(It's most efficient to create the indices after all the data has been loaded)
+
+```sql
+sqlite> create index year on ontime(year);
+sqlite> create index date on ontime(year, month, dayofmonth);
+sqlite> create index origin on ontime(origin);
+sqlite> create index dest on ontime(dest);
+```
+
+```{r eval=FALSE}
+# not provided in github but the file can be re-built from the previous scripts
+ritadb <- dbConnect(RSQLite::SQLite(), './ontime.sqlite3')  
+
+from_db <- function(sql) {
+  dbGetQuery(ritadb, sql)
+}
+
+from_db("select count(*) from ontime")
+
+# this query return
+# count(*)
+# 1 123534969
+```
+
+So we have 123.534.969 records in the database and it has a size of 17.24 GB.
+
+```sh
+air-mic:data mic0331$ ls -l
+total 33671104
+-rw-r--r--  1 mic0331  staff  17239605248 Apr  3 09:51 ontime.sqlite3
+```
+
+# Subset file
+
+The previously run query used to retreive the number of records of the database 
+is already taking a lot of time to be run in R therefore we will generate 
+a subset of random rows taken from the created SQL.  
+This file will contain 800.000 records from the main database.
+
+```sql
+sqlite> .headers on
+sqlite> .mode csv
+sqlite> .output rita.csv
+sqlite> select * from ontime order by random() limit 800000;
+sqlite> .output stdout
+```
+
+The generated file has now a reasonable size of 78.4 Mb
+
+```sh
+air-mic:data mic0331$ ls -l rita.csv
+-rw-r--r--  1 mic0331  staff  78448194 Apr  3 11:10 rita.csv
+```
