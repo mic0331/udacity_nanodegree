@@ -43,6 +43,7 @@ knitr::opts_chunk$set(echo=FALSE, warning=FALSE, message=FALSE)
 #install.packages("freqweights") # if needed
 #install.packages('reshape2') # if needed
 #install.packages("ggmap") # if needed
+#install.packages("xtable") # if needed
 
 library(knitr)
 library(dplyr)
@@ -55,6 +56,7 @@ library(freqweights)
 library(maps)
 library(GGally)
 library(lubridate)
+library(xtable)
 
 opts_knit$set(root.dir = '/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P3/data')
 ```
@@ -69,8 +71,7 @@ delayed most often? Which airports have highest probability to make you wait for
 a long time? Also, which day of week and which month of year are better for your 
 journey without severe delay?
 
-The aim of this presentation is to produce a graphical summary of the airline 
-performance data. 
+The aim of this presentation is to provide statistics accompanied by charts and discussions to better understand the dataset.
 
 For this project, we will be exploring the airline on-time performance from a 
 publicly available dataset from the stat-computing website (see reference at 
@@ -153,6 +154,9 @@ Note:
   - We have 29 carriers in the dataset.
   
   - We have 335 destination airports and 333 origin airports.
+  
+  - The delays in the dataset is measured in minutes, we will often convert this
+  unit in hours based on the analysis we want to perform.
 
 # Plotting delayed, cancelled, on-time, boarding ... Flying in the USA
 
@@ -281,35 +285,28 @@ qplot(x = UniqueCarrier, data = merged.data, fill = Description) +
   coord_flip() +
   xlab(NULL) +
   guides(fill=guide_legend(ncol=2)) +
-  theme(legend.position="bottom", legend.direction = "horizontal")
+  theme(legend.position="none")
 ```
 
-The chart show major US airlines (in number of flights), 
-we can see major companies such American Airlines, Delta, United.
+The chart show major US airlines (in number of flights), we can see major 
+companies such American Airlines, Delta, United.
+
+For reference, we provide a glossary of abbreviations.  Also note that America 
+West Airlines inc. and US Airways Inc. has been merged in October 2007.
+
+```{r xtable, results="asis"}
+merged.data.unique_carrier <- unique(merged.data[,c('UniqueCarrier', 'Description')])
+row.names(merged.data.unique_carrier)<-NULL
+
+print(xtable(merged.data.unique_carrier), type="html", include.rownames=F)
+```
 
 ## Flight volume
 
 Let's show the number of flight (flight volume) we have per year.
 
 ```{r}
-ggplot(rita, aes(x = Year)) + 
-  geom_histogram(fill="lightblue", binwidth=1, col="black") +
-  labs(title = "Distribution of flight per year") + 
-  xlab('Year') +
-  theme_bw()
-```
-
-We see from this plot a continuity in the growth of number of flight.  There are
-less flight in the 80th than in the 2008.  This is algin with a logical thinking
-and also the size of the files used to load the database.  The file for 1987 is 
-smaller than other, this is also proven in the histogram.
-With that we can assume the random selection of the sample has been made 
-correctly and we are not privileging a year over another.
-
-The next line graph show the same thing in a different way.
-
-```{r}
-rita.rita_per_year <- rita %>%
+rita.rita_per_year <- subset(rita, Year > 1987) %>%
   group_by(Year) %>%
   summarise(n = n()) %>%
   arrange(Year)
@@ -317,7 +314,7 @@ rita.rita_per_year <- rita %>%
 ggplot(rita.rita_per_year) +
   geom_point(aes(x=Year, y=n)) +
   geom_line(aes(x=Year, y=n), col = "lightblue") +
-  scale_x_continuous(limits = c(1987, 2008), breaks = seq(1987, 2008, 5)) +
+  scale_x_continuous(limits = c(1988, 2008), breaks = seq(1987, 2008, 5)) +
   ylab("Count") +
   theme_bw() +
   theme(
@@ -330,7 +327,22 @@ ggplot(rita.rita_per_year) +
     strip.background = element_rect(color="white", fill="white"),
     strip.text = element_text(size=16)
   )
+
+# This is a different way to visualize the same information.
+#ggplot(rita, aes(x = Year)) + 
+#  geom_histogram(fill="lightblue", binwidth=1, col="black") +
+#  labs(title = "Distribution of flight per year") + 
+#  xlab('Year') +
+#  theme_bw()
 ```
+
+We see from this plot a continuity in the growth of number of flight.  There are
+less flight in the 80th than in the 2008.  This is algin with a logical thinking
+and also the size of the files used to load the database.  We removed the year 
+1987 because we only have the 3 last months of that year.
+
+With that we can assume the random selection of the sample has been made 
+correctly and we are not privileging a year over another.
 
 We see a drop in the number of fligh between 2001 and 2003, probably due to the 
 event of September 11, 2001, however, flight volume is on the increase - 
@@ -466,21 +478,37 @@ arrival but certainly more pronounced for departure.
 ## Diverted / Cancelled flights
 
 ```{r}
-rita$Diverted <- factor(rita$Diverted, 
+rita.diverted <- rita %>%
+  group_by(Diverted) %>%
+  summarise(n = n())
+
+rita.diverted$Diverted <- factor(rita.diverted$Diverted, 
                  levels = c(0,1), 
                  labels = c("No", "Yes"))
 
-barplot(prop.table(table(rita$Diverted)))
+ggplot(data=rita.diverted, aes(x=Diverted,y=n)) + 
+  geom_bar(stat="identity") +
+  scale_y_log10() +
+  theme_bw() +
+  labs(y = "count (log)")
 ```
 
 In this dataset, we have almost all flight not diverted
 
 ```{r}
-rita$Cancelled <- factor(rita$Cancelled, 
+rita.cancelled <- rita %>%
+  group_by(Cancelled) %>%
+  summarise(n = n())
+
+rita.cancelled$Cancelled <- factor(rita.cancelled$Cancelled, 
                  levels = c(0,1), 
                  labels = c("No", "Yes"))
 
-barplot(prop.table(table(rita$Cancelled)))
+ggplot(data=rita.cancelled, aes(x=Cancelled,y=n)) + 
+  geom_bar(stat="identity") +
+  scale_y_log10() +
+  theme_bw() +
+  labs(y = "count (log)")
 ```
 
 Also, not many flight cancelled.  
@@ -489,6 +517,9 @@ We have access to the cancellation code, let's see the proportion of
 cancellation code.
 
 ```{r}
+rita$Cancelled <- factor(rita$Cancelled, 
+                 levels = c(0,1), 
+                 labels = c("No", "Yes"))
 rita.rita_cancellation_code <- filter(rita, !is.na(CancellationCode) & 
                                         Cancelled == "Yes")
 
@@ -585,18 +616,17 @@ set.seed(20150422)
 rita.rita_samp <- rita[sample(1:length(rita$speed), 100), ]
 
 ggpairs(rita.rita_samp[, c('DayOfWeek', 'Year', 'AirTime', 'ArrDelay', 
-                           'DepDelay', 'delta', 'speed', 'Distance', 
+                           'DepDelay', 'speed', 'Distance', 
                            'CarrierDelay', 'NASDelay', 'LateAircraftDelay')], 
         lower=list(continuous="smooth", params=c(colour="blue")),
   diag=list(continuous="bar", params=c(colour="blue")), 
-  upper=list(params=list(corSize=6)), axisLabels='show') +
+  upper=list(params=list(corSize=12)), axisLabels='show') +
   theme(legend.position = "none", 
         panel.grid.major = element_blank(), 
         axis.ticks = element_blank(), 
+        axis.text = element_blank(),
         panel.border = element_rect(linetype = "dashed", colour = "black", 
                                     fill = NA))
-
-str(rita.rita_samp)
 ```
 
  <img src="pictures/ggpairs.jpeg" height="1400px" width="1300px" />
@@ -609,6 +639,10 @@ features however, let's look at some of them.
 For large scale commercial airplane, speed in flight is 500 MPH.  
 Let's use 600 MPH as a limit.
 
+As speed increase, the distance increase.  This makes a lot of sence.  
+The relationship between speed and distance appears to be exponential rather 
+than linear.
+
 ```{r}
 rita.rita_speed_distance = subset(rita, rita$speed >= 0 & rita$speed <= 600)
 
@@ -616,33 +650,22 @@ p <- ggplot( data = rita.rita_speed_distance, aes(x=speed, y=Distance)) +
   geom_point() +
   xlim(0, 600) +
   theme_bw()
-print(p)
-```
 
-As speed increase, the distance increase.  This makes a lot of sence.  
-The relationship between speed and distance appears to be exponential rather 
-than linear.
-
-```{r}
 m1 <- lm(Distance ~ speed, data = rita.rita_speed_distance, na.action=na.omit)
 p + geom_abline(m1$intercept, m1$slope, colour = "red")
 #summary(m1)
 #print(m1)
 ```
 
-The $R^2$ value is .4549 therefore, speed explains about 45 percent of the 
-variance in distance.
+With a basic linear model, we have an $R^2$ value of .4549 therefore, speed 
+explains about 45 percent of the variance in distance.
 The fitted regression line is : Distance = -1221.7 + 4.922 speed.  According to 
 this model, average distance increases by 4.922 miles for each additional mile
 per hour of speed.
 
 The residuals are the vertical distances from the observed distance to the line.
 
-```{r}
-plot(m1, which=1, add.smooth=FALSE)
-```
-
-The residual plot has some unisually large residuals labeled; observations 
+The residual plot (see billow) has some unisually large residuals labeled; observations 
 222924 for example.  We also observe that residuals are closer to zero at low 
 distances; the variance of the residuals is not constant across all speed, but 
 increasing with speed.
@@ -722,8 +745,19 @@ plot(m3, which=1:2)
 Finally, let's look at the speed vs distance with less overplotting.
 
 ```{r}
-ggplot( data = rita.rita_speed_distance, aes(x=speed, y=Distance)) +
+rita.rita_speed_distance.average <- rita.rita_speed_distance
+rita.rita_speed_distance.average$speed <- round(
+  rita.rita_speed_distance.average$speed,
+  digits=-1)
+
+rita.rita_speed_distance.average <- rita.rita_speed_distance.average %>%
+  group_by(speed) %>%
+  summarise(mean = mean(Distance))
+
+ggplot(data = rita.rita_speed_distance, aes(x=speed, y=Distance)) +
   geom_point(alpha = 1/10, position = position_jitter(h = 0)) +
+  geom_line(data = rita.rita_speed_distance.average, 
+            aes(x=speed, y=mean), color = 'red') +
   xlim(0, 600) +
   theme_bw()
 ```
@@ -732,6 +766,7 @@ From this last plot we start to see something interesting, we see several
 points which are disconnected from the main dots.
 This probably show different kind of plane.  We start to see 3 exponentionals 
 curves.  
+The red line depict the average over the distance values for each speed value.
 
 ## Best day to travel
 
@@ -740,13 +775,68 @@ rita$DayOfWeek <- factor(rita$DayOfWeek,
                  levels = c('01','02','03','04','05','06','07'), 
                  labels = c("Monday", "Tuesday", "Wednesday", 
                             "Thursday", "Friday", "Saterday", "Sunday"))
+rita.per_day <- rita %>%
+  group_by(date, DayOfWeek) %>%
+  summarise(count = n())
 
-ggplot(rita, aes(x=DayOfWeek)) +
-  geom_histogram() +
+ggplot(rita.per_day, aes(x = DayOfWeek, y = count)) + 
+  geom_boxplot() +
+  stat_summary(fun.y=mean, geom="point", shape=5, size=4) +
+  stat_summary(fun.y=mean, geom="line", aes(group=1), color = 'red')  + 
+  stat_summary(fun.y=mean, geom="point", color = 'red') +
   theme_bw()
 ```
 
-We see Saterday and Sunday are two days with less delay, let's look more closely
+The plot suggest that the number of flight are similar with respect to variance, 
+but with possibly different centers (different location).  The Saterday and Friday
+are farther apart that the Tuesday and Wednesday for example, but it is not easy 
+to tell from the plot if these differences are significant.  Let us compare the 
+means and standard deviations of the 7 groups.
+
+```{r}
+meansd = function(x) c(mean=mean(x), sd=sd(x))
+by(rita.per_day$count, rita.per_day$DayOfWeek, FUN=meansd)
+```
+
+The standard deviations are close for the seven groups, which we observed from the
+boxplots.  However, the means of the groups are also close; 
+
+Are there "significant" differences among the means ?
+
+We can answer this question by conducting a quick One-way ANOVA test.  In this 
+case, the null hypothesis is that the mean of number of flight is equal for the 
+seven days of the weeks.
+
+The R `oneway.test` function is a simple way to obtain the one-way analysis of 
+variance. It is valid if certain conditions are satisfied: the errors are
+$NID(0,\sigma^2)$, where “NID” is an abbreviation for “normally distributed and
+independent.” The symbol $\sigma^2$ is the error variance, and stating that errors
+are $NID(0,\sigma^2)$ also means that the variance of random error is equal for 
+all groups. In the `oneway.test` function, there is an adjustment made (to degrees
+of freedom for error) for unequal variance. Normal error distribution
+can be checked using Normal-QQ plots of residuals.
+
+```{r}
+L = lm(rita.per_day$count ~ rita.per_day$DayOfWeek)
+qqnorm(L$res)
+qqline(L$res, col='red')
+```
+
+In the Normal-QQ plot the residuals should lie approximately along the reference
+line. The plots do not reveal any severe departure from the assumptions
+for this model.
+
+Let's now perform the One-way ANOVA test :
+
+```{r}
+oneway.test(rita.per_day$count ~ rita.per_day$DayOfWeek, var.equal=TRUE)
+```
+
+Just looking at the p-value (< 2.2e-16), we can conclude to reject $H_0$ at 5% 
+significance.
+
+We see Saterday and Sunday are two days with less delay, Saterday is the day with
+less flights in general. Let's look more closely.
 
 ```{r}
 rita.year_day_of_week <- rita %>%
@@ -766,6 +856,79 @@ Best days to travel and avoid delays are Saturdays, Sunday but also Tuesdays or
 Wednesdays. Fridays are bad for delays.
 Also note the pick than the drop arround 2001, this is probably representative 
 to the 9/11 event.
+
+Next, we can visualize the number of flight for each months with a separation 
+between the weekend and weekday.  We will do this exercice for the year 2008.
+
+```{r, fig.height=8, fig.width=10}
+rita.per_day_month <- subset(rita, Year == 2008) %>%
+  group_by(Month, DayofMonth, DayOfWeek) %>%
+  summarise(count = n()) %>%
+  mutate( weekend = ifelse(
+    DayOfWeek == 'Saterday' | DayOfWeek == 'Sunday', 'weekend','weekday'))
+
+rita.per_day_month$Month <- factor(rita.per_day_month$Month,
+                 levels = c('01', '02', '03', '04', '05', '06', '07', '08', '09',
+                            '10', '11', '12'), 
+                 labels = c("January","February","March","April","May","June",
+                            "July","August","September","October","November",
+                            "December"))
+
+ggplot(rita.per_day_month, aes(x = DayofMonth, y = count, color=weekend)) +
+  geom_point() +
+  facet_wrap(~ Month) +
+  theme_bw() +
+  theme(axis.text.x=element_blank())
+````
+
+Definitively, we see less flights during the weekend however, notice July and 
+August (and also at the end of June) where this tendency seems to be opposite, the number of flights is higher the weekend versus the weekday.
+
+## Best time in a day to travel
+
+We can also show the best time in the day for traveling with a separation between 
+weekday from weekend.
+For this exercice we will select the year 2008 and the month of October.
+This month has been selected because it has no known public holliday that may 
+impact the visulization.
+
+```{r, fig.width=10}
+rita.per_hour <- subset(rita, Year > 1987)
+rita.per_hour$CRSDepTime <- sprintf("%04d", rita.per_hour$CRSDepTime)
+rita.per_hour$CRSDepTime <- strtrim(rita.per_hour$CRSDepTime, 2)
+
+rita.per_hour <- rita.per_hour %>%
+  group_by(Year, Month, DayofMonth, DayOfWeek, CRSDepTime) %>%
+  summarise(count = n()) %>%
+  mutate( weekend = ifelse(
+    DayOfWeek == 'Saterday' | DayOfWeek == 'Sunday', 'weekend','weekday'))
+
+ggplot(subset(rita.per_hour, Year == 2008 & Month == '10'), aes(x = CRSDepTime, y = count)) + 
+  geom_boxplot(aes(fill=weekend)) +
+  stat_summary(fun.y=mean, geom="line", aes(group=weekend, color = weekend))  + 
+  stat_summary(fun.y=mean, geom="point", aes(color = weekend)) +
+  theme_bw()
+```
+
+This plot is showing the fluctuations of the number of flights during a day, 
+in particular the month of October 2008.
+The lines are connecting the means respectively for the weekday and the weekends.
+
+During the weekday, we clearly see that we have more flights at the begining of 
+the day (6:00 and 7:00 AM) than it remain stable till 3:00 PM where we have a small 
+drop.
+Later arrount 6:00 PM, we again have a peak of flight but not as high as in the 
+morning.
+
+During the weekend, the peaks happen arround 9:00 AM and at 1:00 PM
+
+We have almost no flight from midnight till 5:00 AM.
+
+It also seems that we have more outlier data during the after-noon especially 
+arround 2 pm.
+
+This tendencies are repeating accross other months of the same year (not shown 
+here)
 
 ## Taxi-in / Origin
 
@@ -803,6 +966,9 @@ Most of the flights are in the group of 4 and 5 minutes.
 
 ## Destinations having the highest average delays
 
+The objects of interest are the outliers, In this case we will only choose 
+destinations with "average delay" higher than 15 minutes.
+
 ```{r}
 rita.dest_highest_delays <- rita %>%
   group_by(Dest) %>%
@@ -811,7 +977,7 @@ rita.dest_highest_delays <- rita %>%
     n = n()) %>%
   arrange(desc(arr_delay))
 
-ggplot(rita.dest_highest_delays) +
+ggplot(rita.dest_highest_delays %>% filter(arr_delay > 15)) +
   geom_text(aes( x=arr_delay, y=n, label=Dest)) +
   theme_bw()
 ```
@@ -823,6 +989,8 @@ average delay with very few flights.
 
 ## On average, how do delays (of non-cancelled flights) vary over the course of a day? 
 
+We will analyse, only delays higher than 10 minutes.
+
 ```{r, message=FALSE, warning=FALSE}
 rita.per_hour <- rita %>%
  filter(Cancelled == 'No' & !is.na(rita$AirTime)) %>%
@@ -831,28 +999,30 @@ rita.per_hour <- rita %>%
  summarise(
     arr_delay = mean(ArrDelay, na.rm = TRUE),
     n = n()
- )
+ ) %>%
+ filter(arr_delay > 10)
 
 ggplot(filter(rita.per_hour, n > 30), aes(time, arr_delay)) +
   geom_point() +
   stat_smooth() +
   labs(x = "flight time in hours",
-       y = "Delay (hours)") +
+       y = "Delay (hours)") +  
   theme_bw()
 ```
 
-As the flight time increase the arrival time is increasing.  We see a positive 
-increase of this trend from one hour of flight to 2 hours, then it remain 
-constant from 2 to 4 than the data becomes more dispersed.
+As the flight time increase the arrival delay is increasing.  
 
-The next last plot also show the density of flights.  As the time increase, we 
-have less flights.
+The next last plot also show the density of flights (on a log scale).  As the 
+time increase, we have less flights but interestingly, the delay increase 
+significantly.
 
 ```{r}
-qplot(time, arr_delay, data = filter(rita.per_hour, n > 30), size = n) +
+ggplot(data = filter(rita.per_hour, n > 30)) +
+  geom_point(aes(time, log10(arr_delay), size = n)) +
   scale_size_area() +
+  coord_trans(y = "log10") +
   labs(x = "flight time in hours",
-       y = "Delay (hours)") +
+       y = "Delay (log)") +
   theme_bw()
 ```
 
@@ -861,7 +1031,8 @@ qplot(time, arr_delay, data = filter(rita.per_hour, n > 30), size = n) +
 Let's visualize the delay over the months and see which months are better
 
 In a table format, we can compute the delay per carrier for each months and 
-visualize these data :
+visualize these data.  We will visualize the carrier with "average delay" 
+higher than 15 minutes.
 
 ```{r}
 rita.monthly_delay.wide <- rita %>% 
@@ -873,7 +1044,7 @@ rita.monthly_delay.wide <- rita %>%
 #head(rita.monthly_delay.wide, 5)
 ```
 
-```{r}
+```{r, fig.width=10, fig.height=8}
 rita.monthly_delay <- rita %>% 
   mutate(month=Month, carrier=UniqueCarrier) %>% 
   group_by(month, carrier) %>% 
@@ -883,20 +1054,20 @@ rita.monthly_delay$month <- factor(rita.monthly_delay$month,
                  levels = c('01', '02', '03', '04', '05', '06', '07', '08', '09',
                             '10', '11', '12'), 
                  labels = c("January","February","March","April","May","June",
-                            "July","Augus","September","October","November",
+                            "July","August","September","October","November",
                             "December"))
   
 ggplot(NULL, aes(x=month, y=delay, fill=carrier, alpha=.2)) + 
-  geom_bar(data=rita.monthly_delay %>% filter(delay > 0), 
+  geom_bar(data=rita.monthly_delay %>% filter(delay > 15), 
            stat='identity',
            position = "identity",
            colour="black") + 
-  geom_bar(data=rita.monthly_delay %>% filter(delay < 0), 
+  geom_bar(data=rita.monthly_delay %>% filter(delay < 15), 
            stat='identity',
            position = "identity",
            colour="black") +
   labs(x = "Month",
-       y = "Delay (hours)") +
+       y = "Delay (minutes)") +
   theme_bw() +
   theme(axis.text.x = element_text(angle = 45, hjust = .5, vjust=0.5))
 ```
@@ -1038,6 +1209,7 @@ highest delay is the maximum.  We olso notice the very darks cells in September
 # Final Plots and Summary
 
 ### Plot One
+
 ```{r, Plot_One}
 location <- airports %>%
   select(Dest = iata, name = airport, lat, long)
@@ -1083,23 +1255,23 @@ ggplot(data = map, aes(x = long, y = lat, group = group)) +
             colour="black") +
   geom_point(data = rita.rita_full_dest, 
              aes(x = long, y = lat, colour = arr_delay, 
-                 group = NULL), size = 3) +
+                 group = NULL), size = 2) +
   labs(colour = "Average arrival delay") +
   scale_colour_gradientn(breaks = c(0, 20, 40, 60, 80, Inf),
                          colours=rainbow(7)) +
-  geom_text(aes(x = long, y = lat, label=name, group = NULL), 
+  geom_text(aes(x = long, y = lat, label=Dest, group = NULL, colour = arr_delay), 
             data = subset(rita.rita_full_dest, 
-                          rita.rita_full_dest$arr_delay >= 25), 
-            hjust=-.2, fontface='bold', col = 'red') +
+                          rita.rita_full_dest$arr_delay >= 20), 
+            hjust=-.1, fontface="italic", size=5) +
   ggtitle("Average delays in USA airport") +
   theme_bw() +
   theme(legend.position="bottom")
 ```
-
 This plot show a map of the average arrival delay per airport in US.
-The airport for which we see the tile in red are those having an average arrival 
-delay of at least 25 minutes.  We notice that these airports are on the east of 
-the map.
+The airport for which we see the dots in puprle are those having an average arrival 
+delay of at least 20 minutes.  We notice that these airports are on the east of 
+the map.  The airport with the code RDR (Grand Forks AFB) is having the highest 
+average delay of 93 minutes.
 
 The reasons why these airports are showing highest delay is not clear.  One reason
 could be the impact of the weather conditions.  After some 
@@ -1111,7 +1283,10 @@ the US.
 
 ### Plot Two
 
-```{r, Plot_Two}
+For this plot we will show the delay on a hourly arrival delay with various 
+statistics.
+
+```{r, fig.width=10, Plot_Two}
 rita.flight_delay_plot_two <- rita %>%
   group_by(Year, Month, DayofMonth) %>%
   filter(!is.na(ArrDelay) & ArrDelay > 0 & ArrDelay < 1000) %>%
@@ -1165,7 +1340,17 @@ g.top <- ggplot(rita.flight_delay_plot_two) +
         panel.border = element_blank(),
         panel.background = element_blank(),
         axis.ticks = element_blank()) +
-  labs(y = "IQR (hour)")
+  labs(y = "IQR (hour)") +
+  annotate("text", 
+           x=as.Date("2004/6/1"), 
+           y=1, 
+           label="Third quartile (75%)", 
+           size=4, hjust = 0, color ="brown") +
+  annotate("text", 
+           x=as.Date("2004/6/1"), 
+           y=0.4, 
+           label="First quartile (25%)", 
+           size=4, hjust = 0, color ="green")
 
 g.bottom <- ggplot(rita.flight_delay_plot_two) +
   geom_linerange(rita.flight_delay_plot_two, 
@@ -1213,12 +1398,12 @@ g.bottom <- ggplot(rita.flight_delay_plot_two) +
   annotate("text", 
            x=as.Date("1987/5/1"), 
            y=13, 
-           label="show the min/max delay in hours and inner darker at ", 
+           label="show the min/max delay in hours for every day and   ", 
            size=3, color="gray30", hjust = 0) + 
   annotate("text", 
            x=as.Date("1987/5/1"), 
            y=12, 
-           label="the top bands show the IQR.                         ", 
+           label="inner darker at the top bands show the IQR          ", 
            size=3, color="gray30", hjust = 0) + 
   ggtitle("Delays in US airports") +
   theme(plot.title=element_text(face="bold",
@@ -1229,7 +1414,29 @@ g.bottom <- ggplot(rita.flight_delay_plot_two) +
            x=as.Date("1987/5/1"), 
            y=16.5, 
            label="In Hours                                            ", 
-           size=4, fontface="bold", hjust = 0)
+           size=4, fontface="bold", hjust = 0) + 
+  geom_segment(aes(x = as.Date("2000/1/1"), 
+                   y = 8, 
+                   xend = as.Date("2001/9/11"), 
+                   yend = 13),
+               size = .5,
+               color ="brown",
+               arrow = arrow(length = unit(0.25, "cm"))) +
+  annotate("text", 
+           x=as.Date("1998/1/1"), 
+           y=7, 
+           label="9/11 W.T.C. Attacks", 
+           size=4, fontface="bold", hjust = 0, color ="brown") +
+  annotate("text", 
+           x=as.Date("2004/6/1"), 
+           y=17, 
+           label="Max delay (per year)", 
+           size=4, hjust = 0, color ="brown") +
+  annotate("text", 
+           x=as.Date("2004/6/1"), 
+           y=1.5, 
+           label="Mean of delay (per year)", 
+           size=4, hjust = 0, color ="green")
 
 ## plot graphs and set relative heights
 grid.arrange(g.top,g.bottom, heights = c(1/5, 4/5)) 
@@ -1248,10 +1455,12 @@ notice the pick in delays after 2001 probably due to a reinforcement of the
 security measure which has probably caused many delays.  Interestingly, 2001 is 
 not the year where we had the highest delay.
 
-Finally, the top part of the graph show the IQR with the lower quartile (25%) and 
-upper quartile (75%).  This time, the increase is not really clear. We can than 
-conclude that delays are not more or less frequent from year to year but certainly
-when we have delay, this delay is more important (as shown at the bottom)
+Finally, the top part of the graph show the IQR.  The IQR is the difference 
+between the upper and lower quartiles. In other words, the IQR is the 1st quartile subtracted from the 3rd. In red we draw the upper quartile (75%) calculated on 
+a yearly basis and in green the lower quartile (25%) also calculated on a yearly
+basis. This time, the increase is not really clear. We can than conclude that 
+delays are not more or less frequent from year to year but certainly when we have 
+delay, this delay is more important (as shown at the bottom).
 
 ### Plot Three
 
