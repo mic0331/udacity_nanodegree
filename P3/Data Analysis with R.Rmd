@@ -1,7 +1,7 @@
 ---
 title: "Data Analysis with R"
 author: "Michaël Lambé (mic0331 AT gmail DOT com)"
-date: "Last edited, Thursday, April 30, 2015"
+date: "Last edited, Thursday, May 15, 2015"
 output:
   html_document:
     toc: true
