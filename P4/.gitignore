@@ -1,3 +1,5 @@
 .DS_Store
+__pycache__/
+*.pyc
 ud120-projects/enron_mail_20110402/
 ud120-projects/enron_mail_20110402.tgz
