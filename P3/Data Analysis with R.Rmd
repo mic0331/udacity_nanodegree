@@ -983,7 +983,7 @@ ggplot(rita.dest_highest_delays %>% filter(arr_delay > 15)) +
 ```
 
 This plot is a bit messy but show some interesting facts.  Some destination 
-airports (ORD, ATL, DFW) have very low average delay despit the number of fligh 
+airports (WRD, ASE) have very low average delay despit the number of fligh 
 they accumulate but on the other hand, some airports (RDR) have very high 
 average delay with very few flights.
 
@@ -1206,6 +1206,40 @@ December, January, July and August are the months where the probability to have
 highest delay is the maximum.  We olso notice the very darks cells in September 
 2001 reflecting the W.T.C. attacks.
 
+```{r}
+# We can also produce a heatmap with the average over the years and months.
+# split the data per seasons
+getSeason <- function(DATES) {
+    WS <- as.Date("2012-12-15", format = "%Y-%m-%d") # Winter Solstice
+    SE <- as.Date("2012-3-15",  format = "%Y-%m-%d") # Spring Equinox
+    SS <- as.Date("2012-6-15",  format = "%Y-%m-%d") # Summer Solstice
+    FE <- as.Date("2012-9-15",  format = "%Y-%m-%d") # Fall Equinox
+
+    # Convert dates from any year to 2012 dates
+    d <- as.Date(strftime(DATES, format="2012-%m-%d"))
+
+    ifelse (d >= WS | d < SE, "Winter",
+      ifelse (d >= SE & d < SS, "Spring",
+        ifelse (d >= SS & d < FE, "Summer", "Fall")))
+}
+#ne note: 2012 is a good year to which to convert all of the dates; since it is a leap year, any February 29ths in your data set will be handled smoothly.
+
+rita.flight_delay_15  <- mutate(rita.flight_delay_15,
+       date = as.Date(paste(Year, Month, DayofMonth, sep='-')))
+rita.flight_delay_15  <- mutate(rita.flight_delay_15,
+        season = getSeason(date))
+
+A <- rita.flight_delay_15
+B <- group_by (A, daycol, weekrow, season)
+C <- summarise(B, flight_delay = mean(proportion)  )
+ggplot(C, aes(daycol, weekrow, fill = logit(flight_delay))) +
+geom_tile() +
+facet_wrap(~ season) +
+theme_bw()
+```
+
+From this last drawing, we recognize the seasonal effect discussed already.
+
 # Final Plots and Summary
 
 ### Plot One
@@ -1221,6 +1255,7 @@ rita.rita_full_dest <- rita %>%
     arr_delay = mean(ArrDelay),
     n = n()
   ) %>%
+  filter(arr_delay < 90) %>%
   arrange(desc(arr_delay)) %>%
   left_join(location)
 
@@ -1271,7 +1306,8 @@ This plot show a map of the average arrival delay per airport in US.
 The airport for which we see the dots in puprle are those having an average arrival 
 delay of at least 20 minutes.  We notice that these airports are on the east of 
 the map.  The airport with the code RDR (Grand Forks AFB) is having the highest 
-average delay of 93 minutes.
+average delay of 93 minutes (we consider this airport as an outlier and therefore 
+it has been removed from the drawing).
 
 The reasons why these airports are showing highest delay is not clear.  One reason
 could be the impact of the weather conditions.  After some 
@@ -1318,7 +1354,7 @@ rita.flight_delay_plot_two_m  <- mutate(rita.flight_delay_plot_two_m,
 dottedYears <- seq(as.Date("1991/1/1"), 
                    as.Date("2008/1/1"), 
                    by = "5 year")
-
+# The y-axis depicts the ratio between min and max delay. In that case the units on the y-axis are numbers not hours.
 g.top <- ggplot(rita.flight_delay_plot_two) +
   geom_linerange(rita.flight_delay_plot_two, 
                  mapping=aes(
@@ -1340,7 +1376,7 @@ g.top <- ggplot(rita.flight_delay_plot_two) +
         panel.border = element_blank(),
         panel.background = element_blank(),
         axis.ticks = element_blank()) +
-  labs(y = "IQR (hour)") +
+  labs(y = "IQR (number)") +
   annotate("text", 
            x=as.Date("2004/6/1"), 
            y=1, 
@@ -1378,7 +1414,7 @@ g.bottom <- ggplot(rita.flight_delay_plot_two) +
   scale_x_date(
     breaks = date_breaks("5 year"),
     labels = date_format("%Y")) +
-  labs(x = "Year", y = "Min / Max Delay (hour)") +
+  labs(x = "Year", y = "Min / Max Delay (number)") +
   theme(plot.margin = unit(c(0,5,1,1),units="points"),
         panel.grid.minor = element_blank(),
         panel.grid.major = element_blank(),
@@ -1398,7 +1434,7 @@ g.bottom <- ggplot(rita.flight_delay_plot_two) +
   annotate("text", 
            x=as.Date("1987/5/1"), 
            y=13, 
-           label="show the min/max delay in hours for every day and   ", 
+           label="show the min/max delay for every day and            ", 
            size=3, color="gray30", hjust = 0) + 
   annotate("text", 
            x=as.Date("1987/5/1"), 
@@ -1413,7 +1449,7 @@ g.bottom <- ggplot(rita.flight_delay_plot_two) +
   annotate("text", 
            x=as.Date("1987/5/1"), 
            y=16.5, 
-           label="In Hours                                            ", 
+           label="Number                                            ", 
            size=4, fontface="bold", hjust = 0) + 
   geom_segment(aes(x = as.Date("2000/1/1"), 
                    y = 8, 
@@ -1442,12 +1478,12 @@ g.bottom <- ggplot(rita.flight_delay_plot_two) +
 grid.arrange(g.top,g.bottom, heights = c(1/5, 4/5)) 
 ```
 
-This plot is showing the increase of arrival delays (in hours) from multiple 
-angles.  At the bottom, we see the max and min arrival delay.  
-This information is shown as bars for every days and with a red/brun line for 
-each year.  We see that the minimum delay is not really increasing or decreasing
-from year to year but the maximum delay is on the other hand, increasing 
-regularly.  We certainly see the highest increase when we left the 19th.
+This plot is showing the increase of arrival delays from multiple angles.  The 
+y-axis depicts the ratio between min and max delay. This information is shown as 
+bars for every days and with a red/brun line for each year.  
+We see that the minimum delay is not really increasing or decreasing from year 
+to year but the maximum delay is on the other hand, increasing regularly.  We 
+certainly see the highest increase when we left the 19th.
 
 Still on the bottom, two areas are maked with different colors.  The red color show 
 the year of the W.T.C attack and the blue area show the "recovery" year.  We can 
