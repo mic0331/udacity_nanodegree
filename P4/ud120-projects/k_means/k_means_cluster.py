@@ -64,7 +64,35 @@ for f1, f2, f3 in finance_features:
     plt.scatter( f1, f2 )
 plt.show()
 
+from sklearn.preprocessing import MinMaxScaler
 
+salary = []
+ex_stok = []
+for users in data_dict:
+    val = data_dict[users]["salary"]
+    if val != 'NaN':
+        salary.append(float(val))
+    val = data_dict[users]["exercised_stock_options"]
+    if val != 'NaN':
+        ex_stok.append(float(val))
+
+salary = [min(salary),200000.0,max(salary)]
+ex_stok = [min(ex_stok),1000000.0,max(ex_stok)]
+
+print "range of slaries ", salary
+print 'range of stockes ', ex_stok
+
+salary = numpy.array([[e] for e in salary])
+ex_stok = numpy.array([[e] for e in ex_stok])
+
+scaler_salary = MinMaxScaler()
+scaler_stok = MinMaxScaler()
+
+rescaled_salary = scaler_salary.fit_transform(salary)
+rescaled_stock = scaler_salary.fit_transform(ex_stok)
+
+print 'rescaled salary ', rescaled_salary
+print 'rescaled stocks ', rescaled_stock
 
 from sklearn.cluster import KMeans
 features_list = ["poi", feature_1, feature_2]
@@ -73,7 +101,6 @@ poi, finance_features = targetFeatureSplit( data2 )
 clf = KMeans(n_clusters=2)
 pred = clf.fit_predict( finance_features )
 Draw(pred, finance_features, poi, name="clusters_before_scaling.pdf", f1_name=feature_1, f2_name=feature_2)
-
 
 ### cluster here; create predictions of the cluster labels
 ### for the data and store them to a list called pred
@@ -89,8 +116,8 @@ for users in data_dict:
     if val == 'NaN':
         continue
     ex_stok.append(val)
-print 'max stock ', max(ex_stok)
-print 'min stock ',  min(ex_stok)
+#print 'max stock ', max(ex_stok)
+#print 'min stock ',  min(ex_stok)
 
 salary = []
 for users in data_dict:
@@ -99,8 +126,8 @@ for users in data_dict:
         continue
     salary.append(val)
     
-print 'max salary ', max(salary)
-print 'main salary ', min(salary)
+#print 'max salary ', max(salary)
+#print 'main salary ', min(salary)
 
 
 
