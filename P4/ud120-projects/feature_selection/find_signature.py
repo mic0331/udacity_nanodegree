@@ -36,6 +36,17 @@ labels_train   = labels_train[:150]
 
 
 ### your code goes here
+from sklearn.tree import DecisionTreeClassifier
+clf = DecisionTreeClassifier()
+clf.fit(features_train, labels_train)
+clf.fit(features_train, labels_train)
+print clf.score(features_test, labels_test)
 
+importances = clf.feature_importances_
+import numpy as np
+indices = np.argsort(importances)[::-1]
+print 'Feature Ranking: '
+for i in range(10):
+    print "{} feature no.{} ({})".format(i+1,indices[i],importances[indices[i]])
 
-
+print vectorizer.get_feature_names()[21323]
