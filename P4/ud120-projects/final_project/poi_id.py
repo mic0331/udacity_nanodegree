@@ -1,4 +1,5 @@
 #!/usr/bin/python
+import pandas as pd
 
 import sys
 import pickle
@@ -10,10 +11,32 @@ from tester import test_classifier, dump_classifier_and_data
 ### Task 1: Select what features you'll use.
 ### features_list is a list of strings, each of which is a feature name.
 ### The first feature must be "poi".
-features_list = ['poi','salary'] # You will need to use more features
+#features_list = ['poi','salary'] # You will need to use more features
 
 ### Load the dictionary containing the dataset
 data_dict = pickle.load(open("final_project_dataset.pkl", "r") )
+
+df = pd.DataFrame.from_dict(data_dict, orient='index')
+# remove the email_address feature as it will not be used for now
+del df['email_address']
+
+###############################################################################
+# Uncomment this section to get a summary of the dataset before treatment
+# The summary include the shape of the dataset, the list of feature and the 
+# number of POI's
+###############################################################################
+print 'Size of the dataset is : {}'.format(len(df))
+print 'Number of features is : {}'.format(len(df.columns))
+print 'Features are : {}'.format(df.columns)
+print 'Number of POI in the dataset : {}'.format(len(df[df['poi']==True]))
+
+
+### Task 1: Select what features you'll use.
+### features_list is a list of strings, each of which is a feature name.
+### The first feature must be "poi".
+features_list = ['poi'] + list(df.columns)
+
+
 
 ### Task 2: Remove outliers
 ### Task 3: Create new feature(s)
