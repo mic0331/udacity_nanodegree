@@ -113,7 +113,9 @@
                                 <div class="row">
                                     <div class="clearfix visible-sm visible-xs"></div>
                                     <div class="col-sm-12 col-md-12">
-                                        <h3 class="title"><a name="introduction">Introduction</a></h3>
+                                        <p>Source of the project : <a href="https://github.com/mic0331/udacity_nanodegree/tree/master/P4/ud120-projects/final_project">Github</a></p>
+                                        <p>Udacity course material : <a href="https://www.udacity.com/course/intro-to-machine-learning--ud120">Pattern Recognition for Fun and Profit</a></p>
+                                        <h3 class="title"><a name="introduction">Introduction</a></h3>                                        
                                         <img style='float:left;width:120px;height:120px; margin-right:10px;' src="pictures/Enron_Logo.svg" />
                                         <p><a href="http://en.wikipedia.org/wiki/Enron">Enron Corporation</a> was an American energy, commodities, and services company based in Houston, Texas.  The company bankrupted on December 2, 2001.  It was one of the wold’s major electricity, natural gas, communications, and pulp and paper companies.</p>
 
@@ -150,25 +152,25 @@
                                         <h2>Add New Features</h2>
                                         <p><b>fraction_to_poi / fraction_from_poi</b> : POI’s may have particularly strong email connections between each others, they send emails to other POI’s at a rate higher than for the general population.  However, the number of emails (from / to POI’s) as such is not that helpful, we don’t see a clear trend just with the number.  Therefore, we computed the fraction of email a person receives that come from a person-of-interest.  So the percentage of emails received or sent from/to a POI’s.  We also computed the fraction of emails sent to a POI.</p>
                                         <h2>Feature Scaling</h2>
-                                        <p>All features has been scaled to be between 0 and 1 using a MinMaxScaler since various models such as Logistic Regression perform optimally with scaled features.  The features needed to be scaled since they were on vastly different scaled, ranging from hundreds to millions of dollars and also from positive to negative values (deferrals features, deferred_income and restricted_stock_deferred)</p>
+                                        <p>All features has been scaled to be between 0 and 1 using <b>MinMaxScaler</b> since various models such as Logistic Regression perform optimally with scaled features.  The features needed to be scaled since they were on vastly different scaled, ranging from hundreds to millions of dollars and also from positive to negative values (deferrals features, deferred_income and restricted_stock_deferred)</p>
                                         <h2>Feature Amputation</h2>
                                         <p>As the data set contain missing values and scikit-learn estimators assume that all values in any array are numerical, and that all have and hold meaning, we apply a basic imputation technique which correspond to the replacement of all NaN value using the mean of the columns (axis 0) that contain the missing value.</p>
                                         <h2>Feature Reduction</h2>
                                         <p>In order to optimise the model, I apply two techniques to prune the features.</p>
-                                        <p><b>SelectKBest</b> dimension reduction has been used first in order to investigate how the accuracy of a classifier varies with the feature size.  Scikit-Learn provides several methods to select features based on Chi-Squared and ANOVA F-values for classification.  In <a href="">this short notebook section</a>, the accuracies has been computed with various feature sizes for 10 different classifiers, using both the Chi-squared measure and the ANOVA F measure.</p>
+                                        <p><b>SelectKBest</b> dimension reduction has been used first in order to investigate how the accuracy of a classifier varies with the feature size.  Scikit-Learn provides several methods to select features based on Chi-Squared and ANOVA F-values for classification.  In <a href="http://nbviewer.ipython.org/github/mic0331/udacity_nanodegree/blob/master/P4/ud120-projects/final_project/notebook/ML%20exploration.ipynb#Feature-selection-exploration">this short notebook section</a>, the accuracies has been computed with various feature sizes for 10 different classifiers, using both the Chi-squared measure and the ANOVA F measure.</p>
                                         <p>The resulting K-best (using ANOVA F classification scoring function) features were then apply into Principal Components Analysis (<b>PCA</b>) dimensionality reduction.  Finally the resultant N principal components were loaded into a classification algorithm.</p>
-                                        <p><a href="">This notebook section</a> is showing some investigation made on the PCA process which conclude to an optimal n_components number of 5 for this project.
+                                        <p><a href="http://nbviewer.ipython.org/github/mic0331/udacity_nanodegree/blob/master/P4/ud120-projects/final_project/notebook/ML%20exploration.ipynb#Pipelining-/-PCA-spectrum">This notebook section</a> is showing some investigation made on the PCA process which conclude to an optimal n_components number of 5 for this project.
                                     </div>
                                     <div class="col-sm-12 col-md-12">
                                         <h3 class="title"><a name="classification">Classification algorithm / Grid search</a></h3>
-                                        <p>As I wanted to avoid testing multiple combinations of parameters in order to get the best performance of the model, I used the GridSearchCV algorithm with the pipeline paradigm.</p>
+                                        <p>As we wanted to avoid testing multiple combinations of parameters in order to get the best performance of the model, we used the <b>GridSearchCV</b> algorithm with the <b>pipeline</b> paradigm.</p>
                                         <p>The logic behind the grid search for optimal parameters can be split into two main steps</p>
                                         <p><u>First</u>, the classifier is being created, we pass a pipeline and the directory of parameters to try.</p>
                                         <p>The pipeline is a combination of 3 elements:</p>
                                         <ul>
                                             <li>The <b>‘selecter’</b> : selectKBest dimension reduction.</li>
                                             <li>The <b>‘reducer’</b> : principal components analysis (PCA) dimension reduction.</li>
-                                            <li>The ‘classifier’ : classifying algorithm.</li>
+                                            <li>The <b>‘classifier’</b> : classifying algorithm.</li>
                                         </ul>
                                         <p>The purpose of the pipeline is to assemble several steps that can be cross-validated together while setting different parameters.</p>
                                         <p>The grid takes <b>SelectKBest</b> and <b>PCA</b> and run them during each of the cross-validation loops to generate a grid of parameters combinations for the classifier.</p>
@@ -204,9 +206,9 @@
                                         <p>A clean and unambiguous way to present the prediction results of a classifier is to use a confusion metric (also called a contingency table).
                                         For this project, we have a binary classification problem, therefore the table has 2 rows and 2 columns.  Across the top is the observed class labels and down the side are the predicted class labels.  
                                         Each cell contains the number of predictions made by the classifier that fall into that cell.</p>
+                                        <img style='width:360px;height:100px; display: block; margin-left: auto; margin-right: auto; margin-bottom: 20px;' src="pictures/confuction_metrix.png" />
                                         <p>Here is the confusion matrix for the model identifying POI’s. (15000 predictions made)
-                                        1043     2541
-                                        957      10459
+                                        <img style='width:460px;height:80px; display: block; margin-left: auto; margin-right: auto; margin-bottom: 20px; margin-top: 20px;' src="pictures/confuction_metrix_project.png" />
                                         </p>
                                         <p>In this case, a perfect classifier could correctly predict 1043 POI's and 10459 non POI’s. Incorrect predictions are the other two cells.  
                                         False negatives which are POI that the classifier has marked as non POI’s; false positives are non POI that the classifier has marked as POI’s.</p>
@@ -214,7 +216,9 @@
                                         <p>The accuracy is the number of correct predictions made divided by the total number of predictions made.  In this case the model that only predict POI’s would achieve an accuracy of  (1043 + 10459) / 15000 = 76.7%.  This is a high accuracy.  If it was used alone for decision support to inform the investigator of the fraud case, it would clear out 150000 - (1043 + 10459) = 3498 persons with incorrectly thinking their status was effectively POI’s (high False Negatives).
                                         <p>Therefore, for this model we are using two metrics, the ‘precision’ and the ‘recall’.  Precision and recall are the basic measures used in evaluating search strategies.</p>
                                         <p><b>Recall</b> is the ratio of the number of relevant records retrieved to the total number of relevant records in the dataset.</p>
+                                        <img style='width:320px;height:180px; display: block; margin-left: auto; margin-right: auto; margin-bottom: 20px;' src="pictures/recal.png" />
                                         <p><b>Precision</b> is the ratio of the number of relevant records retrieved to the total number of irrelevant and relevant records retrieved.</p>
+                                        <img style='width:320px;height:180px; display: block; margin-left: auto; margin-right: auto; margin-bottom: 20px;' src="pictures/precision.png" />
                                         <p>Recall and Precision are inversely related therefore, as recall increase, the precision decrease, conversely, as recall decrease, the precision increase.</p>
                                         <p>High <b>precision</b> means that an algorithm returned substantially more relevant results than irrelevant, while high <b>recall</b> means that an algorithm returned most of the relevant results.
                                         <p>In the context of this project, the precision would be how often the people choose to be tested were really a POI’s.</p>
@@ -233,7 +237,7 @@
                                             <li>RuntimeWarning: invalid value encountered in divide  f = msb / msw</li>
                                         </ul>
                                         <h2>Conclusion</h2>
-                                        <p>The dataset of this project is very small therefore, the training set is also very small therefore, high bias/low variance classifiers (e.g. Naive Bayes) have an advantage over low ban/high variance classifiers (e.g. kNN), since the latter will overfit.  But low bias/high variance classifiers start to win out as the training set grows (they have lower asymptotic error), since high bias classifiers aren(t powerful enough to provide accurate models.</p>
+                                        <p>The dataset of this project is very small therefore, the training set is also very small therefore, high bias/low variance classifiers (e.g. Naive Bayes) have an advantage over low ban/high variance classifiers (e.g. kNN), since the latter will overfit.  But low bias/high variance classifiers start to win out as the training set grows (they have lower asymptotic error), since high bias classifiers aren't powerful enough to provide accurate models.</p>
                                         <p>The main message from this project is the fact that better data often beats better algorithms, and designing good features goes a long way.  Also, with bigger dataset, whichever classification algorithm is chosen does not matter in terms of classification performance, therefore, the privileged choice would be to select an algorithm based on speed or ease of use.
                                         However, if really the accuracy / recall or precision is of concern than trying a bunch of different classifiers and select the best one by cross-validation is the preferred way to go.</p>
                                         <h2>Reference</h2>
