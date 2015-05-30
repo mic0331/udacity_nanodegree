@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Intro to Machine Learning</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <meta name="author" content="owwwlab.com">
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+        
+        <meta name="description" content="A theme for faculty profile page" />
+        <meta name="keywords" content="faculty profile, theme,css, html, jquery, transition, transform, 3d, css3" />
+
+        <link rel="shortcut icon" href="pictures/favicon.ico">
+
+        <!--CSS styles-->
+        <link rel="stylesheet" href="css/bootstrap.css">
+        <link rel="stylesheet" href="css/font-awesome.min.css">  
+        <link rel="stylesheet" href="css/perfect-scrollbar-0.4.5.min.css">
+        <link rel="stylesheet" href="css/magnific-popup.css">
+        <link rel="stylesheet" href="css/style.css">
+        <link id="theme-style" rel="stylesheet" href="css/styles/blue.css">
+        <style type="text/css">
+            body {text-align: justify;}
+        </style>
+        
+        <!--/CSS styles-->
+    </head>
+    <body>
+        <div id="sidebar">
+                <div id="main-nav">
+                    <div id="nav-container">
+                        <div id="profile" class="clearfix">
+                            <div class="hidden-xs"></div>
+                            <div class="title">
+                                <h2>Michaël Lambé</h2>
+                                <h3>Intro to Machine Learning</h3>
+                            </div>
+                            
+                        </div>
+                        <ul id="navigation">
+                            <li class="external">
+                              <a href="#introduction">
+                                <div class="icon">1</div>
+                                <div class="text">Introduction</div>
+                              </a>
+                            </li>  
+                            
+                            <li class="external">
+                              <a href="#goal">
+                                <div class="icon">2</div>
+                                <div class="text">Goal of the project</div>
+                              </a>
+                            </li> 
+                            
+                            <li class="external">
+                              <a href="#dataset">
+                                <div class="icon">3</div>
+                                <div class="text">The Enron Dataset</div>
+                              </a>
+                            </li> 
+
+                            <li class="external">
+                              <a href="#outlier">
+                                <div class="icon">4</div>
+                                <div class="text">Outlier filtering</div>
+                              </a>
+                            </li>
+
+                            <li class="external">
+                              <a href="#feature">
+                                <div class="icon">5</div>
+                                <div class="text">Feature engineering</div>
+                              </a>
+                            </li>
+
+                            <li class="external">
+                              <a href="#classification">
+                                  <div class="icon">6</div>
+                                  <div class="text">Classification algorithm</div>
+                              </a>
+                            </li>
+
+                            <li class="external">
+                              <a href="#metrics">
+                                  <div class="icon">7</div>
+                                  <div class="text">Performance Metrics</div>
+                              </a>
+                            </li>
+
+                            <li class="external">
+                              <a href="#conclusion">
+                                  <div class="icon">8</div>
+                                  <div class="text">Conclusion</div>
+                              </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="social-icons">
+                    <ul>
+                        <li><a href="https://github.com/mic0331/udacity_nanodegree/tree/master/P4/ud120-projects/final_project"><i class="icon-github"></i></a></li>
+                        <li><a href="https://twitter.com/mic0331"><i class="icon-twitter"></i></a></li>
+                        <li><a href="https://www.linkedin.com/in/lambemichael"><i class="icon-linkedin"></i></a></li>
+                    </ul>
+                </div>
+            </div>
+        <div id="wrapper">
+            <div id="main">
+                <div class="page home" data-pos="home">
+                    <div class="pageheader">
+                        <div class="headercontent">
+                            <div class="section-container">
+                                
+                                <div class="row">
+                                    <div class="clearfix visible-sm visible-xs"></div>
+                                    <div class="col-sm-12 col-md-12">
+                                        <h3 class="title"><a name="introduction">Introduction</a></h3>
+                                        <img style='float:left;width:120px;height:120px; margin-right:10px;' src="pictures/Enron_Logo.svg" />
+                                        <p><a href="http://en.wikipedia.org/wiki/Enron">Enron Corporation</a> was an American energy, commodities, and services company based in Houston, Texas.  The company bankrupted on December 2, 2001.  It was one of the wold’s major electricity, natural gas, communications, and pulp and paper companies.</p>
+
+                                        <p>At the end of 2001, it was revealed that its reported financial condition was sustained substantially by an institutionalised, systematic, and creatively planned accounting fraud, known as the <a href="http://en.wikipedia.org/wiki/Enron_scandal">Enron scandal</a>.</p> 
+
+                                        <p>This story is also known in that over 600.000 typically confidential emails (<a href="http://en.wikipedia.org/wiki/Enron_Corpus">Enron Corpus</a>, <a href="https://www.cs.cmu.edu/~./enron/">Enron Email Dataset</a>) from 158 employees were released after the bankruptcy.</p>
+                                    </div>  
+                                    <div class="col-sm-12 col-md-12">
+                                        <h3 class="title"><a name="goal">Goal of the project</a></h3>
+                                        <p>The goal of the project is to build a predictive model to identify persons-of-interest (POI’s) in the fraud case. A person of interest is someone who was indicated for fraud, settled with the government, or testified in exchange for immunity.  This report documents the machine learning techniques used in building a POI identifier.</p>
+                                        <p>The project will explore the four main pillar of a machine learning project</p>
+                                        <ul>
+                                            <li>Dataset (understand the dataset, formulate the question)</li>
+                                            <li>Feature (feature exploration, selection, scaling, transformation eventually creation)</li>
+                                            <li>Algorithm (pick the right algorithm and tune it)</li>
+                                            <li>Evaluation (validate, select metrics)</li>
+                                        </ul>
+                                    </div>
+                                    <div class="col-sm-12 col-md-12">
+                                        <h3 class="title"><a name="dataset">The Enron Dataset</a></h3>
+                                        <p>There are 146 records, 21 features available.</p>
+                                        <p>There 18 POI’s in the original dataset.</p>
+                                    </div>
+                                    <div class="col-sm-12 col-md-12">
+                                        <h3 class="title"><a name="outlier">Outlier filtering and data cleaning</a></h3>
+                                        <img style='width:480px;height:380px; display: block; margin-left: auto; margin-right: auto' src="pictures/outliers.png" />
+                                        <p>By visualising the "salary" and “bonus”, we see a clear outlier.  “TOTAL” was removed as it was a record totalling all of the financial statistics from the financial data.</p>
+                                        <p>As part of the pre-processing step, one person (LOCKHART EUGENE E) was detected with 19 NaN.  This person was removed from the removed.</p>
+                                    </div>
+                                    <div class="col-sm-12 col-md-12">
+                                        <h3 class="title"><a name="feature">Feature engineering</a></h3>
+                                        <p>The following drawing show the main steps involve in the feature engineering process.</p>
+                                        <img style='width:480px;height:380px; display: block; margin-left: auto; margin-right: auto' src="pictures/preprocessing.png" />
+                                        <h2>Add New Features</h2>
+                                        <p><b>fraction_to_poi / fraction_from_poi</b> : POI’s may have particularly strong email connections between each others, they send emails to other POI’s at a rate higher than for the general population.  However, the number of emails (from / to POI’s) as such is not that helpful, we don’t see a clear trend just with the number.  Therefore, we computed the fraction of email a person receives that come from a person-of-interest.  So the percentage of emails received or sent from/to a POI’s.  We also computed the fraction of emails sent to a POI.</p>
+                                        <h2>Feature Scaling</h2>
+                                        <p>All features has been scaled to be between 0 and 1 using a MinMaxScaler since various models such as Logistic Regression perform optimally with scaled features.  The features needed to be scaled since they were on vastly different scaled, ranging from hundreds to millions of dollars and also from positive to negative values (deferrals features, deferred_income and restricted_stock_deferred)</p>
+                                        <h2>Feature Amputation</h2>
+                                        <p>As the data set contain missing values and scikit-learn estimators assume that all values in any array are numerical, and that all have and hold meaning, we apply a basic imputation technique which correspond to the replacement of all NaN value using the mean of the columns (axis 0) that contain the missing value.</p>
+                                        <h2>Feature Reduction</h2>
+                                        <p>In order to optimise the model, I apply two techniques to prune the features.</p>
+                                        <p><b>SelectKBest</b> dimension reduction has been used first in order to investigate how the accuracy of a classifier varies with the feature size.  Scikit-Learn provides several methods to select features based on Chi-Squared and ANOVA F-values for classification.  In <a href="">this short notebook section</a>, the accuracies has been computed with various feature sizes for 10 different classifiers, using both the Chi-squared measure and the ANOVA F measure.</p>
+                                        <p>The resulting K-best (using ANOVA F classification scoring function) features were then apply into Principal Components Analysis (<b>PCA</b>) dimensionality reduction.  Finally the resultant N principal components were loaded into a classification algorithm.</p>
+                                        <p><a href="">This notebook section</a> is showing some investigation made on the PCA process which conclude to an optimal n_components number of 5 for this project.
+                                    </div>
+                                    <div class="col-sm-12 col-md-12">
+                                        <h3 class="title"><a name="classification">Classification algorithm / Grid search</a></h3>
+                                        <p>As I wanted to avoid testing multiple combinations of parameters in order to get the best performance of the model, I used the GridSearchCV algorithm with the pipeline paradigm.</p>
+                                        <p>The logic behind the grid search for optimal parameters can be split into two main steps</p>
+                                        <p><u>First</u>, the classifier is being created, we pass a pipeline and the directory of parameters to try.</p>
+                                        <p>The pipeline is a combination of 3 elements:</p>
+                                        <ul>
+                                            <li>The <b>‘selecter’</b> : selectKBest dimension reduction.</li>
+                                            <li>The <b>‘reducer’</b> : principal components analysis (PCA) dimension reduction.</li>
+                                            <li>The ‘classifier’ : classifying algorithm.</li>
+                                        </ul>
+                                        <p>The purpose of the pipeline is to assemble several steps that can be cross-validated together while setting different parameters.</p>
+                                        <p>The grid takes <b>SelectKBest</b> and <b>PCA</b> and run them during each of the cross-validation loops to generate a grid of parameters combinations for the classifier.</p>
+                                        <p>Cross-validation is a process of randomly splitting the data into training and testing data.  Then the model can train on the training data, and be validated on the testing data.</p>
+                                        <p>The cross validation loops has been implemented with a stratified ShuffleSplit cross validator iterator StratifiedShuffleSplit. The folds are made by preserving the percentage of samples for each class.</p>
+                                        <p>Practically, 1000 iterations where chosen with 10% of the dataset is included in the test split.  If we would increase this number, it would result to a negative impact on our model due to the very small size of the dataset.</p>
+                                        <p><u>Second</u>, the fit function tries all the parameter combinations, and return a fitted classifier that’s automatically tuned to the optimal parameter combination.</p>
+                                        <p>The full process so far is summarised with this simplistic picture.</p>
+                                        <img style='width:480px;height:380px; display: block; margin-left: auto; margin-right: auto; margin-bottom: 20px;' src="pictures/find_classifier.png" />
+                                        <p>For performance constrains, not all the classifier were implemented.  Only the following where deeply investigated : Logistic Regression, Linear Support Vector Machine, Support vector Machine, Random Forest, K-nearest neighbors, AdaBoost and finally naive bayes.</p>
+                                        <p>Practically each classifier were tuned individually to get the maximum recall of the model, then each optimised model were run one by one in a loop resulting to the best model.</p>
+                                        <p>Here is a summary of best parameter for the winning model optimised for best recall</p>
+                                        <ul>
+                                            <li><b>Classifier</b> : Logistic Regression</li>
+                                            <li><b>Cross-validated recall score</b> : 0.847</li>
+                                            <li>16 <b>features selected</b></li>
+                                            <li><b>Top features</b> :  ['salary', 'total_payments', 'loan_advances', 'bonus', 'deferred_income', 'total_stock_value', 'exercised_stock_options', 'other', 'long_term_incentive', 'restricted_stock', 'from_poi_to_this_person', 'from_messages', 'from_this_person_to_poi', 'shared_receipt_with_poi', 'fraction_from_poi', 'fraction_to_poi']</li>
+                                            <li>Reduced to 5 <b>PCA components</b></li>
+                                            <li><b>Best parameters</b> : {'reducer__n_components': 5, 'classifier__class_weight': 'auto', 'classifier__tol': 0.01, 'classifier__C': 1e-05, 'reducer__whiten': False, 'selecter__k': 16}</li>
+                                        </ul>
+                                        <p>Performance :</p>
+                                        <ul>
+                                            <li>Accuracy: 0.76680</li>
+                                            <li>Precision: 0.29102</li>
+                                            <li>Recall: 0.52150</li>
+                                            <li>F1: 0.37357</li>
+                                            <li>F2: 0.45019</li>
+                                        </ul>
+                                        <p>Total predictions: 15000    True positives: 1043    False positives: 2541    False negatives:  957    True negatives: 10459</p>
+                                    </div>
+                                    <div class="col-sm-12 col-md-12">
+                                        <h3 class="title"><a name="metrics">Performance Metrics</a></h3>
+                                        <p>A clean and unambiguous way to present the prediction results of a classifier is to use a confusion metric (also called a contingency table).
+                                        For this project, we have a binary classification problem, therefore the table has 2 rows and 2 columns.  Across the top is the observed class labels and down the side are the predicted class labels.  
+                                        Each cell contains the number of predictions made by the classifier that fall into that cell.</p>
+                                        <p>Here is the confusion matrix for the model identifying POI’s. (15000 predictions made)
+                                        1043     2541
+                                        957      10459
+                                        </p>
+                                        <p>In this case, a perfect classifier could correctly predict 1043 POI's and 10459 non POI’s. Incorrect predictions are the other two cells.  
+                                        False negatives which are POI that the classifier has marked as non POI’s; false positives are non POI that the classifier has marked as POI’s.</p>
+                                        <p>As we have a very limited number of POI’s, the accuracy evaluation metric could not be considered as an factor of consideration to judge the quality of our model.</p>
+                                        <p>The accuracy is the number of correct predictions made divided by the total number of predictions made.  In this case the model that only predict POI’s would achieve an accuracy of  (1043 + 10459) / 15000 = 76.7%.  This is a high accuracy.  If it was used alone for decision support to inform the investigator of the fraud case, it would clear out 150000 - (1043 + 10459) = 3498 persons with incorrectly thinking their status was effectively POI’s (high False Negatives).
+                                        <p>Therefore, for this model we are using two metrics, the ‘precision’ and the ‘recall’.  Precision and recall are the basic measures used in evaluating search strategies.</p>
+                                        <p><b>Recall</b> is the ratio of the number of relevant records retrieved to the total number of relevant records in the dataset.</p>
+                                        <p><b>Precision</b> is the ratio of the number of relevant records retrieved to the total number of irrelevant and relevant records retrieved.</p>
+                                        <p>Recall and Precision are inversely related therefore, as recall increase, the precision decrease, conversely, as recall decrease, the precision increase.</p>
+                                        <p>High <b>precision</b> means that an algorithm returned substantially more relevant results than irrelevant, while high <b>recall</b> means that an algorithm returned most of the relevant results.
+                                        <p>In the context of this project, the precision would be how often the people choose to be tested were really a POI’s.</p>
+                                        <p>On the other hand, the recall would be seen as the number of POI’s the model identified from the total number of POI’s in the dataset.</p>
+                                        <p>The purpose of the project, as explained earlier, is to identify whether someone is a possible person of interest,   we can see the benefit of this method to reduce the amount of workload for the investigators of the corporate fraud. For that reasons False negatives are probably worse than false Positives for this problem.  More detailed screening of the person can clear the False positive, but False negative are cleared by the model without further investigations.</p>
+                                        <p>To that extend, the project has been tuned for an high recall as this metrics is the most important element of the model.  Really what we would like is to find all people who were involved in the fraud, we could tolerate some non-involved people picked by the model because the consequence will be limited.</p>
+                                    </div>
+                                    <div class="col-sm-12 col-md-12">
+                                        <h3 class="title"><a name="conclusion">Conclusion</a></h3>
+                                        <h2>Problems</h2>
+                                        <p>First, one of the most challenging task was the understanding of the the features of the dataset.  I am unfortunate of not being able to create additional feature other than the feature suggested during the course.</p>
+                                        <p>Second, during the implementation of the grid-search i came across some weird error message I was not able to understand.  Here are some example</p>
+                                        <ul>
+                                            <li>Precision is ill-defined and being set to 0.0 due to no predicted samples.</li>
+                                            <li>UserWarning: Features [3] are constant.</li>
+                                            <li>RuntimeWarning: invalid value encountered in divide  f = msb / msw</li>
+                                        </ul>
+                                        <h2>Conclusion</h2>
+                                        <p>The dataset of this project is very small therefore, the training set is also very small therefore, high bias/low variance classifiers (e.g. Naive Bayes) have an advantage over low ban/high variance classifiers (e.g. kNN), since the latter will overfit.  But low bias/high variance classifiers start to win out as the training set grows (they have lower asymptotic error), since high bias classifiers aren(t powerful enough to provide accurate models.</p>
+                                        <p>The main message from this project is the fact that better data often beats better algorithms, and designing good features goes a long way.  Also, with bigger dataset, whichever classification algorithm is chosen does not matter in terms of classification performance, therefore, the privileged choice would be to select an algorithm based on speed or ease of use.
+                                        However, if really the accuracy / recall or precision is of concern than trying a bunch of different classifiers and select the best one by cross-validation is the preferred way to go.</p>
+                                        <h2>Reference</h2>
+                                        <p><a href="http://www.faqs.org/faqs/ai-faq/neural-nets/part2/section-16.html">Should I normilize / standardize / rescale my data</a></p>
+                                        <p><a href="http://stats.stackexchange.com/questions/95797/how-to-split-the-dataset-for-cross-validation-learning-curve-and-final-evaluat">How to split the dataset for cross validation, learning curve, and final evaluation?</a></p>
+                                        <p><a href="https://www.creighton.edu/fileadmin/user/HSL/docs/ref/Searching_-_Recall_Precision.pdf">Measuring Search Effectiveness</a></p>
+                                        <p><a href="http://stats.stackexchange.com/questions/133225/how-to-validate-sentiment-classification-and-compare-different-algorithms">How to validate sentiment classification and compare different algorithms (something to explore for further projects)</a>
+                                        <p><a href="http://zacstewart.com/2014/08/05/pipelines-of-featureunions-of-pipelines.html">Using scikit-learn Pipelines and FeatureUnions</a>
+                                    </div>
+                                </div>
+                            </div>        
+                        </div>
+                    </div>
+                </div>    
+            </div>
+        </div>
+    </body>
+</html>
+
