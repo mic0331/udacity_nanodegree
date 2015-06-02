@@ -1,0 +1,84 @@
+************ Implementing Logistic Regression Model ************
+{'reducer__n_components': [5], 'classifier__class_weight': ['auto'], 'classifier__tol': [1e-05, 0.0001, 0.001, 0.01], 'selecter__k': [5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19], 'reducer__whiten': [False], 'classifier__C': [1e-05, 0.0001, 0.001, 0.01]}
+Fitting 1000 folds for each of 240 candidates, totalling 240000 fits
+Pipeline(steps=[('selecter', SelectKBest(k=17, score_func=<function f_classif at 0x10ad09ed8>)), ('reducer', PCA(copy=True, n_components=5, whiten=False)), ('classifier', LogisticRegression(C=1e-05, class_weight='auto', dual=False,
+          fit_intercept=True, intercept_scaling=1, max_iter=100,
+          multi_class='ovr', penalty='l2', random_state=None,
+          solver='liblinear', tol=1e-05, verbose=0))])
+	Accuracy: 0.77320	Precision: 0.30868	Recall: 0.56550	F1: 0.39936	F2: 0.48483
+	Total predictions: 15000	True positives: 1131	False positives: 2533	False negatives:  869	True negatives: 10467
+
+Score(recall) for Logistic Regression Model is 1.0
+************ Implementing Linear Support Vector Machines Classifier Model ************
+{'reducer__n_components': [5], 'classifier__class_weight': ['auto'], 'classifier__tol': [1e-05, 0.0001, 0.001, 0.01], 'selecter__k': [5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19], 'reducer__whiten': [True], 'classifier__C': [1e-05, 0.0001, 0.001, 0.01]}
+Fitting 1000 folds for each of 240 candidates, totalling 240000 fits
+Pipeline(steps=[('selecter', SelectKBest(k=19, score_func=<function f_classif at 0x10ad09ed8>)), ('reducer', PCA(copy=True, n_components=5, whiten=True)), ('classifier', LinearSVC(C=1e-05, class_weight='auto', dual=True, fit_intercept=True,
+     intercept_scaling=1, loss='squared_hinge', max_iter=1000,
+     multi_class='ovr', penalty='l2', random_state=None, tol=1e-05,
+     verbose=0))])
+	Accuracy: 0.73720	Precision: 0.26409	Recall: 0.54350	F1: 0.35546	F2: 0.44858
+	Total predictions: 15000	True positives: 1087	False positives: 3029	False negatives:  913	True negatives: 9971
+
+Score(recall) for Linear Support Vector Machines Classifier Model is 0.8915
+************ Implementing Support Vector Machines Classifier Model ************
+{'reducer__n_components': [5], 'reducer__whiten': [True], 'classifier__gamma': [0.0], 'classifier__class_weight': ['auto'], 'classifier__tol': [1e-05, 0.0001, 0.001, 0.01], 'classifier__kernel': ['rbf'], 'selecter__k': [5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19], 'classifier__C': [1.0]}
+Fitting 1000 folds for each of 60 candidates, totalling 60000 fits
+Pipeline(steps=[('selecter', SelectKBest(k=12, score_func=<function f_classif at 0x10ad09ed8>)), ('reducer', PCA(copy=True, n_components=5, whiten=True)), ('classifier', SVC(C=1.0, cache_size=200, class_weight='auto', coef0=0.0, degree=3,
+  gamma=0.0, kernel='rbf', max_iter=-1, probability=False,
+  random_state=None, shrinking=True, tol=0.001, verbose=False))])
+	Accuracy: 0.76700	Precision: 0.32449	Recall: 0.69100	F1: 0.44160	F2: 0.56367
+	Total predictions: 15000	True positives: 1382	False positives: 2877	False negatives:  618	True negatives: 10123
+
+Score(recall) for Support Vector Machines Classifier Model is 0.8035
+************ Implementing k-nearest Neighbors Vote Classifier Model ************
+{'classifier__n_neighbors': [3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14], 'reducer__n_components': [5], 'selecter__k': [5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19], 'reducer__whiten': [True]}
+Fitting 1000 folds for each of 180 candidates, totalling 180000 fits
+Pipeline(steps=[('selecter', SelectKBest(k=6, score_func=<function f_classif at 0x10ad09ed8>)), ('reducer', PCA(copy=True, n_components=5, whiten=True)), ('classifier', KNeighborsClassifier(algorithm='auto', leaf_size=30, metric='minkowski',
+           metric_params=None, n_neighbors=3, p=2, weights='uniform'))])
+	Accuracy: 0.85280	Precision: 0.34146	Recall: 0.11200	F1: 0.16867	F2: 0.12939
+	Total predictions: 15000	True positives:  224	False positives:  432	False negatives: 1776	True negatives: 12568
+
+Score(recall) for k-nearest Neighbors Vote Classifier Model is 0.2175
+************ Implementing Random Forest Classifier Model ************
+{'classifier__bootstrap': [True], 'reducer__n_components': [5], 'selecter__k': [5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19], 'reducer__whiten': [True], 'classifier__criterion': ['gini', 'entropy']}
+Fitting 1000 folds for each of 30 candidates, totalling 30000 fits
+Pipeline(steps=[('selecter', SelectKBest(k=5, score_func=<function f_classif at 0x10ad09ed8>)), ('reducer', PCA(copy=True, n_components=5, whiten=True)), ('classifier', RandomForestClassifier(bootstrap=True, class_weight=None, criterion='gini',
+            max_depth=None, max_features='auto', max_leaf_nodes=...n_jobs=1,
+            oob_score=False, random_state=None, verbose=0,
+            warm_start=False))])
+	Accuracy: 0.85387	Precision: 0.39286	Recall: 0.17600	F1: 0.24309	F2: 0.19784
+	Total predictions: 15000	True positives:  352	False positives:  544	False negatives: 1648	True negatives: 12456
+
+Score(recall) for Random Forest Classifier Model is 0.1825
+************ Implementing AdaBoost Classifier Model ************
+{'reducer__n_components': [5], 'selecter__k': [5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19], 'reducer__whiten': [True]}
+Fitting 1000 folds for each of 15 candidates, totalling 15000 fits
+Pipeline(steps=[('selecter', SelectKBest(k=12, score_func=<function f_classif at 0x10ad09ed8>)), ('reducer', PCA(copy=True, n_components=5, whiten=True)), ('classifier', AdaBoostClassifier(algorithm='SAMME.R', base_estimator=None,
+          learning_rate=1.0, n_estimators=50, random_state=None))])
+	Accuracy: 0.83213	Precision: 0.31367	Recall: 0.21800	F1: 0.25723	F2: 0.23216
+	Total predictions: 15000	True positives:  436	False positives:  954	False negatives: 1564	True negatives: 12046
+
+Score(recall) for AdaBoost Classifier Model is 0.2725
+************ Implementing Naive Bayes Classifier Model ************
+{'reducer__n_components': [5], 'selecter__k': [5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19], 'reducer__whiten': [True]}
+Fitting 1000 folds for each of 15 candidates, totalling 15000 fits
+Pipeline(steps=[('selecter', SelectKBest(k=19, score_func=<function f_classif at 0x10ad09ed8>)), ('reducer', PCA(copy=True, n_components=5, whiten=True)), ('classifier', GaussianNB())])
+	Accuracy: 0.86360	Precision: 0.47862	Recall: 0.25750	F1: 0.33485	F2: 0.28372
+	Total predictions: 15000	True positives:  515	False positives:  561	False negatives: 1485	True negatives: 12439
+
+Score(recall) for Naive Bayes Classifier Model is 0.762
+................................................................................
+Winning  classifier for the best recall is Logistic Regression Model
+Cross-validated recall score: 1.0
+17 features selected
+Top features :  ['salary', 'total_payments', 'loan_advances', 'bonus', 'deferred_income', 'total_stock_value', 'expenses', 'exercised_stock_options', 'other', 'long_term_incentive', 'restricted_stock', 'from_poi_to_this_person', 'shared_receipt_with_poi', 'fraction_from_poi', 'fraction_to_poi', 'fraction_deferred_income_total_payments', 'fraction_long_term_incentive_total_payments']
+Reduced to 5 PCA components
+Best parameters {'reducer__n_components': 5, 'classifier__class_weight': 'auto', 'classifier__tol': 1e-05, 'classifier__C': 1e-05, 'reducer__whiten': False, 'selecter__k': 17}
+................................................................................
+Pipeline(steps=[('selecter', SelectKBest(k=17, score_func=<function f_classif at 0x10ad09ed8>)), ('reducer', PCA(copy=True, n_components=5, whiten=False)), ('classifier', LogisticRegression(C=1e-05, class_weight='auto', dual=False,
+          fit_intercept=True, intercept_scaling=1, max_iter=100,
+          multi_class='ovr', penalty='l2', random_state=None,
+          solver='liblinear', tol=1e-05, verbose=0))])
+	Accuracy: 0.77320	Precision: 0.30868	Recall: 0.56550	F1: 0.39936	F2: 0.48483
+	Total predictions: 15000	True positives: 1131	False positives: 2533	False negatives:  869	True negatives: 10467
+

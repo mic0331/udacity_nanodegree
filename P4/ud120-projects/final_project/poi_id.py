@@ -8,7 +8,7 @@ sys.path.append("../tools/")
 
 from feature_format import featureFormat, targetFeatureSplit
 from tester import test_classifier, dump_classifier_and_data
-from enron import preparation, feature_processing, evaluation
+from enron import preparation, feature_processing
 from enron.algorithm import ClassificationPipelines
 from sklearn import metrics
 from sklearn.naive_bayes import GaussianNB
@@ -61,7 +61,10 @@ data_dict = preparation.remove_outliers(data_dict)
 ### Task 3: Create new feature(s)
 ###########################################################################
 
+### A/ create email ratio
 data_dict, features_list = feature_processing.create_email_ratio(data_dict, features_list)
+### B/ create various financial ratio
+data_dict, features_list = feature_processing.create_financial_ratio(data_dict, features_list)
 
 ### Store to my_dataset for easy export below.
 my_dataset = data_dict
@@ -75,6 +78,9 @@ features = feature_processing.impute(features, strategy = 'mean')
 
 # Check if we have any constance features
 #print np.std(features, axis=0) == 0
+
+### standardize features
+features = feature_processing.standardize(features)
 
 ### scaling features
 features = feature_processing.scale(features)
@@ -99,7 +105,6 @@ features = feature_processing.scale(features)
 # within the grid-search.
 skfold = StratifiedShuffleSplit(labels, n_iter=1000, test_size=0.1)
 
-
 # find the best algorithm offering the highest recall
 algorithms = ClassificationPipelines()
 metric = 'recall'
@@ -111,7 +116,8 @@ best_estimator = {
     'score' : 0.,
     'nbr_features_selected' : 0,
     'top_features' : [],
-    'best_params': []
+    'best_params': [],
+    'evaluation' : ''
 }
 
 # loop over a variety of classifier to pick the best against the metric of 
@@ -130,13 +136,19 @@ for classifier_name, pipeline, params, enable in algorithms.get_models():
         # fit the model in the grid search
         grid_search.fit(features, labels)
 
+        # used to print the evaluation of individual models (see log.txt)
+        #test_classifier(grid_search.best_estimator_, my_dataset, features_list)
+
         # We sort the results, and determine the best-performing tuning parameters.
         sorted(grid_search.grid_scores_, key=lambda x: x.mean_validation_score)
 
-        if grid_search.best_score_ > best_estimator['score']:
+        print 'Score({0}) for {1} is {2}'.format(metric, classifier_name, grid_search.best_score_)
+
+        if grid_search.best_score_ > best_estimator['score']:   
+            best_estimator['evaluation'] = grid_search.best_estimator_         
             best_estimator['name'] = classifier_name
             best_estimator['estimator'] = grid_search.best_estimator_
-            best_estimator['n_pca_components'] = grid_search.best_estimator_.named_steps['reducer'].n_components_
+#            best_estimator['n_pca_components'] = grid_search.best_estimator_.named_steps['reducer'].n_components_
             best_estimator['score'] = grid_search.best_score_
             mask = grid_search.best_estimator_.named_steps['selecter'].get_support()
             top_features = [x for (x, boolean) in zip(features_list[1:], mask) if boolean]
@@ -149,8 +161,8 @@ print "Winning  classifier for the best {0} is {1}".format(metric, best_estimato
 print "Cross-validated {0} score: {1}".format(metric, best_estimator['score'])
 print "{0} features selected".format(best_estimator['nbr_features_selected'])
 print "Top features : ", best_estimator['top_features']
-print "Reduced to {0} PCA components".format(
-    best_estimator['n_pca_components'])
+#print "Reduced to {0} PCA components".format(
+#    best_estimator['n_pca_components'])
 print "Best parameters", best_estimator['best_params']
 print "." * 80
 

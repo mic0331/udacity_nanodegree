@@ -15,7 +15,6 @@
         <link rel="stylesheet" href="css/bootstrap.css">
         <link rel="stylesheet" href="css/font-awesome.min.css">  
         <link rel="stylesheet" href="css/perfect-scrollbar-0.4.5.min.css">
-        <link rel="stylesheet" href="css/magnific-popup.css">
         <link rel="stylesheet" href="css/style.css">
         <link id="theme-style" rel="stylesheet" href="css/styles/blue.css">
         <style type="text/css">
@@ -113,8 +112,31 @@
                                 <div class="row">
                                     <div class="clearfix visible-sm visible-xs"></div>
                                     <div class="col-sm-12 col-md-12">
-                                        <p>Source of the project : <a href="https://github.com/mic0331/udacity_nanodegree/tree/master/P4/ud120-projects/final_project">Github</a></p>
                                         <p>Udacity course material : <a href="https://www.udacity.com/course/intro-to-machine-learning--ud120">Pattern Recognition for Fun and Profit</a></p>
+                                        <p>Source of the project : <a href="https://github.com/mic0331/udacity_nanodegree/tree/master/P4/ud120-projects/final_project">Github</a></p>   
+                                        <p>Main scrips/module developed for this project:</p>                                     
+                                        <ul class="ul-boxed list-unstyled">
+                                            <li>
+                                                <i><a href="https://github.com/mic0331/udacity_nanodegree/blob/master/P4/ud120-projects/final_project/poi_id.py">poi_id.py</a></i> 
+                                                <span style='padding-left: 20px;'>Main entry point, this is where the calssification model is implemented</span>
+                                            </li>
+                                            <li>
+                                                <i><a href="https://github.com/mic0331/udacity_nanodegree/blob/master/P4/ud120-projects/final_project/enron/preparation.py">enron/preparation.py</a></i> 
+                                                <span style='padding-left: 20px;'>Utility function used for the dataset exploration and the outlier filtering</span>
+                                            </li>
+                                            <li>
+                                                <i><a href="https://github.com/mic0331/udacity_nanodegree/blob/master/P4/ud120-projects/final_project/enron/feature_processing.py">enron/feature_processing.py</a></i> 
+                                                <span style='padding-left: 20px;'>Utility function used for the feature engineering step of the project (create new feature, scale, impute, ...)</span>
+                                            </li>
+                                            <li>
+                                                <i><a href="https://github.com/mic0331/udacity_nanodegree/blob/master/P4/ud120-projects/final_project/enron/algorithm.py">enron/algorithm.py</a></i> 
+                                                <span style='padding-left: 20px;'>Class implementing an abstraction layer for the pipelines used in the gridSearchCV implementation</span>
+                                            </li>
+                                            <li>
+                                                <i><a href="https://github.com/mic0331/udacity_nanodegree/blob/master/P4/ud120-projects/final_project/log.txt">log.txt</a></i> 
+                                                <span style='padding-left: 20px;'>Log from the full run of the script recorded with the command "python2.7 poi._id.py >> log.txt"</span>
+                                            </li>
+                                        </ul>
                                         <h3 class="title"><a name="introduction">Introduction</a></h3>                                        
                                         <img style='float:left;width:120px;height:120px; margin-right:10px;' src="pictures/Enron_Logo.svg" />
                                         <p><a href="http://en.wikipedia.org/wiki/Enron">Enron Corporation</a> was an American energy, commodities, and services company based in Houston, Texas.  The company bankrupted on December 2, 2001.  It was one of the wold’s major electricity, natural gas, communications, and pulp and paper companies.</p>
@@ -141,29 +163,43 @@
                                     </div>
                                     <div class="col-sm-12 col-md-12">
                                         <h3 class="title"><a name="outlier">Outlier filtering and data cleaning</a></h3>
-                                        <img style='width:480px;height:380px; display: block; margin-left: auto; margin-right: auto' src="pictures/outliers.png" />
+                                        <img style='width:480px;height:380px; display: block; margin-left: auto; margin-right: auto; margin-bottom: 10px;' src="pictures/outliers.png" />
                                         <p>By visualising the "salary" and “bonus”, we see a clear outlier.  “TOTAL” was removed as it was a record totalling all of the financial statistics from the financial data.</p>
                                         <p>As part of the pre-processing step, one person (LOCKHART EUGENE E) was detected with 19 NaN.  This person was removed from the removed.</p>
                                     </div>
                                     <div class="col-sm-12 col-md-12">
-                                        <h3 class="title"><a name="feature">Feature engineering</a></h3>
+                                        <h3 class="title"><a name="feature">Feature processing</a></h3>
                                         <p>The following drawing show the main steps involve in the feature engineering process.</p>
                                         <img style='width:480px;height:380px; display: block; margin-left: auto; margin-right: auto' src="pictures/preprocessing.png" />
-                                        <h2>Add New Features</h2>
+                                        <h2>Add New Features / Feature engineering</h2>
+                                        <p>Feature Engineering is the process of using domain knowledge of the data to create features that make machine learning algorithms work better. Some simple new feature were created for this project</p>
                                         <p><b>fraction_to_poi / fraction_from_poi</b> : POI’s may have particularly strong email connections between each others, they send emails to other POI’s at a rate higher than for the general population.  However, the number of emails (from / to POI’s) as such is not that helpful, we don’t see a clear trend just with the number.  Therefore, we computed the fraction of email a person receives that come from a person-of-interest.  So the percentage of emails received or sent from/to a POI’s.  We also computed the fraction of emails sent to a POI.</p>
+                                        <p><b>Financial ratio</b> : These ratio were calculated for the "payments" and the "stocks" features repectively against their total.</p>                                        
+                                        <p>For this project, the effect of these new features on the best algorithm is not very impressive however it is contributing to a higher precision for the best model, the precision (P) / recall (R) without the engineered features drop from P:0.32449 / R:0.69100 to P:0.31827 / R:0.68300.</p>
                                         <h2>Feature Scaling</h2>
-                                        <p>All features has been scaled to be between 0 and 1 using <b>MinMaxScaler</b> since various models such as Logistic Regression perform optimally with scaled features.  The features needed to be scaled since they were on vastly different scaled, ranging from hundreds to millions of dollars and also from positive to negative values (deferrals features, deferred_income and restricted_stock_deferred)</p>
+                                        <p>For this project feature scaling was used for all algorithms more precisely all features has been scaled to be between 0 and 1 using <b>MinMaxScaler</b>.  However, it is important to mention that some machine learning algorithms require scaling (SVM, K Nearest Neighbors, K Means for example) and some do not (linear / logistic regression, decision trees).</p>
+                                        <p>Models using distance-based with <i>Euclidean distance</i> are especially affected with features creating big range just because a difference of values for that feature is bigger, this is why we should implement feature scaling.</p>
+                                        <p>For the algorithms requiring feature scaling, the features needed to be scaled especially as they were on vastly different scaled, ranging from hundreds to millions of dollars and also from positive to negative values (deferrals features, <i>deferred_income</i> and <i>restricted_stock_deferred</i>)</p>
+                                        <p>Also, it is worth to mention that <i>logistic regression</i> in general does not require feature scaling. It can be used to speed up certain logistic regression algorithms, but it doesn't require scaling in and of itself. Scaling probably won't hurt the algorithm but it doesn't need it. The theta values that get calculated as part of the logistic regression algorithm makes scaling unnecessary. </p>
                                         <h2>Feature Amputation</h2>
                                         <p>As the data set contain missing values and scikit-learn estimators assume that all values in any array are numerical, and that all have and hold meaning, we apply a basic imputation technique which correspond to the replacement of all NaN value using the mean of the columns (axis 0) that contain the missing value.</p>
+                                        <h2>Feature Standardization</h2>
+                                        <p>Feature standardization makes the values of each feature in the data have zero-mean (when subtracting the mean in the enumerator) and unit-variance.</p>
+                                        <p>The general method of calculation is to determine the distribution mean and standard deviation for each feature. Next we subtract the mean from each feature. Then we divide the values (mean is already subtracted) of each feature by its standard deviation.</p>
+                                        <p>PCA (used in the feature reduction step below) generally requires standardization since it is a variance maximizing excerice.  PCA projects the original data onto directions which maximize the variance.</p>
                                         <h2>Feature Reduction</h2>
                                         <p>In order to optimise the model, I apply two techniques to prune the features.</p>
                                         <p><b>SelectKBest</b> dimension reduction has been used first in order to investigate how the accuracy of a classifier varies with the feature size.  Scikit-Learn provides several methods to select features based on Chi-Squared and ANOVA F-values for classification.  In <a href="http://nbviewer.ipython.org/github/mic0331/udacity_nanodegree/blob/master/P4/ud120-projects/final_project/notebook/ML%20exploration.ipynb#Feature-selection-exploration">this short notebook section</a>, the accuracies has been computed with various feature sizes for 10 different classifiers, using both the Chi-squared measure and the ANOVA F measure.</p>
                                         <p>The resulting K-best (using ANOVA F classification scoring function) features were then apply into Principal Components Analysis (<b>PCA</b>) dimensionality reduction.  Finally the resultant N principal components were loaded into a classification algorithm.</p>
                                         <p><a href="http://nbviewer.ipython.org/github/mic0331/udacity_nanodegree/blob/master/P4/ud120-projects/final_project/notebook/ML%20exploration.ipynb#Pipelining-/-PCA-spectrum">This notebook section</a> is showing some investigation made on the PCA process which conclude to an optimal n_components number of 5 for this project.
+                                        <p><i>Note concerning PCA : </i>It is not always the best idea to implement PCA for feature selection as PCA is a form of lossy compression, so we can end up losing some information contained in the data when PCA is applied. Nevertheless, in this project, as the data are properly normalized, the impact of PCA is very limited.  While testing the model, no major losses in precision was detected with our without PCA.</p> 
                                     </div>
                                     <div class="col-sm-12 col-md-12">
                                         <h3 class="title"><a name="classification">Classification algorithm / Grid search</a></h3>
                                         <p>As we wanted to avoid testing multiple combinations of parameters in order to get the best performance of the model, we used the <b>GridSearchCV</b> algorithm with the <b>pipeline</b> paradigm.</p>
+                                        <p>Algorithms tunning using different combination or parameters is very important because if this step is not done properly it can conduct to an over-tunning sistuation where the algorithm to predict on the training data is working very well but fail totally when it is run on new data.</p>
+                                        <p>We can think of each algorithm parameter as a dimension on a graph with the values of a given parameter as a point along the axis. Three parameters would be a cube of possible configurations for the algorithm, and n-parameters would be an n-dimensional hypercube of possible configurations for the algorithm.  The objective of algorithm tuning is to find the best point or points in that hypercube for the problem.</p>
+                                        <p>Therefore, each algorithm of this project were tuned to using an automated method that impose a grid (<a href="http://scikit-learn.org/stable/modules/grid_search.html">Grid search</a>) on the possibility space and sample where good algorithm configuration might be. This search has been made over 1000 randomized statified corss-validation splits.  The parameters giving the highest score were then selected for the final model.</p>
                                         <p>The logic behind the grid search for optimal parameters can be split into two main steps</p>
                                         <p><u>First</u>, the classifier is being created, we pass a pipeline and the directory of parameters to try.</p>
                                         <p>The pipeline is a combination of 3 elements:</p>
@@ -175,31 +211,46 @@
                                         <p>The purpose of the pipeline is to assemble several steps that can be cross-validated together while setting different parameters.</p>
                                         <p>The grid takes <b>SelectKBest</b> and <b>PCA</b> and run them during each of the cross-validation loops to generate a grid of parameters combinations for the classifier.</p>
                                         <p>Cross-validation is a process of randomly splitting the data into training and testing data.  Then the model can train on the training data, and be validated on the testing data.</p>
-                                        <p>The cross validation loops has been implemented with a stratified ShuffleSplit cross validator iterator StratifiedShuffleSplit. The folds are made by preserving the percentage of samples for each class.</p>
+                                        <p>The cross validation loops has been implemented with a stratified ShuffleSplit cross validator iterator <b>StratifiedShuffleSplit</b>. The folds are made by preserving the percentage of samples for each class.</p>
                                         <p>Practically, 1000 iterations where chosen with 10% of the dataset is included in the test split.  If we would increase this number, it would result to a negative impact on our model due to the very small size of the dataset.</p>
-                                        <p><u>Second</u>, the fit function tries all the parameter combinations, and return a fitted classifier that’s automatically tuned to the optimal parameter combination.</p>
+                                        <p><i>Note concerning Valiation :</i> The validation step is an important step in the machine learning implementation chain.  A classical mistake that could happen is to have a model that is tunned perfectly for the training data but when it perform on unseen data it perform poorly.  This mistake is called overfitting.  The cross-validation step implemented for this project is actually taking care of this problem.</p>
+
+                                        <p><u>Second</u>, the fit function tries all the parameter combinations, and return a fitted classifier that’s automatically tuned to the optimal parameter combination.  For each parameter of each model, a range of value is provided to find the best combination (e.g. 'k of the selector': 5 to 20, etc.) </p>
                                         <p>The full process so far is summarised with this simplistic picture.</p>
                                         <img style='width:480px;height:380px; display: block; margin-left: auto; margin-right: auto; margin-bottom: 20px;' src="pictures/find_classifier.png" />
-                                        <p>For performance constrains, not all the classifier were implemented.  Only the following where deeply investigated : Logistic Regression, Linear Support Vector Machine, Support vector Machine, Random Forest, K-nearest neighbors, AdaBoost and finally naive bayes.</p>
+                                        <p>For performance constrains, not all the classifier were implemented.  Only the following where deeply investigated : Logistic Regression, Linear Support Vector Machine, Support vector Machine, Random Forest, K-nearest neighbors, AdaBoost and finally Naive Bayes.</p>
                                         <p>Practically each classifier were tuned individually to get the maximum recall of the model, then each optimised model were run one by one in a loop resulting to the best model.</p>
                                         <p>Here is a summary of best parameter for the winning model optimised for best recall</p>
                                         <ul>
-                                            <li><b>Classifier</b> : Logistic Regression</li>
-                                            <li><b>Cross-validated recall score</b> : 0.847</li>
-                                            <li>16 <b>features selected</b></li>
-                                            <li><b>Top features</b> :  ['salary', 'total_payments', 'loan_advances', 'bonus', 'deferred_income', 'total_stock_value', 'exercised_stock_options', 'other', 'long_term_incentive', 'restricted_stock', 'from_poi_to_this_person', 'from_messages', 'from_this_person_to_poi', 'shared_receipt_with_poi', 'fraction_from_poi', 'fraction_to_poi']</li>
+                                            <li><b>Classifier</b> : <u>Support Vector Machines</u></li>
+                                            <li><b>Cross-validated recall score</b> : 0.8915</li>
+                                            <li>12 <b>features selected</b></li>
+                                            <li><b>Top features</b> :  ['salary', 'total_payments', 'loan_advances', 'bonus', 'deferred_income', 'total_stock_value', 'expenses', 'exercised_stock_options', 'long_term_incentive', 'restricted_stock', 'shared_receipt_with_poi', 'fraction_to_poi']</li>
                                             <li>Reduced to 5 <b>PCA components</b></li>
-                                            <li><b>Best parameters</b> : {'reducer__n_components': 5, 'classifier__class_weight': 'auto', 'classifier__tol': 0.01, 'classifier__C': 1e-05, 'reducer__whiten': False, 'selecter__k': 16}</li>
+                                            <li><b>Best parameters</b> : {'reducer__n_components': 5, 'classifier__class_weight': 'auto', 'classifier__tol': 0.001, 'selecter__k': 12, 'reducer__whiten': True, 'classifier__gamma': 0.0, 'classifier__kernel': 'rbf', 'classifier__C': 1.0}</li>
                                         </ul>
                                         <p>Performance :</p>
                                         <ul>
-                                            <li>Accuracy: 0.76680</li>
-                                            <li>Precision: 0.29102</li>
-                                            <li>Recall: 0.52150</li>
-                                            <li>F1: 0.37357</li>
-                                            <li>F2: 0.45019</li>
+                                            <li>Accuracy: 0.76700</li>
+                                            <li><u>Precision: 0.32449</u></li>
+                                            <li><u>Recall: 0.69100</u></li>
+                                            <li>F1: 0.44160</li>
+                                            <li>F2: 0.56367</li>
                                         </ul>
-                                        <p>Total predictions: 15000    True positives: 1043    False positives: 2541    False negatives:  957    True negatives: 10459</p>
+                                        <p>Total predictions: 15000</p>     
+                                        <p>True positives: 1382</p>    
+                                        <p>False positives: 2877</p>   
+                                        <p>False negatives:  618</p>   
+                                        <p>True negatives: 10123</p>
+                                        <p>Since the code automatically searched for the best performing algorithm showing details of individual algorithm does not add any value to this text however, here is the recall / precision recorded for each model.
+                                        <ul>
+                                            <li>Logistic Regression : Precision: 0.30868 / Recall: 0.56550</li>
+                                            <li>Support vector Machine : Precision: 0.32449 / Recall: 0.69100</li>                                            
+                                            <li>K-nearest neighbors : Precision: 0.34146 / Recall: 0.11200</li>
+                                            <li>Random Forest : Precision: 0.39286 / Recall: 0.17600</li>
+                                            <li>AdaBoost : Precision: 0.31367 / Recall: 0.21800</li>
+                                            <li>Naive Bayes : Precision: 0.47862 / Recall: 0.25750</li>
+                                        </ul>
                                     </div>
                                     <div class="col-sm-12 col-md-12">
                                         <h3 class="title"><a name="metrics">Performance Metrics</a></h3>
@@ -208,12 +259,12 @@
                                         Each cell contains the number of predictions made by the classifier that fall into that cell.</p>
                                         <img style='width:360px;height:100px; display: block; margin-left: auto; margin-right: auto; margin-bottom: 20px;' src="pictures/confuction_metrix.png" />
                                         <p>Here is the confusion matrix for the model identifying POI’s. (15000 predictions made)
-                                        <img style='width:460px;height:80px; display: block; margin-left: auto; margin-right: auto; margin-bottom: 20px; margin-top: 20px;' src="pictures/confuction_metrix_project.png" />
+                                        <img style='width:360px;height:60px; display: block; margin-left: auto; margin-right: auto; margin-bottom: 20px; margin-top: 20px;' src="pictures/confuction_metrix_project.png" />
                                         </p>
-                                        <p>In this case, a perfect classifier could correctly predict 1043 POI's and 10459 non POI’s. Incorrect predictions are the other two cells.  
+                                        <p>In this case, a perfect classifier could correctly predict 1382 POI's and 10123 non POI’s. Incorrect predictions are the other two cells.  
                                         False negatives which are POI that the classifier has marked as non POI’s; false positives are non POI that the classifier has marked as POI’s.</p>
                                         <p>As we have a very limited number of POI’s, the accuracy evaluation metric could not be considered as an factor of consideration to judge the quality of our model.</p>
-                                        <p>The accuracy is the number of correct predictions made divided by the total number of predictions made.  In this case the model that only predict POI’s would achieve an accuracy of  (1043 + 10459) / 15000 = 76.7%.  This is a high accuracy.  If it was used alone for decision support to inform the investigator of the fraud case, it would clear out 150000 - (1043 + 10459) = 3498 persons with incorrectly thinking their status was effectively POI’s (high False Negatives).
+                                        <p>The accuracy is the number of correct predictions made divided by the total number of predictions made.  In this case the model that only predict POI’s would achieve an accuracy of  (1382 + 10123) / 15000 = 76,7%.  This is a high accuracy.  If it was used alone for decision support to inform the investigator of the fraud case, it would clear out 150000 - (1382 + 10123) = 3495 persons with incorrectly thinking their status was effectively POI’s (high False Negatives).
                                         <p>Therefore, for this model we are using two metrics, the ‘precision’ and the ‘recall’.  Precision and recall are the basic measures used in evaluating search strategies.</p>
                                         <p><b>Recall</b> is the ratio of the number of relevant records retrieved to the total number of relevant records in the dataset.</p>
                                         <img style='width:320px;height:180px; display: block; margin-left: auto; margin-right: auto; margin-bottom: 20px;' src="pictures/recal.png" />
@@ -223,14 +274,14 @@
                                         <p>High <b>precision</b> means that an algorithm returned substantially more relevant results than irrelevant, while high <b>recall</b> means that an algorithm returned most of the relevant results.
                                         <p>In the context of this project, the precision would be how often the people choose to be tested were really a POI’s.</p>
                                         <p>On the other hand, the recall would be seen as the number of POI’s the model identified from the total number of POI’s in the dataset.</p>
-                                        <p>The purpose of the project, as explained earlier, is to identify whether someone is a possible person of interest,   we can see the benefit of this method to reduce the amount of workload for the investigators of the corporate fraud. For that reasons False negatives are probably worse than false Positives for this problem.  More detailed screening of the person can clear the False positive, but False negative are cleared by the model without further investigations.</p>
+                                        <p>The purpose of the project, as explained earlier, is to identify whether someone is a possible person of interest, we can see the benefit of this method to reduce the amount of workload for the investigators of the corporate fraud. For that reasons False negatives are probably worse than false Positives for this problem.  More detailed screening of the person can clear the False positive, but False negative are cleared by the model without further investigations.</p>
                                         <p>To that extend, the project has been tuned for an high recall as this metrics is the most important element of the model.  Really what we would like is to find all people who were involved in the fraud, we could tolerate some non-involved people picked by the model because the consequence will be limited.</p>
                                     </div>
                                     <div class="col-sm-12 col-md-12">
                                         <h3 class="title"><a name="conclusion">Conclusion</a></h3>
                                         <h2>Problems</h2>
-                                        <p>First, one of the most challenging task was the understanding of the the features of the dataset.  I am unfortunate of not being able to create additional feature other than the feature suggested during the course.</p>
-                                        <p>Second, during the implementation of the grid-search i came across some weird error message I was not able to understand.  Here are some example</p>
+                                        <p>First, one of the most challenging task was the understanding of the the features of the dataset. Coming up with features is difficult, time-consuming, requires expert knowledge.</p>
+                                        <p>Second, during the implementation of the grid-search I came across some weird error messages I was not able to understand.  Here are some example</p>
                                         <ul>
                                             <li>Precision is ill-defined and being set to 0.0 due to no predicted samples.</li>
                                             <li>UserWarning: Features [3] are constant.</li>
@@ -246,6 +297,7 @@
                                         <p><a href="https://www.creighton.edu/fileadmin/user/HSL/docs/ref/Searching_-_Recall_Precision.pdf">Measuring Search Effectiveness</a></p>
                                         <p><a href="http://stats.stackexchange.com/questions/133225/how-to-validate-sentiment-classification-and-compare-different-algorithms">How to validate sentiment classification and compare different algorithms (something to explore for further projects)</a>
                                         <p><a href="http://zacstewart.com/2014/08/05/pipelines-of-featureunions-of-pipelines.html">Using scikit-learn Pipelines and FeatureUnions</a>
+                                        <p><a href="http://blog.explainmydata.com/2012/07/should-you-apply-pca-to-your-data.html">Should you apply PCA to your data?</a></p>
                                     </div>
                                 </div>
                             </div>        

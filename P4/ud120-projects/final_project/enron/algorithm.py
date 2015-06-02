@@ -15,7 +15,23 @@ from sklearn.neighbors import KNeighborsClassifier
 import numpy as np
 
 class ClassificationPipelines:
+    """
+        class used to abstract the papline and parameters used in the
+        GridSearchCV algorithm.
+        This class mainly return an array of models.
+        A model contain contain :
+            * a boolean indicating if the model is active or 
+            not during the processing of the GridSearchCV
+            * a Pipeline object containing the steps involved in the 
+            GridSearchCV
+            * the parameters of the pipeline for each steps
+            * the name of the model
+        The selected parameters are those showing the best results for the 
+        model, feel free to uncomment the trailing comments next to each 
+        parameters to see how the grid is selecting the most appropriate 
+        combination
 
+    """
     def __init__(self):
         # The scoring function used is NOVA F-value between labe/feature for 
         # classification tasks.
@@ -32,7 +48,7 @@ class ClassificationPipelines:
                 {
                     # Number of top features to select. The “all” option 
                     # bypasses selection, for use in a parameter search.
-                    'selecter__k': [16], #[x for x in range (5, 20)]
+                    'selecter__k': [x for x in range (5, 20)],
                     # Number of components to keep.
                     # if 0 < n_components < 1
                     # select the number of components such that the amount of 
@@ -60,7 +76,7 @@ class ClassificationPipelines:
                     # specify stronger regularization.
                     'classifier__C': [10.** x for x in np.arange(-5, -1)],
                 },
-                True # Enable the classifier
+                False # Enable the classifier
             ),
             (
                 "Linear Support Vector Machines Classifier Model",
@@ -72,7 +88,7 @@ class ClassificationPipelines:
                 {
                     # Number of top features to select. The “all” option 
                     # bypasses selection, for use in a parameter search.
-                    'selecter__k': [16], #[x for x in range (5, 20)]
+                    'selecter__k': [x for x in range (5, 20)],
                     # Number of components to keep.
                     # if 0 < n_components < 1
                     # select the number of components such that the amount of 
@@ -110,7 +126,7 @@ class ClassificationPipelines:
                 {
                     # Number of top features to select. The “all” option 
                     # bypasses selection, for use in a parameter search.
-                    'selecter__k': [16], #[x for x in range (5, 20)]
+                    'selecter__k': [12],#[x for x in range (5, 20)],
                     # Number of components to keep.
                     # if 0 < n_components < 1
                     # select the number of components such that the amount of 
@@ -137,7 +153,7 @@ class ClassificationPipelines:
                     # gamma is 0.0 then 1/n_features will be used instead.
                     'classifier__gamma': [0.0],
                     # Tolerance for stopping criterion.
-                    'classifier__tol': [10.** x for x in np.arange(-5, -1)],
+                    'classifier__tol': [.001],#[10.** x for x in np.arange(-5, -1)],
                     # Set the parameter C of class i to class_weight[i]*C for 
                     # SVC. If not given, all classes are supposed to have 
                     # weight one. The ‘auto’ mode uses the values of y to 
@@ -145,7 +161,7 @@ class ClassificationPipelines:
                     # class frequencies.
                     'classifier__class_weight': ['auto'],                    
                 },
-                False # Enable the classifier
+                True # Enable the classifier
             ),
             (
                 "k-nearest Neighbors Vote Classifier Model",
@@ -158,7 +174,7 @@ class ClassificationPipelines:
                     # Number of top features to select. The “all” option 
                     # bypasses selection, for use in a parameter 
                     # search.             
-                    'selecter__k': [16], #[x for x in range (5, 20)]
+                    'selecter__k': [x for x in range (5, 20)],
                     # Number of components to keep.
                     # if 0 < n_components < 1
                     # select the number of components such that the amount of 
@@ -190,7 +206,7 @@ class ClassificationPipelines:
                     # Number of top features to select. The “all” option 
                     # bypasses selection, for use in a parameter 
                     # search.             
-                    'selecter__k': [16], #[x for x in range (5, 20)],
+                    'selecter__k': [x for x in range (5, 20)],
                     # Number of components to keep.
                     # if 0 < n_components < 1
                     # select the number of components such that the amount of 
@@ -226,7 +242,7 @@ class ClassificationPipelines:
                     # Number of top features to select. The “all” option 
                     # bypasses selection, for use in a parameter 
                     # search.             
-                    'selecter__k': [16], #[x for x in range (5, 20)],
+                    'selecter__k': [x for x in range (5, 20)],
                     # Number of components to keep.
                     # if 0 < n_components < 1
                     # select the number of components such that the amount of 
@@ -255,7 +271,7 @@ class ClassificationPipelines:
                     # Number of top features to select. The “all” option 
                     # bypasses selection, for use in a parameter 
                     # search.             
-                    'selecter__k': [16], #[x for x in range (5, 20)],
+                    'selecter__k': [x for x in range (5, 20)],
                     # Number of components to keep.
                     # if 0 < n_components < 1
                     # select the number of components such that the amount of 
@@ -276,4 +292,7 @@ class ClassificationPipelines:
         ]
 
     def get_models(self):
+        """
+            Return the various models defined in the __init__ function
+        """
         return self.models
