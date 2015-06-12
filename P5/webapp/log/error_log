@@ -1,0 +1,650 @@
+2015-06-04T08:21:14.164Z - Error Happened: 
+Error: /Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/server/views/index.jade:2
+    1| extends ../includes/layout
+  > 2|     | Hello world !
+
+unexpected token "indent"
+    at Parser.parseExpr (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/jade/lib/parser.js:252:15)
+    at Parser.parse (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/jade/lib/parser.js:122:25)
+    at parse (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/jade/lib/index.js:104:21)
+    at Object.exports.compile (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/jade/lib/index.js:205:16)
+    at handleTemplateCache (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/jade/lib/index.js:174:25)
+    at Object.exports.renderFile (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/jade/lib/index.js:380:10)
+    at Object.exports.renderFile (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/jade/lib/index.js:370:21)
+    at View.exports.__express [as engine] (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/jade/lib/index.js:417:11)
+    at View.render (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/express/lib/view.js:93:8)
+    at EventEmitter.app.render (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/express/lib/application.js:566:10)
+2015-06-04T08:22:14.618Z - Error Happened: 
+Error: /Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/server/views/index.jade:2
+    1| extends ../includes/layout
+  > 2|     h1 Hello world!
+
+unexpected token "indent"
+    at Parser.parseExpr (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/jade/lib/parser.js:252:15)
+    at Parser.parse (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/jade/lib/parser.js:122:25)
+    at parse (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/jade/lib/index.js:104:21)
+    at Object.exports.compile (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/jade/lib/index.js:205:16)
+    at handleTemplateCache (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/jade/lib/index.js:174:25)
+    at Object.exports.renderFile (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/jade/lib/index.js:380:10)
+    at Object.exports.renderFile (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/jade/lib/index.js:370:21)
+    at View.exports.__express [as engine] (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/jade/lib/index.js:417:11)
+    at View.render (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/express/lib/view.js:93:8)
+    at EventEmitter.app.render (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/express/lib/application.js:566:10)
+2015-06-04T08:22:23.762Z - Error Happened: 
+Error: /Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/server/views/index.jade:2
+    1| extends ../includes/layout
+  > 2|   h1 Hello world!
+
+unexpected token "indent"
+    at Parser.parseExpr (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/jade/lib/parser.js:252:15)
+    at Parser.parse (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/jade/lib/parser.js:122:25)
+    at parse (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/jade/lib/index.js:104:21)
+    at Object.exports.compile (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/jade/lib/index.js:205:16)
+    at handleTemplateCache (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/jade/lib/index.js:174:25)
+    at Object.exports.renderFile (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/jade/lib/index.js:380:10)
+    at Object.exports.renderFile (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/jade/lib/index.js:370:21)
+    at View.exports.__express [as engine] (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/jade/lib/index.js:417:11)
+    at View.render (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/express/lib/view.js:93:8)
+    at EventEmitter.app.render (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/express/lib/application.js:566:10)
+2015-06-04T08:37:19.828Z - Error Happened: 
+Error: /Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/server/includes/layout.jade:1
+  > 1| doctype 5
+    2| html
+    3|     head
+    4|         meta(charset='utf-8')
+
+`doctype 5` is deprecated, you must now use `doctype html`
+    at Object.Lexer.doctype (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/jade/lib/lexer.js:256:13)
+    at Object.Lexer.next (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/jade/lib/lexer.js:900:15)
+    at Object.Lexer.lookahead (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/jade/lib/lexer.js:113:46)
+    at Parser.lookahead (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/jade/lib/parser.js:102:23)
+    at Parser.peek (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/jade/lib/parser.js:79:17)
+    at Parser.parse (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/jade/lib/parser.js:117:26)
+    at Parser.parse (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/jade/lib/parser.js:131:24)
+    at parse (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/jade/lib/index.js:104:21)
+    at Object.exports.compile (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/jade/lib/index.js:205:16)
+    at handleTemplateCache (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/jade/lib/index.js:174:25)
+2015-06-05T15:28:17.798Z - Error Happened: 
+Error: Cannot GET /api/v1/eurostat/be
+    at /Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/server/config/routes.js:14:21
+    at Layer.handle [as handle_request] (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/express/lib/router/layer.js:82:5)
+    at next (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/express/lib/router/route.js:110:13)
+    at next (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/express/lib/router/route.js:104:14)
+    at next (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/express/lib/router/route.js:104:14)
+    at next (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/express/lib/router/route.js:104:14)
+    at next (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/express/lib/router/route.js:104:14)
+    at Route.dispatch (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/express/lib/router/route.js:91:3)
+    at Layer.handle [as handle_request] (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/express/lib/router/layer.js:82:5)
+    at /Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/express/lib/router/index.js:267:22
+    at Function.proto.process_params (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/express/lib/router/index.js:321:12)
+    at next (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/express/lib/router/index.js:261:10)
+    at /Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/express/lib/router/index.js:603:15
+    at next (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/express/lib/router/index.js:246:14)
+    at Function.proto.handle (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/express/lib/router/index.js:166:3)
+    at router (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/express/lib/router/index.js:35:12)
+2015-06-05T15:28:48.845Z - Error Happened: 
+Error: Cannot GET /api/v1/eurostat/show/be
+    at /Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/server/config/routes.js:14:21
+    at Layer.handle [as handle_request] (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/express/lib/router/layer.js:82:5)
+    at next (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/express/lib/router/route.js:110:13)
+    at next (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/express/lib/router/route.js:104:14)
+    at next (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/express/lib/router/route.js:104:14)
+    at next (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/express/lib/router/route.js:104:14)
+    at next (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/express/lib/router/route.js:104:14)
+    at Route.dispatch (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/express/lib/router/route.js:91:3)
+    at Layer.handle [as handle_request] (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/express/lib/router/layer.js:82:5)
+    at /Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/express/lib/router/index.js:267:22
+    at Function.proto.process_params (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/express/lib/router/index.js:321:12)
+    at next (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/express/lib/router/index.js:261:10)
+    at /Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/express/lib/router/index.js:603:15
+    at next (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/express/lib/router/index.js:246:14)
+    at Function.proto.handle (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/express/lib/router/index.js:166:3)
+    at router (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/express/lib/router/index.js:35:12)
+2015-06-05T15:28:54.084Z - Error Happened: 
+Error: Cannot GET /api/v1/eurostat/show
+    at /Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/server/config/routes.js:14:21
+    at Layer.handle [as handle_request] (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/express/lib/router/layer.js:82:5)
+    at next (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/express/lib/router/route.js:110:13)
+    at next (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/express/lib/router/route.js:104:14)
+    at next (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/express/lib/router/route.js:104:14)
+    at next (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/express/lib/router/route.js:104:14)
+    at next (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/express/lib/router/route.js:104:14)
+    at Route.dispatch (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/express/lib/router/route.js:91:3)
+    at Layer.handle [as handle_request] (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/express/lib/router/layer.js:82:5)
+    at /Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/express/lib/router/index.js:267:22
+    at Function.proto.process_params (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/express/lib/router/index.js:321:12)
+    at next (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/express/lib/router/index.js:261:10)
+    at /Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/express/lib/router/index.js:603:15
+    at next (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/express/lib/router/index.js:246:14)
+    at Function.proto.handle (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/express/lib/router/index.js:166:3)
+    at router (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/express/lib/router/index.js:35:12)
+2015-06-05T15:29:10.032Z - Error Happened: 
+Error: Cannot GET /api/v1/eurostat/be
+    at /Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/server/config/routes.js:14:21
+    at Layer.handle [as handle_request] (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/express/lib/router/layer.js:82:5)
+    at next (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/express/lib/router/route.js:110:13)
+    at next (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/express/lib/router/route.js:104:14)
+    at next (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/express/lib/router/route.js:104:14)
+    at next (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/express/lib/router/route.js:104:14)
+    at next (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/express/lib/router/route.js:104:14)
+    at Route.dispatch (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/express/lib/router/route.js:91:3)
+    at Layer.handle [as handle_request] (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/express/lib/router/layer.js:82:5)
+    at /Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/express/lib/router/index.js:267:22
+    at Function.proto.process_params (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/express/lib/router/index.js:321:12)
+    at next (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/express/lib/router/index.js:261:10)
+    at /Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/express/lib/router/index.js:603:15
+    at next (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/express/lib/router/index.js:246:14)
+    at Function.proto.handle (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/express/lib/router/index.js:166:3)
+    at router (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/express/lib/router/index.js:35:12)
+2015-06-05T15:33:57.288Z - Error Happened: 
+Error: Cannot GET /api/v1/eurostat/be
+    at /Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/server/config/routes.js:14:21
+    at Layer.handle [as handle_request] (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/express/lib/router/layer.js:82:5)
+    at next (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/express/lib/router/route.js:110:13)
+    at next (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/express/lib/router/route.js:104:14)
+    at next (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/express/lib/router/route.js:104:14)
+    at next (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/express/lib/router/route.js:104:14)
+    at next (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/express/lib/router/route.js:104:14)
+    at Route.dispatch (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/express/lib/router/route.js:91:3)
+    at Layer.handle [as handle_request] (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/express/lib/router/layer.js:82:5)
+    at /Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/express/lib/router/index.js:267:22
+    at Function.proto.process_params (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/express/lib/router/index.js:321:12)
+    at next (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/express/lib/router/index.js:261:10)
+    at /Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/express/lib/router/index.js:603:15
+    at next (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/express/lib/router/index.js:246:14)
+    at Function.proto.handle (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/express/lib/router/index.js:166:3)
+    at router (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/express/lib/router/index.js:35:12)
+2015-06-05T15:38:19.177Z - Error Happened: 
+Error: Cannot GET /api/v1/eurostat/country/FR
+    at /Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/server/config/routes.js:14:21
+    at Layer.handle [as handle_request] (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/express/lib/router/layer.js:82:5)
+    at next (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/express/lib/router/route.js:110:13)
+    at next (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/express/lib/router/route.js:104:14)
+    at next (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/express/lib/router/route.js:104:14)
+    at next (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/express/lib/router/route.js:104:14)
+    at next (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/express/lib/router/route.js:104:14)
+    at Route.dispatch (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/express/lib/router/route.js:91:3)
+    at Layer.handle [as handle_request] (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/express/lib/router/layer.js:82:5)
+    at /Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/express/lib/router/index.js:267:22
+    at Function.proto.process_params (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/express/lib/router/index.js:321:12)
+    at next (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/express/lib/router/index.js:261:10)
+    at /Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/express/lib/router/index.js:603:15
+    at next (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/express/lib/router/index.js:246:14)
+    at Function.proto.handle (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/express/lib/router/index.js:166:3)
+    at router (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/express/lib/router/index.js:35:12)
+2015-06-08T11:18:25.748Z - Error Happened: 
+Error: Cannot GET /api/v1/eurostat/net
+    at /Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/server/config/routes.js:13:21
+    at Layer.handle [as handle_request] (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/express/lib/router/layer.js:82:5)
+    at next (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/express/lib/router/route.js:110:13)
+    at Route.dispatch (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/express/lib/router/route.js:91:3)
+    at Layer.handle [as handle_request] (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/express/lib/router/layer.js:82:5)
+    at /Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/express/lib/router/index.js:267:22
+    at Function.proto.process_params (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/express/lib/router/index.js:321:12)
+    at next (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/express/lib/router/index.js:261:10)
+    at /Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/express/lib/router/index.js:603:15
+    at next (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/express/lib/router/index.js:246:14)
+    at Function.proto.handle (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/express/lib/router/index.js:166:3)
+    at router (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/express/lib/router/index.js:35:12)
+    at Layer.handle [as handle_request] (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/express/lib/router/layer.js:82:5)
+    at trim_prefix (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/express/lib/router/index.js:302:13)
+    at /Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/express/lib/router/index.js:270:7
+    at Function.proto.process_params (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/express/lib/router/index.js:321:12)
+2015-06-08T12:05:41.893Z - Error Happened: 
+TypeError: Object #<Object> has no method 'sort'
+    at exports.getNETforA1_50_all (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/server/api/eurostat/eurostat.controller.js:37:10)
+    at Layer.handle [as handle_request] (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/express/lib/router/layer.js:82:5)
+    at next (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/express/lib/router/route.js:110:13)
+    at Route.dispatch (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/express/lib/router/route.js:91:3)
+    at Layer.handle [as handle_request] (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/express/lib/router/layer.js:82:5)
+    at /Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/express/lib/router/index.js:267:22
+    at Function.proto.process_params (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/express/lib/router/index.js:321:12)
+    at next (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/express/lib/router/index.js:261:10)
+    at Function.proto.handle (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/express/lib/router/index.js:166:3)
+    at router (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/express/lib/router/index.js:35:12)
+    at Layer.handle [as handle_request] (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/express/lib/router/layer.js:82:5)
+    at trim_prefix (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/express/lib/router/index.js:302:13)
+    at /Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/express/lib/router/index.js:270:7
+    at Function.proto.process_params (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/express/lib/router/index.js:321:12)
+    at next (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/express/lib/router/index.js:261:10)
+    at SendStream.error (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/express/node_modules/serve-static/index.js:107:7)
+2015-06-08T12:17:30.296Z - Error Happened: 
+TypeError: Invalid select() argument. Must be string or object.
+    at Query.select (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/mongoose/node_modules/mquery/lib/mquery.js:1100:9)
+    at Function.find (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/mongoose/lib/model.js:1021:6)
+    at exports.getNETforA1_50_all (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/server/api/eurostat/eurostat.controller.js:32:14)
+    at Layer.handle [as handle_request] (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/express/lib/router/layer.js:82:5)
+    at next (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/express/lib/router/route.js:110:13)
+    at Route.dispatch (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/express/lib/router/route.js:91:3)
+    at Layer.handle [as handle_request] (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/express/lib/router/layer.js:82:5)
+    at /Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/express/lib/router/index.js:267:22
+    at Function.proto.process_params (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/express/lib/router/index.js:321:12)
+    at next (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/express/lib/router/index.js:261:10)
+    at Function.proto.handle (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/express/lib/router/index.js:166:3)
+    at router (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/express/lib/router/index.js:35:12)
+    at Layer.handle [as handle_request] (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/express/lib/router/layer.js:82:5)
+    at trim_prefix (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/express/lib/router/index.js:302:13)
+    at /Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/express/lib/router/index.js:270:7
+    at Function.proto.process_params (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/express/lib/router/index.js:321:12)
+2015-06-08T12:19:03.876Z - Error Happened: 
+TypeError: Invalid select() argument. Must be string or object.
+    at Query.select (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/mongoose/node_modules/mquery/lib/mquery.js:1100:9)
+    at Function.find (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/mongoose/lib/model.js:1021:6)
+    at exports.getNETforA1_50_all (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/server/api/eurostat/eurostat.controller.js:32:14)
+    at Layer.handle [as handle_request] (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/express/lib/router/layer.js:82:5)
+    at next (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/express/lib/router/route.js:110:13)
+    at Route.dispatch (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/express/lib/router/route.js:91:3)
+    at Layer.handle [as handle_request] (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/express/lib/router/layer.js:82:5)
+    at /Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/express/lib/router/index.js:267:22
+    at Function.proto.process_params (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/express/lib/router/index.js:321:12)
+    at next (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/express/lib/router/index.js:261:10)
+    at Function.proto.handle (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/express/lib/router/index.js:166:3)
+    at router (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/express/lib/router/index.js:35:12)
+    at Layer.handle [as handle_request] (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/express/lib/router/layer.js:82:5)
+    at trim_prefix (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/express/lib/router/index.js:302:13)
+    at /Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/express/lib/router/index.js:270:7
+    at Function.proto.process_params (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/express/lib/router/index.js:321:12)
+2015-06-08T12:19:29.499Z - Error Happened: 
+TypeError: Invalid select() argument. Must be string or object.
+    at Query.select (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/mongoose/node_modules/mquery/lib/mquery.js:1100:9)
+    at Function.find (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/mongoose/lib/model.js:1021:6)
+    at exports.getNETforA1_50_all (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/server/api/eurostat/eurostat.controller.js:32:14)
+    at Layer.handle [as handle_request] (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/express/lib/router/layer.js:82:5)
+    at next (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/express/lib/router/route.js:110:13)
+    at Route.dispatch (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/express/lib/router/route.js:91:3)
+    at Layer.handle [as handle_request] (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/express/lib/router/layer.js:82:5)
+    at /Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/express/lib/router/index.js:267:22
+    at Function.proto.process_params (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/express/lib/router/index.js:321:12)
+    at next (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/express/lib/router/index.js:261:10)
+    at Function.proto.handle (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/express/lib/router/index.js:166:3)
+    at router (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/express/lib/router/index.js:35:12)
+    at Layer.handle [as handle_request] (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/express/lib/router/layer.js:82:5)
+    at trim_prefix (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/express/lib/router/index.js:302:13)
+    at /Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/express/lib/router/index.js:270:7
+    at Function.proto.process_params (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/express/lib/router/index.js:321:12)
+2015-06-08T12:19:36.549Z - Error Happened: 
+TypeError: Invalid select() argument. Must be string or object.
+    at Query.select (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/mongoose/node_modules/mquery/lib/mquery.js:1100:9)
+    at Function.find (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/mongoose/lib/model.js:1021:6)
+    at exports.getNETforA1_50_all (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/server/api/eurostat/eurostat.controller.js:32:14)
+    at Layer.handle [as handle_request] (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/express/lib/router/layer.js:82:5)
+    at next (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/express/lib/router/route.js:110:13)
+    at Route.dispatch (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/express/lib/router/route.js:91:3)
+    at Layer.handle [as handle_request] (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/express/lib/router/layer.js:82:5)
+    at /Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/express/lib/router/index.js:267:22
+    at Function.proto.process_params (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/express/lib/router/index.js:321:12)
+    at next (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/express/lib/router/index.js:261:10)
+    at Function.proto.handle (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/express/lib/router/index.js:166:3)
+    at router (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/express/lib/router/index.js:35:12)
+    at Layer.handle [as handle_request] (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/express/lib/router/layer.js:82:5)
+    at trim_prefix (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/express/lib/router/index.js:302:13)
+    at /Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/express/lib/router/index.js:270:7
+    at Function.proto.process_params (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/express/lib/router/index.js:321:12)
+2015-06-08T12:20:18.313Z - Error Happened: 
+TypeError: Invalid select() argument. Must be string or object.
+    at Query.select (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/mongoose/node_modules/mquery/lib/mquery.js:1100:9)
+    at Function.find (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/mongoose/lib/model.js:1021:6)
+    at exports.getNETforA1_50_all (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/server/api/eurostat/eurostat.controller.js:32:14)
+    at Layer.handle [as handle_request] (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/express/lib/router/layer.js:82:5)
+    at next (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/express/lib/router/route.js:110:13)
+    at Route.dispatch (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/express/lib/router/route.js:91:3)
+    at Layer.handle [as handle_request] (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/express/lib/router/layer.js:82:5)
+    at /Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/express/lib/router/index.js:267:22
+    at Function.proto.process_params (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/express/lib/router/index.js:321:12)
+    at next (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/express/lib/router/index.js:261:10)
+    at Function.proto.handle (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/express/lib/router/index.js:166:3)
+    at router (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/express/lib/router/index.js:35:12)
+    at Layer.handle [as handle_request] (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/express/lib/router/layer.js:82:5)
+    at trim_prefix (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/express/lib/router/index.js:302:13)
+    at /Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/express/lib/router/index.js:270:7
+    at Function.proto.process_params (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/express/lib/router/index.js:321:12)
+2015-06-08T12:26:11.058Z - Error Happened: 
+Error: sort() only takes 1 Argument
+    at Query.sort (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/mongoose/lib/query.js:1378:11)
+    at exports.getNETforA1_50_all (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/server/api/eurostat/eurostat.controller.js:37:6)
+    at Layer.handle [as handle_request] (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/express/lib/router/layer.js:82:5)
+    at next (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/express/lib/router/route.js:110:13)
+    at Route.dispatch (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/express/lib/router/route.js:91:3)
+    at Layer.handle [as handle_request] (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/express/lib/router/layer.js:82:5)
+    at /Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/express/lib/router/index.js:267:22
+    at Function.proto.process_params (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/express/lib/router/index.js:321:12)
+    at next (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/express/lib/router/index.js:261:10)
+    at Function.proto.handle (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/express/lib/router/index.js:166:3)
+    at router (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/express/lib/router/index.js:35:12)
+    at Layer.handle [as handle_request] (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/express/lib/router/layer.js:82:5)
+    at trim_prefix (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/express/lib/router/index.js:302:13)
+    at /Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/express/lib/router/index.js:270:7
+    at Function.proto.process_params (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/express/lib/router/index.js:321:12)
+    at next (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/express/lib/router/index.js:261:10)
+2015-06-08T12:26:51.525Z - Error Happened: 
+Error: sort() only takes 1 Argument
+    at Query.sort (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/mongoose/lib/query.js:1378:11)
+    at exports.getNETforA1_50_all (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/server/api/eurostat/eurostat.controller.js:37:6)
+    at Layer.handle [as handle_request] (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/express/lib/router/layer.js:82:5)
+    at next (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/express/lib/router/route.js:110:13)
+    at Route.dispatch (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/express/lib/router/route.js:91:3)
+    at Layer.handle [as handle_request] (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/express/lib/router/layer.js:82:5)
+    at /Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/express/lib/router/index.js:267:22
+    at Function.proto.process_params (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/express/lib/router/index.js:321:12)
+    at next (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/express/lib/router/index.js:261:10)
+    at Function.proto.handle (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/express/lib/router/index.js:166:3)
+    at router (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/express/lib/router/index.js:35:12)
+    at Layer.handle [as handle_request] (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/express/lib/router/layer.js:82:5)
+    at trim_prefix (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/express/lib/router/index.js:302:13)
+    at /Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/express/lib/router/index.js:270:7
+    at Function.proto.process_params (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/express/lib/router/index.js:321:12)
+    at next (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/express/lib/router/index.js:261:10)
+2015-06-08T12:47:55.095Z - Error Happened: 
+Error: Arguments must be aggregate pipeline operators
+    at Aggregate.append (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/mongoose/lib/aggregate.js:87:11)
+    at new Aggregate (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/mongoose/lib/aggregate.js:47:17)
+    at Function.aggregate (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/mongoose/lib/model.js:1987:17)
+    at exports.getNETforA1_50_all (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/server/api/eurostat/eurostat.controller.js:37:14)
+    at Layer.handle [as handle_request] (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/express/lib/router/layer.js:82:5)
+    at next (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/express/lib/router/route.js:110:13)
+    at Route.dispatch (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/express/lib/router/route.js:91:3)
+    at Layer.handle [as handle_request] (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/express/lib/router/layer.js:82:5)
+    at /Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/express/lib/router/index.js:267:22
+    at Function.proto.process_params (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/express/lib/router/index.js:321:12)
+    at next (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/express/lib/router/index.js:261:10)
+    at Function.proto.handle (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/express/lib/router/index.js:166:3)
+    at router (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/express/lib/router/index.js:35:12)
+    at Layer.handle [as handle_request] (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/express/lib/router/layer.js:82:5)
+    at trim_prefix (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/express/lib/router/index.js:302:13)
+    at /Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/express/lib/router/index.js:270:7
+2015-06-08T12:57:56.308Z - Error Happened: 
+Error: Arguments must be aggregate pipeline operators
+    at Aggregate.append (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/mongoose/lib/aggregate.js:87:11)
+    at new Aggregate (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/mongoose/lib/aggregate.js:47:17)
+    at Function.aggregate (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/mongoose/lib/model.js:1987:17)
+    at exports.getNETforA1_50_all (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/server/api/eurostat/eurostat.controller.js:37:14)
+    at Layer.handle [as handle_request] (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/express/lib/router/layer.js:82:5)
+    at next (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/express/lib/router/route.js:110:13)
+    at Route.dispatch (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/express/lib/router/route.js:91:3)
+    at Layer.handle [as handle_request] (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/express/lib/router/layer.js:82:5)
+    at /Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/express/lib/router/index.js:267:22
+    at Function.proto.process_params (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/express/lib/router/index.js:321:12)
+    at next (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/express/lib/router/index.js:261:10)
+    at Function.proto.handle (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/express/lib/router/index.js:166:3)
+    at router (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/express/lib/router/index.js:35:12)
+    at Layer.handle [as handle_request] (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/express/lib/router/layer.js:82:5)
+    at trim_prefix (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/express/lib/router/index.js:302:13)
+    at /Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/express/lib/router/index.js:270:7
+2015-06-08T12:58:06.498Z - Error Happened: 
+Error: Arguments must be aggregate pipeline operators
+    at Aggregate.append (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/mongoose/lib/aggregate.js:87:11)
+    at new Aggregate (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/mongoose/lib/aggregate.js:47:17)
+    at Function.aggregate (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/mongoose/lib/model.js:1987:17)
+    at exports.getNETforA1_50_all (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/server/api/eurostat/eurostat.controller.js:37:14)
+    at Layer.handle [as handle_request] (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/express/lib/router/layer.js:82:5)
+    at next (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/express/lib/router/route.js:110:13)
+    at Route.dispatch (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/express/lib/router/route.js:91:3)
+    at Layer.handle [as handle_request] (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/express/lib/router/layer.js:82:5)
+    at /Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/express/lib/router/index.js:267:22
+    at Function.proto.process_params (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/express/lib/router/index.js:321:12)
+    at next (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/express/lib/router/index.js:261:10)
+    at Function.proto.handle (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/express/lib/router/index.js:166:3)
+    at router (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/express/lib/router/index.js:35:12)
+    at Layer.handle [as handle_request] (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/express/lib/router/layer.js:82:5)
+    at trim_prefix (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/express/lib/router/index.js:302:13)
+    at /Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/express/lib/router/index.js:270:7
+2015-06-08T13:22:01.996Z - Error Happened: 
+Error: Arguments must be aggregate pipeline operators
+    at Aggregate.append (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/mongoose/lib/aggregate.js:87:11)
+    at new Aggregate (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/mongoose/lib/aggregate.js:47:17)
+    at Function.aggregate (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/mongoose/lib/model.js:1987:17)
+    at exports.getNETforA1_50_all (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/server/api/eurostat/eurostat.controller.js:37:14)
+    at Layer.handle [as handle_request] (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/express/lib/router/layer.js:82:5)
+    at next (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/express/lib/router/route.js:110:13)
+    at Route.dispatch (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/express/lib/router/route.js:91:3)
+    at Layer.handle [as handle_request] (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/express/lib/router/layer.js:82:5)
+    at /Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/express/lib/router/index.js:267:22
+    at Function.proto.process_params (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/express/lib/router/index.js:321:12)
+    at next (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/express/lib/router/index.js:261:10)
+    at Function.proto.handle (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/express/lib/router/index.js:166:3)
+    at router (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/express/lib/router/index.js:35:12)
+    at Layer.handle [as handle_request] (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/express/lib/router/layer.js:82:5)
+    at trim_prefix (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/express/lib/router/index.js:302:13)
+    at /Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/express/lib/router/index.js:270:7
+2015-06-09T07:37:13.640Z - Error Happened: 
+Error: /Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/server/views/index.jade:22
+    20|                                           fecomposite(operator='over', in='shadow', in2='SourceGraphic')
+    21|                               |             
+  > 22|                               filter#pieChartDropShadow
+    23|                                 fegaussianblur(in='SourceAlpha', stddeviation='3', result='blur')
+    24|                                   feoffset(in='blur', dx='0', dy='3', result='offsetBlur')
+    25|                                     femerge
+
+unexpected token "indent"
+    at Parser.parseExpr (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/jade/lib/parser.js:252:15)
+    at Parser.block (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/jade/lib/parser.js:708:25)
+    at Parser.tag (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/jade/lib/parser.js:817:24)
+    at Parser.parseTag (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/jade/lib/parser.js:738:17)
+    at Parser.parseExpr (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/jade/lib/parser.js:211:21)
+    at Parser.block (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/jade/lib/parser.js:708:25)
+    at Parser.tag (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/jade/lib/parser.js:817:24)
+    at Parser.parseTag (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/jade/lib/parser.js:738:17)
+    at Parser.parseExpr (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/jade/lib/parser.js:211:21)
+    at Parser.block (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/jade/lib/parser.js:708:25)
+    at Parser.tag (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/jade/lib/parser.js:817:24)
+    at Parser.parseTag (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/jade/lib/parser.js:738:17)
+    at Parser.parseExpr (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/jade/lib/parser.js:211:21)
+    at Parser.parseExpr (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/jade/lib/parser.js:250:21)
+    at Parser.block (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/jade/lib/parser.js:708:25)
+    at Parser.tag (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/jade/lib/parser.js:817:24)
+2015-06-11T13:31:40.547Z - Error Happened: 
+Error: Cannot GET /api/v1/eurostat/net/BE
+    at /Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/server/config/routes.js:13:21
+    at Layer.handle [as handle_request] (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/express/lib/router/layer.js:82:5)
+    at next (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/express/lib/router/route.js:110:13)
+    at Route.dispatch (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/express/lib/router/route.js:91:3)
+    at Layer.handle [as handle_request] (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/express/lib/router/layer.js:82:5)
+    at /Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/express/lib/router/index.js:267:22
+    at Function.proto.process_params (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/express/lib/router/index.js:321:12)
+    at next (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/express/lib/router/index.js:261:10)
+    at /Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/express/lib/router/index.js:603:15
+    at next (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/express/lib/router/index.js:246:14)
+    at Function.proto.handle (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/express/lib/router/index.js:166:3)
+    at router (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/express/lib/router/index.js:35:12)
+    at Layer.handle [as handle_request] (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/express/lib/router/layer.js:82:5)
+    at trim_prefix (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/express/lib/router/index.js:302:13)
+    at /Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/express/lib/router/index.js:270:7
+    at Function.proto.process_params (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/express/lib/router/index.js:321:12)
+2015-06-11T13:31:49.901Z - Error Happened: 
+Error: Cannot GET /api/v1/eurostat/net/BE
+    at /Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/server/config/routes.js:13:21
+    at Layer.handle [as handle_request] (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/express/lib/router/layer.js:82:5)
+    at next (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/express/lib/router/route.js:110:13)
+    at Route.dispatch (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/express/lib/router/route.js:91:3)
+    at Layer.handle [as handle_request] (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/express/lib/router/layer.js:82:5)
+    at /Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/express/lib/router/index.js:267:22
+    at Function.proto.process_params (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/express/lib/router/index.js:321:12)
+    at next (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/express/lib/router/index.js:261:10)
+    at /Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/express/lib/router/index.js:603:15
+    at next (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/express/lib/router/index.js:246:14)
+    at Function.proto.handle (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/express/lib/router/index.js:166:3)
+    at router (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/express/lib/router/index.js:35:12)
+    at Layer.handle [as handle_request] (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/express/lib/router/layer.js:82:5)
+    at trim_prefix (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/express/lib/router/index.js:302:13)
+    at /Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/express/lib/router/index.js:270:7
+    at Function.proto.process_params (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/express/lib/router/index.js:321:12)
+2015-06-11T13:51:43.253Z - Error Happened: 
+Error: Cannot GET /api/v1/eurostat/net/FR
+    at /Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/server/config/routes.js:13:21
+    at Layer.handle [as handle_request] (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/express/lib/router/layer.js:82:5)
+    at next (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/express/lib/router/route.js:110:13)
+    at Route.dispatch (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/express/lib/router/route.js:91:3)
+    at Layer.handle [as handle_request] (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/express/lib/router/layer.js:82:5)
+    at /Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/express/lib/router/index.js:267:22
+    at Function.proto.process_params (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/express/lib/router/index.js:321:12)
+    at next (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/express/lib/router/index.js:261:10)
+    at /Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/express/lib/router/index.js:603:15
+    at next (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/express/lib/router/index.js:246:14)
+    at Function.proto.handle (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/express/lib/router/index.js:166:3)
+    at router (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/express/lib/router/index.js:35:12)
+    at Layer.handle [as handle_request] (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/express/lib/router/layer.js:82:5)
+    at trim_prefix (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/express/lib/router/index.js:302:13)
+    at /Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/express/lib/router/index.js:270:7
+    at Function.proto.process_params (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/express/lib/router/index.js:321:12)
+2015-06-11T13:52:06.822Z - Error Happened: 
+Error: Cannot GET /api/v1/eurostat/net/BE
+    at /Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/server/config/routes.js:13:21
+    at Layer.handle [as handle_request] (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/express/lib/router/layer.js:82:5)
+    at next (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/express/lib/router/route.js:110:13)
+    at Route.dispatch (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/express/lib/router/route.js:91:3)
+    at Layer.handle [as handle_request] (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/express/lib/router/layer.js:82:5)
+    at /Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/express/lib/router/index.js:267:22
+    at Function.proto.process_params (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/express/lib/router/index.js:321:12)
+    at next (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/express/lib/router/index.js:261:10)
+    at /Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/express/lib/router/index.js:603:15
+    at next (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/express/lib/router/index.js:246:14)
+    at Function.proto.handle (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/express/lib/router/index.js:166:3)
+    at router (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/express/lib/router/index.js:35:12)
+    at Layer.handle [as handle_request] (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/express/lib/router/layer.js:82:5)
+    at trim_prefix (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/express/lib/router/index.js:302:13)
+    at /Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/express/lib/router/index.js:270:7
+    at Function.proto.process_params (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/express/lib/router/index.js:321:12)
+2015-06-11T13:53:03.820Z - Error Happened: 
+Error: Cannot GET /api/v1/eurostat/net/BE
+    at /Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/server/config/routes.js:13:21
+    at Layer.handle [as handle_request] (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/express/lib/router/layer.js:82:5)
+    at next (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/express/lib/router/route.js:110:13)
+    at Route.dispatch (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/express/lib/router/route.js:91:3)
+    at Layer.handle [as handle_request] (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/express/lib/router/layer.js:82:5)
+    at /Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/express/lib/router/index.js:267:22
+    at Function.proto.process_params (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/express/lib/router/index.js:321:12)
+    at next (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/express/lib/router/index.js:261:10)
+    at /Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/express/lib/router/index.js:603:15
+    at next (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/express/lib/router/index.js:246:14)
+    at Function.proto.handle (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/express/lib/router/index.js:166:3)
+    at router (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/express/lib/router/index.js:35:12)
+    at Layer.handle [as handle_request] (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/express/lib/router/layer.js:82:5)
+    at trim_prefix (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/express/lib/router/index.js:302:13)
+    at /Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/express/lib/router/index.js:270:7
+    at Function.proto.process_params (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/express/lib/router/index.js:321:12)
+2015-06-11T13:53:10.497Z - Error Happened: 
+Error: Cannot GET /api/v1/eurostat/basic/country/BE
+    at /Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/server/config/routes.js:13:21
+    at Layer.handle [as handle_request] (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/express/lib/router/layer.js:82:5)
+    at next (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/express/lib/router/route.js:110:13)
+    at Route.dispatch (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/express/lib/router/route.js:91:3)
+    at Layer.handle [as handle_request] (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/express/lib/router/layer.js:82:5)
+    at /Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/express/lib/router/index.js:267:22
+    at Function.proto.process_params (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/express/lib/router/index.js:321:12)
+    at next (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/express/lib/router/index.js:261:10)
+    at /Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/express/lib/router/index.js:603:15
+    at next (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/express/lib/router/index.js:246:14)
+    at Function.proto.handle (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/express/lib/router/index.js:166:3)
+    at router (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/express/lib/router/index.js:35:12)
+    at Layer.handle [as handle_request] (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/express/lib/router/layer.js:82:5)
+    at trim_prefix (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/express/lib/router/index.js:302:13)
+    at /Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/express/lib/router/index.js:270:7
+    at Function.proto.process_params (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/express/lib/router/index.js:321:12)
+2015-06-11T13:53:30.772Z - Error Happened: 
+Error: Cannot GET /api/v1/eurostat/basic/country/BE
+    at /Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/server/config/routes.js:13:21
+    at Layer.handle [as handle_request] (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/express/lib/router/layer.js:82:5)
+    at next (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/express/lib/router/route.js:110:13)
+    at Route.dispatch (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/express/lib/router/route.js:91:3)
+    at Layer.handle [as handle_request] (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/express/lib/router/layer.js:82:5)
+    at /Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/express/lib/router/index.js:267:22
+    at Function.proto.process_params (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/express/lib/router/index.js:321:12)
+    at next (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/express/lib/router/index.js:261:10)
+    at /Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/express/lib/router/index.js:603:15
+    at next (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/express/lib/router/index.js:246:14)
+    at Function.proto.handle (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/express/lib/router/index.js:166:3)
+    at router (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/express/lib/router/index.js:35:12)
+    at Layer.handle [as handle_request] (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/express/lib/router/layer.js:82:5)
+    at trim_prefix (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/express/lib/router/index.js:302:13)
+    at /Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/express/lib/router/index.js:270:7
+    at Function.proto.process_params (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/express/lib/router/index.js:321:12)
+2015-06-11T13:53:55.278Z - Error Happened: 
+Error: Cannot GET /api/v1/eurostat/basic/countryFR
+    at /Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/server/config/routes.js:13:21
+    at Layer.handle [as handle_request] (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/express/lib/router/layer.js:82:5)
+    at next (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/express/lib/router/route.js:110:13)
+    at Route.dispatch (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/express/lib/router/route.js:91:3)
+    at Layer.handle [as handle_request] (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/express/lib/router/layer.js:82:5)
+    at /Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/express/lib/router/index.js:267:22
+    at Function.proto.process_params (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/express/lib/router/index.js:321:12)
+    at next (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/express/lib/router/index.js:261:10)
+    at /Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/express/lib/router/index.js:603:15
+    at next (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/express/lib/router/index.js:246:14)
+    at Function.proto.handle (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/express/lib/router/index.js:166:3)
+    at router (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/express/lib/router/index.js:35:12)
+    at Layer.handle [as handle_request] (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/express/lib/router/layer.js:82:5)
+    at trim_prefix (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/express/lib/router/index.js:302:13)
+    at /Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/express/lib/router/index.js:270:7
+    at Function.proto.process_params (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/express/lib/router/index.js:321:12)
+2015-06-12T06:38:03.192Z - Error Happened: 
+Error: Cannot GET /api/v1/mapping/country
+    at /Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/server/config/routes.js:13:21
+    at Layer.handle [as handle_request] (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/express/lib/router/layer.js:82:5)
+    at next (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/express/lib/router/route.js:110:13)
+    at Route.dispatch (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/express/lib/router/route.js:91:3)
+    at Layer.handle [as handle_request] (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/express/lib/router/layer.js:82:5)
+    at /Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/express/lib/router/index.js:267:22
+    at Function.proto.process_params (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/express/lib/router/index.js:321:12)
+    at next (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/express/lib/router/index.js:261:10)
+    at /Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/express/lib/router/index.js:603:15
+    at next (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/express/lib/router/index.js:246:14)
+    at Function.proto.handle (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/express/lib/router/index.js:166:3)
+    at router (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/express/lib/router/index.js:35:12)
+    at Layer.handle [as handle_request] (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/express/lib/router/layer.js:82:5)
+    at trim_prefix (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/express/lib/router/index.js:302:13)
+    at /Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/express/lib/router/index.js:270:7
+    at Function.proto.process_params (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/express/lib/router/index.js:321:12)
+2015-06-12T06:39:31.364Z - Error Happened: 
+Error: Cannot GET /api/v1/mapping/countries
+    at /Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/server/config/routes.js:13:21
+    at Layer.handle [as handle_request] (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/express/lib/router/layer.js:82:5)
+    at next (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/express/lib/router/route.js:110:13)
+    at Route.dispatch (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/express/lib/router/route.js:91:3)
+    at Layer.handle [as handle_request] (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/express/lib/router/layer.js:82:5)
+    at /Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/express/lib/router/index.js:267:22
+    at Function.proto.process_params (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/express/lib/router/index.js:321:12)
+    at next (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/express/lib/router/index.js:261:10)
+    at /Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/express/lib/router/index.js:603:15
+    at next (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/express/lib/router/index.js:246:14)
+    at Function.proto.handle (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/express/lib/router/index.js:166:3)
+    at router (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/express/lib/router/index.js:35:12)
+    at Layer.handle [as handle_request] (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/express/lib/router/layer.js:82:5)
+    at trim_prefix (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/express/lib/router/index.js:302:13)
+    at /Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/express/lib/router/index.js:270:7
+    at Function.proto.process_params (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/express/lib/router/index.js:321:12)
+2015-06-12T06:39:43.037Z - Error Happened: 
+ReferenceError: Eurostat is not defined
+    at exports.getCountries (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/server/api/mapping/mapping.controller.js:24:5)
+    at Layer.handle [as handle_request] (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/express/lib/router/layer.js:82:5)
+    at next (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/express/lib/router/route.js:110:13)
+    at Route.dispatch (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/express/lib/router/route.js:91:3)
+    at Layer.handle [as handle_request] (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/express/lib/router/layer.js:82:5)
+    at /Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/express/lib/router/index.js:267:22
+    at Function.proto.process_params (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/express/lib/router/index.js:321:12)
+    at next (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/express/lib/router/index.js:261:10)
+    at Function.proto.handle (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/express/lib/router/index.js:166:3)
+    at router (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/express/lib/router/index.js:35:12)
+    at Layer.handle [as handle_request] (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/express/lib/router/layer.js:82:5)
+    at trim_prefix (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/express/lib/router/index.js:302:13)
+    at /Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/express/lib/router/index.js:270:7
+    at Function.proto.process_params (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/express/lib/router/index.js:321:12)
+    at next (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/express/lib/router/index.js:261:10)
+    at SendStream.error (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/express/node_modules/serve-static/index.js:107:7)
+2015-06-12T06:40:02.734Z - Error Happened: 
+ReferenceError: Eurostat is not defined
+    at exports.getCountries (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/server/api/mapping/mapping.controller.js:24:5)
+    at Layer.handle [as handle_request] (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/express/lib/router/layer.js:82:5)
+    at next (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/express/lib/router/route.js:110:13)
+    at Route.dispatch (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/express/lib/router/route.js:91:3)
+    at Layer.handle [as handle_request] (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/express/lib/router/layer.js:82:5)
+    at /Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/express/lib/router/index.js:267:22
+    at Function.proto.process_params (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/express/lib/router/index.js:321:12)
+    at next (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/express/lib/router/index.js:261:10)
+    at Function.proto.handle (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/express/lib/router/index.js:166:3)
+    at router (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/express/lib/router/index.js:35:12)
+    at Layer.handle [as handle_request] (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/express/lib/router/layer.js:82:5)
+    at trim_prefix (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/express/lib/router/index.js:302:13)
+    at /Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/express/lib/router/index.js:270:7
+    at Function.proto.process_params (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/express/lib/router/index.js:321:12)
+    at next (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/express/lib/router/index.js:261:10)
+    at SendStream.error (/Users/mic0331/Documents/TRAINING/Data Analysis/Courses/Nanodegree Data Analyst/Projects/udacity_nanodegree/P5/webapp/node_modules/express/node_modules/serve-static/index.js:107:7)
